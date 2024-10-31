@@ -5,7 +5,7 @@
 
 @layer base{
     section{
-        @apply py-[75px]
+        @apply pt-[75px]
     }
 }
 
@@ -38,7 +38,7 @@
         @apply w-full
     }
     section {
-        @apply py-[35px]
+        @apply pt-[35px]
     }
 }
 
