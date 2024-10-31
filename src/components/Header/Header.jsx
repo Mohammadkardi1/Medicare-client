@@ -58,7 +58,7 @@ const Header = () => {
 
           {/* ========= logo ========= */}
           <div>
-            <img src={logo} alt=''/>
+            <img src={logo} alt='logo-image'/>
           </div>
 
 
@@ -104,11 +104,6 @@ const Header = () => {
 
 
             </div>
-
-
-
-          
-
         </div>
       </div>
     </header>

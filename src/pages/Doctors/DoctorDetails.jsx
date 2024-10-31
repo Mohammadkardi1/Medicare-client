@@ -2,9 +2,9 @@ import React from 'react'
 
 const DoctorDetails = () => {
   return (
-    <div>
+    <section>
       DoctorDetails
-    </div>
+    </section>
   )
 }
 

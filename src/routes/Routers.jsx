@@ -20,6 +20,9 @@ const Routers = () => {
       <Route path='/services' element={<Services/>} />
       <Route path='/contact' element={<Contact/>} />
 
+      {/* here we should add a Not Found page */}
+      {/* in case not matched by previously defined routes */}
+      {/* This can be used for handling 404 errors  */}
       <Route path='*' element={<Home/>}/>
     </Routes>
   )

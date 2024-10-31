@@ -1,85 +1,108 @@
 import React from 'react'
-
+import heroImg01 from '../assets/images/hero-img01.png'
+import heroImg02 from '../assets/images/hero-img02.png'
+import heroImg03 from '../assets/images/hero-img03.png'
+import icon01 from '../assets/images/icon01.png'
+import icon02 from '../assets/images/icon02.png'
+import icon03 from '../assets/images/icon03.png'
 
 
 const achievementsList = [
   {
     count: '30+' ,
     label: 'Years of Experience',
-    borderColor: 'border-b-yellowColor'
+    borderColor: 'bg-yellowColor'
   },
   {
     count: '15+' ,
     label: 'Clinic Location',
-    borderColor: 'border-b-purpleColor'
+    borderColor: 'bg-purpleColor'
   },
   ,
   {
     count: '100%' ,
     label: 'Patient Satisfaction',
-    borderColor: 'border-b-irisBlueColor'
+    borderColor: 'bg-irisBlueColor'
   }
 ]
 
+
+
 const Home = () => {
   return (
-    <div className='flex items-center mt-6'>
-      <div className='container'>
+    <>
+      {/* ========== Start Hero Section  ========== */}
+      <section className='hero__section pt-[60px] 2xl:h-[800px]'>
+        <div className='container'>
+          <div className='flex flex-col lg:flex-row gap-[90px] items-center justify-between'>
+            {/* ========== Left Hero content  ========== */}
+            <div>
+              <div className='lg:w-[570px]'>
+                <h1 className='heading'>We help patients live a healthy, longer life.</h1>
+                <p className='text__para'>
+                  Eiusmod in ea culpa consectetur. Ut excepteur duis exercitation fugiat. Ad ut velit laborum aliquip eu officia magna. 
+                  Laboris cupidatat quis proident sit duis eu fugiat incididunt deserunt reprehenderit esse magna commodo.  
+                  Magna culpa laborum magna esse mollit nisi et officia fugiat mollit quis nisi sint.
+                </p>
+                <button className='btn'>Request an Appointment</button>
+              </div>
 
-
-        <div className='flex'>
-
-          <div className='flex-1'>
-            <h1 className='heading'>
-              We help patients live a healthy, longer life.
-            </h1>
-            <p className='text__para'>
-              Eiusmod in ea culpa consectetur. Ut excepteur duis exercitation fugiat. Ad ut velit laborum aliquip eu officia magna. 
-              Laboris cupidatat quis proident sit duis eu fugiat incididunt deserunt reprehenderit esse magna commodo.  
-              Magna culpa laborum magna esse mollit nisi et officia fugiat mollit quis nisi sint.
-            </p>
-            <button className='btn'>
-              Request an Appointment
-            </button>
-
-            <div className='flex items-center justify-between mt-[3rem]'>
-              {achievementsList.map((item,index) => (
-                <div key={index}>
-                  <h1 className={`heading border-b-8 ${item.borderColor}`}>
-                    {item.count}
-                  </h1>
-                  <p className='text__para'>
-                    {item.label}
-                  </p>
-                </div>
-              ))}
-
-
-
-
-              
+              {/* ========== hero counter ========== */}
+              <div className='mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]'>
+                {achievementsList.map((item,index) => (
+                  <div key={index}>
+                    <h1 className='heading'>{item.count}</h1>
+                    <span className={`w-[100px] h-2 ${item.borderColor} rounded-full block mt-[-14px]`}></span>
+                    <p className='text__para'>{item.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
+            {/* ========== Right Hero content  ========== */}
+            <div className='flex gap-[30px] justify-end'>
+              <div>
+                <img src={heroImg01} alt='' className='w-full'/>
+              </div>
+              <div className='mt-[30px]'>
+                <img src={heroImg02} alt='' className='w-full mb-[30px]'/>
+                <img src={heroImg03} alt='' className='w-full'/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* ========== End Hero Section  ========== */}
+
+
+      {/* ========== Start HowItWorks Section  ========== */}
+      <section className='howitworks__section'>
+        <div className='container'>
+
+          <div className='flex justify-center'>
+            <div className='felx flex-col text-center w-[300px] lg:w-[500px]'>
+              <h1 className='heading'>Providing the best medical services</h1>
+              <p className='text__para'>World-class care for everyone. Our health System offers unmatched, expert health care.</p>
+            </div>
           </div>
 
 
 
+          <div className=' pt-4'>
+            <div>
 
-
-
-
-
-
-
-          <div className='flex-1'>
-            hero image
+            </div>
           </div>
-
-
 
         </div>
-      </div>
-    </div>
+
+      </section>
+
+      {/* ========== End HowItWorks Section  ========== */}
+
+
+
+    </>
   )
 }
 
