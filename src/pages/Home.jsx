@@ -6,18 +6,18 @@ const achievementsList = [
   {
     count: '30+' ,
     label: 'Years of Experience',
-    borderColor: 'yellowColor'
+    borderColor: 'border-b-yellowColor'
   },
   {
     count: '15+' ,
     label: 'Clinic Location',
-    borderColor: 'purpleColor'
+    borderColor: 'border-b-purpleColor'
   },
   ,
   {
     count: '100%' ,
     label: 'Patient Satisfaction',
-    borderColor: 'irisBlueColor'
+    borderColor: 'border-b-irisBlueColor'
   }
 ]
 
@@ -38,26 +38,22 @@ const Home = () => {
               Laboris cupidatat quis proident sit duis eu fugiat incididunt deserunt reprehenderit esse magna commodo.  
               Magna culpa laborum magna esse mollit nisi et officia fugiat mollit quis nisi sint.
             </p>
-
             <button className='btn'>
               Request an Appointment
             </button>
 
             <div className='flex items-center justify-between mt-[3rem]'>
-              {
-                achievementsList.map((item,index) => (
-                  <div key={index}>
-                    <p 
-                      className={`heading border-b-8 border-b-${item.borderColor}`}>
-                      {item.count}
-                    </p>
-                    <p className='text__para'>{item.label}</p>
-                  </div>
-                ))
-              }
-              {/* <p className=' border-b-8 border-b-yellowColor'>
-                30+
-              </p> */}
+              {achievementsList.map((item,index) => (
+                <div key={index}>
+                  <h1 className={`heading border-b-8 ${item.borderColor}`}>
+                    {item.count}
+                  </h1>
+                  <p className='text__para'>
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+
 
 
 
