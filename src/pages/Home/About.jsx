@@ -32,7 +32,7 @@ const About = () => {
             <Link to='/'>
               <button className='btn'>Learn More</button>
             </Link>
-            
+
           </div>
         </div>
       </div>

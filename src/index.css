@@ -5,7 +5,7 @@
 
 @layer base{
     section{
-        @apply pt-[75px]
+        @apply pb-[75px]
     }
 }
 
@@ -33,12 +33,12 @@
 
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 992px) {
     .container{
         @apply w-full
     }
     section {
-        @apply pt-[35px]
+        @apply pb-[35px]
     }
 }
 

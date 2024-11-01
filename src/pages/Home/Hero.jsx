@@ -24,7 +24,7 @@ const achievementsList = [
 
 const Hero = () => {
   return (
-    <section className='hero__section pt-[60px] 2xl:h-[800px]'>
+    <section className='hero__section pt-[35px] lg:pt-[75px] 2xl:h-[800px]'>
       <div className='container'>
         <div className='flex flex-col lg:flex-row gap-[90px] items-center justify-between'>
           {/* ========== Left Hero content  ========== */}
