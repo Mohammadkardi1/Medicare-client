@@ -2,7 +2,7 @@ import React from 'react'
 import About from './About'
 import Hero from './Hero'
 import HowItWorks from './HowItWorks'
-import Services from './Services'
+import Services from './ServicesSection/Services'
 
 
 
