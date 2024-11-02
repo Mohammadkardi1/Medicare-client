@@ -1,6 +1,7 @@
 import React from 'react'
 import About from './About'
 import DoctorsSection from './DoctorsSection/DoctorsSection'
+import FAQ from './FAQ'
 import Feature from './Feature'
 import Hero from './Hero'
 import HowItWorks from './HowItWorks'
@@ -18,6 +19,7 @@ const Home = () => {
       <ServicesSection/>
       <Feature/>
       <DoctorsSection/>
+      <FAQ/>
     </>
   )
 }
