@@ -1,9 +1,10 @@
 import React from 'react'
 import About from './About'
+import DoctorsSection from './DoctorsSection/DoctorsSection'
 import Feature from './Feature'
 import Hero from './Hero'
 import HowItWorks from './HowItWorks'
-import Services from './ServicesSection/Services'
+import ServicesSection from './ServicesSection/ServicesSection'
 
 
 
@@ -14,8 +15,9 @@ const Home = () => {
       <Hero/>
       <HowItWorks/>
       <About/>
-      <Services/>
+      <ServicesSection/>
       <Feature/>
+      <DoctorsSection/>
     </>
   )
 }

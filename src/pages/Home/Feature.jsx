@@ -3,6 +3,8 @@ import featureImg from '../../assets/images/feature-img.png'
 import { Link } from 'react-router-dom'
 import videoIcon from '../../assets/images/video-icon.png'
 import avatarIcon from '../../assets/images/avatar-icon.png'
+
+
 const appointment_options = [
     "Schedule the appointment directly.",
     "Search for your physician here and contact their office.",
@@ -39,10 +41,16 @@ const Feature = () => {
                     
                 {/* ========== Right Feature Section  ========== */}
                 <div className='relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0'>
+
+
                     <img src={featureImg} alt='feature-image' className='w-3/4'/>
-                    <div className='w-[150px] lg:w-[248px] bg-white absolute bottom-[50px] left-0 md:bottom-[100px] md:left-5 
+
+
+                    <div className='absolute w-[150px] lg:w-[248px] bg-white bottom-[50px] left-0 md:bottom-[100px] md:left-5 
                                     z-20 p-2 pb-5 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px]'>
+                       
                         <div className='flex items-center justify-between'>
+
                             <div className='flex items-center gap-[6px] lg:gap-3'>
                                 <p className='text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[600]'>
                                     Tue, 24
@@ -69,6 +77,8 @@ const Feature = () => {
                             </h1>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
