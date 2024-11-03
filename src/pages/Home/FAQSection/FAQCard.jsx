@@ -20,7 +20,7 @@ const FAQCard = ({faq}) => {
     <div className='border-[1px] border-textColor rounded-[8px] p-5 space-y-4'>
       <div className='flex justify-between items-center'>
         <h1 className=' text-headingColor font-[600] leading-5 text-[18px] '>{faq.question}</h1>
-        <div className=''>
+        <div>
           <button onClick={handleVisibility}>
             {isVisible ? (
               <FaSquareMinus size={30} className='text-primaryColor' />
