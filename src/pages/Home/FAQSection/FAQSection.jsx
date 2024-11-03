@@ -1,5 +1,6 @@
 import React from 'react'
 import faqImg from '../../../assets/images/faq-img.png'
+import FAQList from './FAQList'
 
 const FAQSection = () => {
   return (
@@ -17,6 +18,11 @@ const FAQSection = () => {
 
 
             {/* ========== Right FAQ Section ========== */}
+            <div className='w-1/2'>
+              <h1 className='heading mb-8'>Most questions by our beloved patients</h1>
+              
+              <FAQList/>
+            </div>
 
 
 
