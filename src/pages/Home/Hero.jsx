@@ -27,7 +27,7 @@ const Hero = () => {
     <section className='hero__section pt-[35px] lg:pt-[75px] 2xl:h-[800px]'>
       <div className='container'>
         <div className='flex flex-col lg:flex-row gap-[90px] items-center justify-between'>
-          {/* ========== Left Hero content  ========== */}
+          {/* ========== Left Hero Section ========== */}
           <div>
             <div className='lg:w-[570px]'>
               <h1 className='heading'>We help patients live a healthy, longer life.</h1>
@@ -50,7 +50,7 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* ========== Right Hero content  ========== */}
+          {/* ========== Right Hero Section ========== */}
           <div className='flex gap-[30px] justify-end'>
             <div>
               <img src={heroImg01} alt='' className='w-full'/>
