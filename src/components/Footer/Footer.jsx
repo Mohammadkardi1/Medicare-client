@@ -4,78 +4,74 @@ import { RiLinkedinFill } from "react-icons/ri";
 import { AiFillYoutube, AiFillGithub, AiFillFacebook } from "react-icons/ai";
 import {Link} from 'react-router-dom'
 
-const iconSize = 18;
+const iconSize = 18
 
 
 const socialProfiles = [
   {
-    tag: <RiLinkedinFill size={iconSize}/>,
-    color: '0077B5',
-    url: ''
+    icon: <RiLinkedinFill className='grou-hover:text-white' size={iconSize}/>,
+    path: ''
   },
   {
-    tag: <AiFillYoutube size={iconSize} />,
-    color: 'FF0033',
-    url: ''
+    icon: <AiFillYoutube className='group-hover:text-white' size={iconSize} />,
+    path: ''
   }, 
   {
-    tag: <AiFillGithub size={iconSize} />,
-    color: '1F2328',
-    url: ''
+    icon: <AiFillGithub className='group-hover:text-white' size={iconSize} />,
+    path: ''
   }, 
   {
-    tag: <AiFillFacebook size={iconSize} />,
-    color: '0866FF',
-    url: ''
+    icon: <AiFillFacebook className='group-hover:text-white' size={iconSize} />,
+    path: ''
   }
 ]
 
 const QuickLinks = [
   {
     label: 'Home',
-    url: '/home'
+    path: '/home'
   },
   {
     label: 'About us',
-    url: ''
+    path: ''
   },
   {
     label: 'Services',
-    url: '/services'
+    path: '/services'
   },
   {
     label: 'Blog',
-    url: ''
+    path: ''
   }
 ]
 
 const IWantToItems = [
   {
     label: 'Find a Doctor',
-    url: '/doctors'
+    path: '/doctors'
   },
   {
     label: 'Request an Apponitment',
-    url: ''
+    path: ''
   },
   {
     label: 'Find a Location',
-    url: ''
+    path: ''
   },
   {
     label: 'Get an Opinion',
-    url: ''
+    path: ''
   }
 ]
 
 const SupportItems = [
   {
     label: 'Donate',
-    url: ''
+    path: ''
   },
   {
     label: 'Contact us',
-    url: ''
+    path: ''
   }
 ]
 
@@ -88,10 +84,11 @@ const navLinksClasses= 'text-[15px] leading-[30px] font-[500] text-textColor mt-
 
 const Footer = () => {
 
+  const year = new Date().getFullYear()
 
 
   return (
-    <div className='mb-4'>
+    <footer className='mb-4'>
       <div className='container'>
         <div className=' flex gap-8'>
 
@@ -100,17 +97,17 @@ const Footer = () => {
             <img src={logoImg} alt='logo-image'/>
 
             <p className='text-[14px] leading-[25px] font-[500] text-textColor'>
-              Copyright &copy; 2024 Developed by Mohammad Kardi. All rights reserved.
+              Copyright &copy; {year} Developed by Mohammad Kardi. All rights reserved.
             </p>
 
             <div className='flex gap-2'>
 
 
-              {socialProfiles.map((icon, index) => (
-                  <div key={index} 
-                        className={`border-[1px] rounded-full p-2 border-headingColor hover:cursor-pointer`}>
-                    {icon.tag}
-                  </div>
+              {socialProfiles.map((item, index) => (
+                  <Link key={index} 
+                        className={`border-[1px] rounded-full p-2 border-headingColor group hover:bg-primaryColor hover:border-none`}>
+                    {item.icon}
+                  </Link>
               ))}
             </div>
           </div>
@@ -122,31 +119,37 @@ const Footer = () => {
 
             <div>
               <h1 className={navHeaderClasses}>Quick Links</h1>
+              <ul>
                 {QuickLinks.map((item, index) => (
-                  <Link key={index} to={item.url}>
-                    <p className={navLinksClasses}>{item.label}</p>
-                  </Link>
+                  <li key={index} className={navLinksClasses}>
+                    <Link to={item.path} >{item.label}</Link>
+                  </li>
                 ))}
+              </ul>
             </div>
 
 
             <div>
               <h1 className={navHeaderClasses}>I want to</h1>
+              <ul>
                 {IWantToItems.map((item, index) => (
-                  <Link key={index} to={item.url}>
-                    <p className={navLinksClasses}>{item.label}</p>
-                  </Link>
+                  <li key={index} className={navLinksClasses}>
+                    <Link to={item.path}>{item.label}</Link>
+                  </li>
                 ))}
+              </ul>
             </div>
 
 
             <div>
               <h1 className={navHeaderClasses}>Support</h1>
+              <ul>
                 {SupportItems.map((item, index) => (
-                  <Link key={index} to={item.url}>
-                    <p className={navLinksClasses}>{item.label}</p>
-                  </Link>
+                  <li key={index} className={navLinksClasses}>
+                    <Link to={item.path}>{item.label}</Link>
+                  </li>
                 ))}
+              </ul>
             </div>
 
 
@@ -156,7 +159,7 @@ const Footer = () => {
           
         </div>
       </div>
-    </div>
+    </footer>
   )
 }
 

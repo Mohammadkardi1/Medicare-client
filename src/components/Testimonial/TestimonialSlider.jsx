@@ -7,11 +7,8 @@ import {HiStar} from 'react-icons/hi'
 
 
 
-
-
 const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
   return (
-
     <Swiper
           modules={[Pagination]}
           pagination={{ clickable: true }}
@@ -22,9 +19,6 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
           }}
         {...swiperSettings} // Spread custom settings
         >
-
-
-
         {testimonialData.map((testimonial, index) => (
           <SwiperSlide key={index}>
             <div className="p-5 border rounded-lg shadow-lg text-center space-y-2">
@@ -32,7 +26,6 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
               <img src={testimonial.image} alt={testimonial.name}
                 className="w-20 h-20 mx-auto rounded-full mb-4"
               />
-
 
               <div>
                 <h1 className="text-lg font-[600] ">{testimonial.name}</h1>
@@ -47,10 +40,6 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
             </div>
           </SwiperSlide>
           ))}
-
-
-
-
     </Swiper>
       
   )
