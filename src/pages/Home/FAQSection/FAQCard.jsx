@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { CiSquarePlus } from "react-icons/ci";
 import { FaSquareMinus } from "react-icons/fa6";
+// import { AiOutlineMinus, AiOutlinePlus  } from "react-icons/ai";
 
 
 const FAQCard = ({faq}) => {
@@ -23,7 +24,7 @@ const FAQCard = ({faq}) => {
         <div>
           <button onClick={handleVisibility}>
             {isVisible ? (
-              <FaSquareMinus size={30} className='text-primaryColor' />
+              <FaSquareMinus  size={30} className='text-primaryColor' />
             ): (
               <CiSquarePlus size={30} className=' hover:text-primaryColor'/>
             )}
