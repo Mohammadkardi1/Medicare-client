@@ -7,20 +7,20 @@ import { BiMenu } from "react-icons/bi";
 
 const navLinks = [
   {
-    path: '/home',
-    display: 'Home'
+    label: 'Home',
+    path: '/home'
   },
   {
-    path: '/doctors',
-    display: 'Find a Doctor'
+    label: 'Find a Doctor',
+    path: '/doctors'
   },
   {
-    path: '/services',
-    display: 'Service'
+    label: 'Services',
+    path: '/services'
   },
   {
-    path: '/contact',
-    display: 'Contact'
+    label: 'Contact',
+    path: '/contact'
   },
 ]
 
@@ -72,7 +72,7 @@ const Header = () => {
                           className={navClass => navClass.isActive 
                             ? 'text-primaryColor text-[16px] leading-7 font-[600]' 
                             : 'text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor'}>
-                    {link.display}
+                    {link.label}
                   </NavLink>
                 </li>
               ))}
