@@ -29,8 +29,6 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
           <SwiperSlide key={index}>
             <div className="p-5 border rounded-lg shadow-lg text-center space-y-2">
 
-
-
               <img src={testimonial.image} alt={testimonial.name}
                 className="w-20 h-20 mx-auto rounded-full mb-4"
               />
@@ -44,10 +42,6 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
                   ))}
                 </div>
               </div>
-
-
- 
-
 
               <p className=" text-textColor">{testimonial.review}</p>
             </div>
