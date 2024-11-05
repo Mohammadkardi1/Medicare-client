@@ -25,21 +25,21 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
 
 
 
-      {testimonialData.map((testimonial, index) => (
+        {testimonialData.map((testimonial, index) => (
 
-        
-        <SwiperSlide key={index}>
-          <div className="p-5 border rounded-lg shadow-lg text-center">
-            {/* <img
-              src={testimonial.image}
-              alt={testimonial.name}
-              className="w-20 h-20 mx-auto rounded-full mb-4"
-            /> */}
-            <p className="text-xl font-semibold mb-2">{testimonial.name}</p>
-            {/* <p className="text-gray-600 italic">{testimonial.review}</p> */}
-          </div>
-        </SwiperSlide>
-        ))}
+          
+          <SwiperSlide key={index}>
+            <div className="p-5 border rounded-lg shadow-lg text-center">
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-20 h-20 mx-auto rounded-full mb-4"
+              />
+              <p className="text-xl font-semibold mb-2">{testimonial.name}</p>
+              <p className="text-gray-600 italic">{testimonial.review}</p>
+            </div>
+          </SwiperSlide>
+          ))}
 
 
 

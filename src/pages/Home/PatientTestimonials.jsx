@@ -21,6 +21,12 @@ const patientTestimonialsData = [
     review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
     rating: 3,
     image: patientAvatar
+  },
+  {
+    name: 'John Doe',
+    review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
+    rating: 2,
+    image: patientAvatar
   }
 ]
 
@@ -41,7 +47,7 @@ const PatientTestimonials = () => {
 
 
         <TestimonialSlider
-          testimonials={patientTestimonialsData}
+          testimonialData={patientTestimonialsData}
           swiperSettings={{
             slidesPerView: 1,
             spaceBetween: 30,
