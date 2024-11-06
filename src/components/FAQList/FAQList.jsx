@@ -1,5 +1,5 @@
 import React from 'react'
-import {faqs} from '../../../assets/data/faqs'
+import {faqs} from '../../assets/data/faqs'
 import FAQCard from './FAQCard'
 
 const FAQList = () => {

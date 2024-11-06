@@ -1,11 +1,11 @@
 import React from 'react'
 import About from './About'
-import DoctorsSection from './DoctorsSection/DoctorsSection'
-import FAQSection from './FAQSection/FAQSection'
+import DoctorsSection from './DoctorsSection'
+import FAQSection from './FAQSection'
 import Feature from './Feature'
 import Hero from './Hero'
 import HowItWorks from './HowItWorks'
-import ServicesSection from './ServicesSection/ServicesSection'
+import ServicesSection from './ServicesSection'
 import PatientTestimonials from './PatientTestimonials'
 
 

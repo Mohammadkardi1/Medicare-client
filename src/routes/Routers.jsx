@@ -4,8 +4,8 @@ import Contact from './../pages/Contact';
 import Login from './../pages/Login';
 import Services from './../pages/Services';
 import Signup from './../pages/Signup';
-import Doctors from './../pages/Doctors/Doctors';
-import DoctorDetails from './../pages/Doctors/DoctorDetails';
+import FindDoctor from '../pages/FindDoctor';
+import DoctorDetails from './../pages/DoctorDetails';
 import { Routes, Route } from 'react-router-dom'
 
 const Routers = () => {
@@ -13,7 +13,7 @@ const Routers = () => {
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/home' element={<Home/>} />
-      <Route path='/doctors' element={<Doctors/>} />
+      <Route path='/FindDoctor' element={<FindDoctor/>} />
       <Route path='/doctors/:id' element={<DoctorDetails/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Signup/>} />

@@ -31,7 +31,7 @@ const TestimonialSlider = ({ testimonialData, swiperSettings = {} }) => {
                 <h1 className="text-lg font-[600] ">{testimonial.name}</h1>
                 <div className='flex items-center justify-center'>
                   {Array.from({ length: testimonial.rating }, (_, index) => (
-                    <HiStar className='text-yellowColor w-[18px] h-5'/>
+                    <HiStar key={index} className='text-yellowColor w-[18px] h-5'/>
                   ))}
                 </div>
               </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import ServicesList from './Home/ServicesSection/ServicesList';
+import ServicesList from '../components/ServicesList/ServicesList';
 
 
 const Services = () => {

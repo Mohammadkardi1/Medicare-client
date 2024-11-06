@@ -1,5 +1,5 @@
 import React from 'react'
-import DoctorList from './DoctorList'
+import DoctorList from '../../components/DoctorsList/DoctorList'
 
 const DoctorsSection = () => {
   return (

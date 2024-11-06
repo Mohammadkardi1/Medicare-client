@@ -1,6 +1,6 @@
 import React from 'react'
-import faqImg from '../../../assets/images/faq-img.png'
-import FAQList from './FAQList'
+import faqImg from '../../assets/images/faq-img.png'
+import FAQList from '../../components/FAQList/FAQList'
 
 const FAQSection = () => {
   return (

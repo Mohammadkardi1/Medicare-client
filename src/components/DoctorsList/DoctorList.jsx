@@ -1,5 +1,5 @@
 import React from 'react'
-import { doctorsData } from '../../../assets/data/doctors'
+import { doctorsData } from '../../assets/data/doctors'
 import DoctorCard from './DoctorCard'
 
 

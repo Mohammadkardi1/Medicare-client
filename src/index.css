@@ -5,7 +5,7 @@
 
 @layer base{
     section{
-        @apply pb-[75px]
+        @apply mb-[75px]
     }
 }
 
