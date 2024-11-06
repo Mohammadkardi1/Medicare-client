@@ -1,5 +1,6 @@
 import React from 'react'
 import DoctorList from '../components/DoctorsList/DoctorList';
+import PatientTestimonials from './Home/PatientTestimonials';
 
 const FindDoctor = () => {
   return (
@@ -23,13 +24,11 @@ const FindDoctor = () => {
     </section>
 
 
-    <section>
-      <div className='container'>
-
-
-        <DoctorList/>
-      </div>
-    </section>
+    
+    <div className='container'>
+      <section><DoctorList/></section>
+      <section><PatientTestimonials/></section>
+    </div>
 
 
     </>

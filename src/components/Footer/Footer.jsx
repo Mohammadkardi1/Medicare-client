@@ -75,11 +75,8 @@ const SupportItems = [
   }
 ]
 
-
-
 const navHeaderClasses = 'text-[20px] leading-[30px] font-[700] text-headingColor mb-3'
 const navLinksClasses= 'text-[15px] leading-[30px] font-[500] text-textColor mt-1'
-
 
 
 const Footer = () => {
@@ -90,10 +87,10 @@ const Footer = () => {
   return (
     <footer className='mb-4'>
       <div className='container'>
-        <div className=' flex gap-8'>
+        <div className=' grid grid-cols-5 gap-8'>
 
-          {/* ========== Copyright and Social Profiles Section ========== */}
-          <div className='w-1/3 space-y-6'>
+          {/* ========== Copyright and Social Profiles ========== */}
+          <div className='col-span-2 space-y-6'>
             <img src={logoImg} alt='logo-image'/>
 
             <p className='text-[14px] leading-[25px] font-[500] text-textColor'>
@@ -113,48 +110,42 @@ const Footer = () => {
           </div>
           
 
-          {/* ========== Navigation Links Section ========== */}
-          <div className='w-2/3 grid grid-cols-3'>
-
-
-            <div>
-              <h1 className={navHeaderClasses}>Quick Links</h1>
-              <ul>
-                {QuickLinks.map((item, index) => (
-                  <li key={index} className={navLinksClasses}>
-                    <Link to={item.path} >{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-
-            <div>
-              <h1 className={navHeaderClasses}>I want to</h1>
-              <ul>
-                {IWantToItems.map((item, index) => (
-                  <li key={index} className={navLinksClasses}>
-                    <Link to={item.path}>{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-
-            <div>
-              <h1 className={navHeaderClasses}>Support</h1>
-              <ul>
-                {SupportItems.map((item, index) => (
-                  <li key={index} className={navLinksClasses}>
-                    <Link to={item.path}>{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-
-            
+          {/* ========== QuickLinks List ========== */}
+          <div>
+            <h1 className={navHeaderClasses}>Quick Links</h1>
+            <ul>
+              {QuickLinks.map((item, index) => (
+                <li key={index} className={navLinksClasses}>
+                  <Link to={item.path} >{item.label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
+
+          {/* ========== IWantTo List ========== */}
+          <div>
+            <h1 className={navHeaderClasses}>I want to</h1>
+            <ul>
+              {IWantToItems.map((item, index) => (
+                <li key={index} className={navLinksClasses}>
+                  <Link to={item.path}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* ========== Support List ========== */}
+          <div>
+            <h1 className={navHeaderClasses}>Support</h1>
+            <ul>
+              {SupportItems.map((item, index) => (
+                <li key={index} className={navLinksClasses}>
+                  <Link to={item.path}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
 
           
         </div>

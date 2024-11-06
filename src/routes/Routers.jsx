@@ -5,7 +5,7 @@ import Login from './../pages/Login';
 import Services from './../pages/Services';
 import Signup from './../pages/Signup';
 import FindDoctor from '../pages/FindDoctor';
-import DoctorDetails from './../pages/DoctorDetails';
+import DoctorDetails from './../pages/DoctorDetails/DoctorDetails';
 import { Routes, Route } from 'react-router-dom'
 
 const Routers = () => {
