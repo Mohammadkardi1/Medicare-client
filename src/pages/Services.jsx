@@ -1,9 +1,14 @@
 import React from 'react'
+import ServicesList from './Home/ServicesSection/ServicesList';
+
 
 const Services = () => {
   return (
     <section>
-      Services
+      <div className='container'>
+
+        <ServicesList/>
+      </div>
     </section>
   )
 }

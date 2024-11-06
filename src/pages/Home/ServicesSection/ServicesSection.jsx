@@ -1,5 +1,5 @@
 import React from 'react'
-import ServiceList from './ServiceList'
+import ServicesList from './ServicesList'
 
 const ServicesSection = () => {
   return (
@@ -10,7 +10,7 @@ const ServicesSection = () => {
             <p className='text__para text-center'>World-Class care for everyone. Our health System offers unmatched, expert health care.</p>
         </div>
 
-        <ServiceList/>
+        <ServicesList/>
       </div>
     </section>
   )
