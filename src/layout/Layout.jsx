@@ -5,13 +5,13 @@ import Routers from '../routes/Routers'
 
 const Layout = () => {
   return (
-    <>
+    <div className='min-h-screen flex flex-col justify-between'>
       <Header/>
       <main>
         <Routers/>
       </main>
       <Footer/>
-    </>
+    </div>
   )
 }
 
