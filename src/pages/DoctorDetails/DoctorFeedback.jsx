@@ -42,7 +42,7 @@ const DoctorFeedback = () => {
 
           <div className='flex gap-1'>
             {[...Array(3).keys()].map((_, index) => (
-              <AiFillStar key={index} color="#0067FF"/>
+              <AiFillStar key={index} className="text-yellowColor"/>
             ))}
           </div>
 
