@@ -2,12 +2,14 @@ import React from 'react'
 import avatar from '../../assets/images/avatar-icon.png'
 import { formateDate } from './../../utils/formateDate';
 import { AiFillStar } from "react-icons/ai";
+import FeedbackForm from './FeedbackForm';
 
 
 const DoctorFeedback = () => {
   return (
     <div>
       <div className='mb-[50px]'>
+
         <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
           All reviews (65)
         </h1>
@@ -47,11 +49,10 @@ const DoctorFeedback = () => {
 
 
         </div>
-
-
-
-
       </div>
+
+
+      {<FeedbackForm/>}
     </div>
   )
 }
