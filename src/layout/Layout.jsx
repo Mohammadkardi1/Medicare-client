@@ -7,9 +7,7 @@ const Layout = () => {
   return (
     <div className='min-h-screen flex flex-col justify-between'>
       <Header/>
-      <main>
-        <Routers/>
-      </main>
+      <Routers/>
       <Footer/>
     </div>
   )
