@@ -5,8 +5,13 @@ const FeedbackForm = () => {
 
     const [rating, setRating] = useState(0)
     const [hover, setHover] = useState(0)
-    const [reviewText, setReviewText] = useState(0)
+    const [reviewText, setReviewText] = useState('')
 
+    const handleSubmitReview = async e => {
+        e.preventDefault()
+
+        // Later I will have to use API
+    }
 
 
   return (
@@ -51,13 +56,16 @@ const FeedbackForm = () => {
 
                 <textarea 
                     className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
-                    rows={5} placeholder="Write a review">
+                    rows={5} 
+                    placeholder="Write a review"
+                    onChange={e => setReviewText(e.target.value)}
+                    >
 
                 </textarea>
             </div>
 
-            <button type='submit' className='btn'>
-                Submit Feedback
+            <button type='submit' onClick={handleSubmitReview} className='btn'>
+                Submit Review
             </button>
 
         </div>
