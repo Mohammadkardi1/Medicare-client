@@ -30,7 +30,6 @@ const SidePanel = () => {
             <p className='text__para mt-0 font-semibold text-headingColor'>
                 Available Time Slots:
             </p>
-            
             <ul className='mt-3'>
                 {availableTimeSolts.map((item, index) => (
                     <li key={index} className='flex items-center justify-between mb-2'>
@@ -43,13 +42,11 @@ const SidePanel = () => {
                     </li>
                 ))}
             </ul>
-
         </div>
 
         <button className='btn px-2 w-full rounded-md'>
             Book Appointment
         </button>
-      
     </div>
   )
 }

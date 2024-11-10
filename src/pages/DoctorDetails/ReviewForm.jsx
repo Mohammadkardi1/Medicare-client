@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import { AiFillStar } from "react-icons/ai";
 
-const FeedbackForm = () => {
+const ReviewForm = () => {
 
     const [rating, setRating] = useState(0)
     const [hover, setHover] = useState(0)
     const [reviewText, setReviewText] = useState('')
+
+    
 
     const handleSubmitReview = async e => {
         e.preventDefault()
@@ -19,9 +21,7 @@ const FeedbackForm = () => {
         <div>
             <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4'>
                 How would you rate the overall experience?
-                How would you rthr
             </h1>
-
 
             <div>
                 {[...Array(5).keys()].map((_, index) => {
@@ -51,7 +51,7 @@ const FeedbackForm = () => {
 
             <div className='mt-[30px]'>
                 <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4 mt-0'>
-                    Share your feedback or suggestions
+                    Share your review or suggestions
                 </h1>
 
                 <textarea 
@@ -73,4 +73,4 @@ const FeedbackForm = () => {
   )
 }
 
-export default FeedbackForm
+export default ReviewForm

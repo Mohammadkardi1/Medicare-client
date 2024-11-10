@@ -2,7 +2,7 @@ import React from 'react'
 import avatar from '../../assets/images/avatar-icon.png'
 import { formateDate } from './../../utils/formateDate';
 import { AiFillStar } from "react-icons/ai";
-import FeedbackForm from './FeedbackForm';
+import ReviewForm from './ReviewForm';
 
 
 const DoctorFeedback = () => {
@@ -46,13 +46,11 @@ const DoctorFeedback = () => {
             ))}
           </div>
 
-
-
         </div>
       </div>
 
 
-      {<FeedbackForm/>}
+      {<ReviewForm/>}
     </div>
   )
 }
