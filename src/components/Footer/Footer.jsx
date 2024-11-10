@@ -1,7 +1,7 @@
 import React from 'react'
 import logoImg from '../../assets/images/logo.png'
-import { RiLinkedinFill } from "react-icons/ri";
-import { AiFillYoutube, AiFillGithub, AiFillFacebook } from "react-icons/ai";
+// import { AiFillLinkedin  } from "react-icons/ri";
+import { AiFillYoutube, AiFillGithub, AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import {Link} from 'react-router-dom'
 
 const iconSize = 18
@@ -9,7 +9,7 @@ const iconSize = 18
 
 const socialProfiles = [
   {
-    icon: <RiLinkedinFill className='grou-hover:text-white' size={iconSize}/>,
+    icon: <AiFillLinkedin  className='group-hover:text-white' size={iconSize}/>,
     path: ''
   },
   {
