@@ -69,6 +69,32 @@ const Register = () => {
                 </label>
               </div>
 
+              <div className='mb-5 flex items-center gap-3 '>
+                <fingure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor 
+                                    flex items-center justify-center'>
+                  <img src={avatar} alt='' className='w-full rounded-full'/>
+
+                </fingure>
+
+                <div className='relative w-[130px] h-[50px]'>
+                  <input
+                    type='file'
+                    name='photo'
+                    id='customerFile'
+                    accept='.jpg, .png'
+                    className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
+                  />
+                  <label htmlFor='customFile' 
+                          className='absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] 
+                            leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1
+                            cursor-pointer'>
+
+                    Upload Photo
+                  </label>
+                </div>
+
+              </div>
+
 
 
             </form>
