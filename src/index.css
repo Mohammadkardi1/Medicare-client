@@ -30,7 +30,13 @@
     .btn{
         @apply bg-primaryColor py-[15px] px-[35px] rounded-[50px] text-white font-[600] mt-[38px]
     }
-
+    .form__input{
+        @apply w-full px-2 py-3 text-headingColor text-[16px] leading-7 font-medium  border border-textColor border-solid
+        rounded-md focus:outline-none focus:border-primaryColor placeholder:text-textColor
+    }
+    .form__label{
+        @apply block text-[16px] leading-7 font-semibold text-headingColor mb-2
+    }
 }
 
 @media only screen and (max-width: 992px) {

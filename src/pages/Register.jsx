@@ -58,7 +58,7 @@ const Register = () => {
 
             <form onSubmit={submitHandler}>
               <div className='mb-5'>
-                <input type='text' placeholder='Full Name' name='name' required
+                <input type='text' id='name' name='name' placeholder='Full Name' required
                     value= {formData.name}
                     onChange={handleInputChange}
                     className={formInputStyle}/>
@@ -66,7 +66,7 @@ const Register = () => {
 
 
               <div className='mb-5'>
-                <input type='email' placeholder='Email' name='email' required
+                <input type='email' id='email' name='email' placeholder='Email' required
                     value= {formData.email}
                     onChange= {handleInputChange}
                     className={formInputStyle}/>
@@ -74,7 +74,7 @@ const Register = () => {
 
 
               <div className='mb-5'>
-                <input type='password' placeholder='Password' name='password' required
+                <input type='password' id='password' name='password' placeholder='Password' required
                     value= {formData.password}
                     onChange= {handleInputChange}
                     className={formInputStyle}/>
@@ -84,7 +84,7 @@ const Register = () => {
               <div className='mb-5 flex items-center justify-between'>
                 <label htmlFor='userRole' className='text-headingColor font-bold text-[16px] leading-7'>
                   Your Role:
-                  <select name='userRole' id='userRole'
+                  <select id='userRole' name='userRole'
                       value={formData.role}
                       onChange= {handleInputChange}
                       className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
@@ -95,7 +95,7 @@ const Register = () => {
                 </label>
                 <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
                   Gender:
-                  <select name='gender' id='gender'
+                  <select id='gender' name='gender'
                       value={formData.gender}
                       onChange={handleInputChange}
                       className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
@@ -108,13 +108,13 @@ const Register = () => {
               </div>
 
               <div className='mb-5 flex items-center gap-3 '>
-                <figure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor 
-                                    flex items-center justify-center'>
+                <figure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor flex items-center
+                          justify-center'>
                   <img src={avatar} alt='' className='w-full rounded-full'/>
                 </figure>
 
                 <div className='relative w-[130px] h-[50px]'>
-                  <input type='file' name='photo' id='customerFile' 
+                  <input type='file' id='customerFile' name='customerFile' 
                     accept='.jpg, .png'
                     onChange={handleFileInputChange}
                     className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'/>

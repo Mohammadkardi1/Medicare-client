@@ -24,14 +24,14 @@ const Login = () => {
 
         <form className='py-4 md:py-0'>
           <div className='mb-5'>
-            <input type='email' placeholder='Enter Your Email' name='email' required
+            <input type='email' id='email' name='email' placeholder='Enter Your Email' required
               value={formData.email}
               onChange={handleInputChange}
               className={formInputStyle}
             />
           </div>
           <div className='mb-5'>
-            <input type='password' placeholder='Password' name='password' required
+            <input type='password' id='password' name='password' placeholder='Password' required
               value={formData.password}
               onChange={handleInputChange}
               className={formInputStyle}

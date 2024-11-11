@@ -17,7 +17,7 @@ const ReviewForm = () => {
 
 
   return (
-    <form action=''>
+    <form action='#'>
         <div>
             <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4'>
                 How would you rate the overall experience?
@@ -54,11 +54,9 @@ const ReviewForm = () => {
                     Share your review or suggestions
                 </h1>
 
-                <textarea rows={5} placeholder="Write a review"
+                <textarea id='review' name='review' rows={5} placeholder="Write a review"
                     className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
-                    onChange={e => setReviewText(e.target.value)}
-                    >
-
+                    onChange={e => setReviewText(e.target.value)}>
                 </textarea>
             </div>
 
