@@ -56,7 +56,7 @@ const Register = () => {
               Create an <span className=' text-primaryColor'>account</span>
             </h1>
 
-            <form>
+            <form onSubmit={submitHandler}>
               <div className='mb-5'>
                 <input type='text' placeholder='Full Name' name='name' required
                     value= {formData.name}
@@ -136,15 +136,12 @@ const Register = () => {
                   Register
                 </button>
               </div>
-
               <p className='mt-5 text-textColor text-center'>
                 Already have an account?
                 <Link to='/login' className=' text-primaryColor font-medium ml-1'>
                   Login
                 </Link>
               </p>
-
-
 
             </form>
           </div>

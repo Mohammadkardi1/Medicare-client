@@ -85,7 +85,7 @@ const Footer = () => {
 
 
   return (
-    <footer className='mb-4'>
+    <footer className='mb-4 mt-auto'>
       <div className='container'>
         <div className=' grid grid-cols-5 gap-8'>
 
