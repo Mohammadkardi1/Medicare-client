@@ -2,6 +2,8 @@ import React from 'react'
 import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
 
+const formInputStyle = 'w-full pr-3 py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
+
 
 const Register = () => {
   return (
@@ -22,43 +24,24 @@ const Register = () => {
             </h1>
 
             <form>
-
               <div className='mb-5'>
-                <input
-                  type='text'
-                  placeholder='Full Name'
-                  name='name'
-                  value= ''
-                  required
-                  className='w-full pr-3 py-3 border-b border-solid border-[#0066ff61] focus:outline-none 
-                            focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
-                />
+                <input type='text' placeholder='Full Name' name='name' required
+                    value= ''
+                    className={formInputStyle}/>
               </div>
 
 
               <div className='mb-5'>
-                <input
-                  type='email'
-                  placeholder='Email'
-                  name='email'
-                  value= ''
-                  required
-                  className='w-full pr-3 py-3 border-b border-solid border-[#0066ff61] focus:outline-none 
-                            focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
-                />
+                <input type='email' placeholder='Email' name='email' required
+                    value= ''
+                    className={formInputStyle}/>
               </div>
 
 
               <div className='mb-5'>
-                <input
-                  type='password'
-                  placeholder='Password'
-                  name='password'
-                  value= ''
-                  required
-                  className='w-full pr-3 py-3 border-b border-solid border-[#0066ff61] focus:outline-none 
-                            focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
-                />
+                <input type='password' placeholder='Password' name='password' required
+                    value= ''
+                    className={formInputStyle}/>
               </div>
 
 
@@ -74,7 +57,6 @@ const Register = () => {
                 </label>
 
 
-
                 <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
                   Gender:
                   <select name='gender' id='gender'
@@ -88,7 +70,7 @@ const Register = () => {
               </div>
 
 
-              
+
             </form>
 
 

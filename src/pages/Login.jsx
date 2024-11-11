@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
+
+const formInputStyle = 'w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
+
 const Login = () => {
 
   const [formData, setFormData] = useState({
@@ -20,33 +23,22 @@ const Login = () => {
 
         <form className='py-4 md:py-0'>
           <div className='mb-5'>
-            <input
-              type='email'
-              placeholder='Enter Your Email'
-              name='email'
+            <input type='email' placeholder='Enter Your Email' name='email' required
               value={formData.email}
               onChange={handleInputChange}
-              required
-              className='w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none 
-                        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
+              className={formInputStyle}
             />
           </div>
           <div className='mb-5'>
-            <input
-              type='password'
-              placeholder='Password'
-              name='password'
+            <input type='password' placeholder='Password' name='password' required
               value={formData.password}
               onChange={handleInputChange}
-              required
-              className='w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none 
-                        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor'
+              className={formInputStyle}
             />
           </div>
 
           <div className='mt-7'>
-            <button
-              type='submit' 
+            <button type='submit' 
               className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
               Login
             </button>
