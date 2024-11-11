@@ -54,10 +54,8 @@ const ReviewForm = () => {
                     Share your review or suggestions
                 </h1>
 
-                <textarea 
+                <textarea rows={5} placeholder="Write a review"
                     className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
-                    rows={5} 
-                    placeholder="Write a review"
                     onChange={e => setReviewText(e.target.value)}
                     >
 
