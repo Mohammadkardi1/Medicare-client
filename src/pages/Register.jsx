@@ -1,5 +1,7 @@
 import React from 'react'
 import signupImg from '../assets/images/signup.gif'
+import avatar from '../assets/images/doctor-img01.png'
+
 
 const Register = () => {
   return (
@@ -20,6 +22,7 @@ const Register = () => {
             </h1>
 
             <form>
+
               <div className='mb-5'>
                 <input
                   type='text'
@@ -59,9 +62,37 @@ const Register = () => {
               </div>
 
 
+              <div className='mb-5 flex items-center justify-between'>
+                <label htmlFor='userRole' className='text-headingColor font-bold text-[16px] leading-7'>
+                  Your Role:
+                  <select name='userRole' id='userRole'
+                          className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
+                    <option value="" disabled>Choose an option</option>
+                    <option value='patient'>Patient</option>
+                    <option value='doctor'>Doctor</option>
+                  </select>
+                </label>
 
 
+
+                <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
+                  Gender:
+                  <select name='gender' id='gender'
+                          className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
+                    <option value="" disabled>Choose an option</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='other'>Other</option>
+                  </select>
+                </label>
+              </div>
+
+
+              
             </form>
+
+
+
           </div>
 
 
