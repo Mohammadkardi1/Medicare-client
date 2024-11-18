@@ -87,7 +87,7 @@ const Register = () => {
                   <select id='userRole' name='userRole'
                       value={formData.role}
                       onChange= {handleInputChange}
-                      className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
+                      className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none cursor-pointer'>
                     <option value="" disabled>Choose an option</option>
                     <option value='patient'>Patient</option>
                     <option value='doctor'>Doctor</option>
@@ -98,7 +98,7 @@ const Register = () => {
                   <select id='gender' name='gender'
                       value={formData.gender}
                       onChange={handleInputChange}
-                      className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none'>
+                      className='text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none cursor-pointer'>
                     <option value="" disabled>Choose an option</option>
                     <option value='male'>Male</option>
                     <option value='female'>Female</option>
