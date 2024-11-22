@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
 
-const formInputStyle = `w-full py-3 border-b border-solid border-[#0066ff61] focus:outline-none focus:border-b-primaryColor 
+const formInputStyle = `w-full py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none focus:border-b-primaryColor 
                         text-[16px] leading-7 text-headingColor placeholder:text-textColor`
 
 const Login = () => {
