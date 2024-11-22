@@ -48,7 +48,7 @@ const QuickLinks = [
 const IWantToItems = [
   {
     label: 'Find a Doctor',
-    path: '/doctors'
+    path: '/FindDoctor'
   },
   {
     label: 'Request an Apponitment',
