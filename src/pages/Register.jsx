@@ -86,7 +86,7 @@ const Register = () => {
             </figure>
           </div>
 
-          {/* ========= Register Form ========= */}
+          {/* ========= Registeration Form ========= */}
           <div className='rounded-l-lg lg:pl-16 py-10'>
 
 
@@ -103,14 +103,14 @@ const Register = () => {
                 <input type="text" placeholder="Full Name"
                       className={`${inputFieldStyle} ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
                       {...register("name", {
-                      required: "Enter your name.",
+                      required: "Enter your name",
                       minLength: {
                           value: 4,
-                          message: "Your name must be at least 4 characters long."
+                          message: "Your name must be at least 4 characters long"
                       },
                       pattern: {
                           value: /^[a-zA-Z0-9\s]+$/,
-                          message: "Your name must be alphanumeric."
+                          message: "Your name must be alphanumeric"
                       }
                       })}
                     />
