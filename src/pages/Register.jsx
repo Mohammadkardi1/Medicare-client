@@ -33,8 +33,8 @@ const validatePassword = (value) => {
 
 const selectInputStyle = `text-textColor font-semibold text-[15px] leading-7 px-4 py-1 focus:outline-none cursor-pointer`
 
-const inputFieldStyle = `w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none focus:border-b-primaryColor 
-                        text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1`
+const inputFieldStyle = `w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
+                        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1`
 
 
 const Register = () => {
@@ -54,8 +54,6 @@ const Register = () => {
 
   // previewURL is used to hold the URL of the image because we have to upload the image to cloudinay 
   const [previewURL, setPreviewURL] = useState('')
-
-
 
 
 
