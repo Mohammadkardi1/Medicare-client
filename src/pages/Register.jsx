@@ -24,7 +24,7 @@ const validatePassword = (value) => {
   if (!/\d/.test(value)) {
     return "Password must contain at least one number";
   }
-  if (!/[$-/:-?{-~!"^_`\[\]]/.test(value)) {
+  if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
     return "Password must contain at least one symbol";
   }
   return null;
