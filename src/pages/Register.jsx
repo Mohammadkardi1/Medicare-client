@@ -4,30 +4,53 @@ import avatar from '../assets/images/doctor-img01.png'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { MdRemoveRedEye } from "react-icons/md";
+import uploadImageToCloudinary from './../utils/uplaodCloudinary';
 
 
 
 
-const validatePassword = (value) => {
+const nameValidation =  {
+  required: "Enter your name",
+  minLength: {
+      value: 4,
+      message: "Your name must be at least 4 characters long"
+  },
+    pattern: {
+        value: /^[a-zA-Z0-9\s]+$/,
+        message: "Your name must be alphanumeric"
+    }
+}
+
+
+const emailValidation = {
+  required:"Enter your email",
+  pattern: {
+      value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+      message: "Enter a Valid Email"
+  }
+}
+
+
+const passwordValidation = (value) => {
   if (!value) {
     return "Enter your password";
   }
-  if (value.length < 8) {
-    return "Password must be at least 8 characters long";
-  }
-  if (!/[A-Z]/.test(value)) {
-    return "Password must contain at least one uppercase letter";
-  }
-  if (!/[a-z]/.test(value)) {
-    return "Password must contain at least one lowercase letter";
-  }
-  if (!/\d/.test(value)) {
-    return "Password must contain at least one number";
-  }
-  if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
-    return "Password must contain at least one symbol";
-  }
-  return null;
+  // if (value.length < 8) {
+  //   return "Password must be at least 8 characters long";
+  // }
+  // if (!/[A-Z]/.test(value)) {
+  //   return "Password must contain at least one uppercase letter";
+  // }
+  // if (!/[a-z]/.test(value)) {
+  //   return "Password must contain at least one lowercase letter";
+  // }
+  // if (!/\d/.test(value)) {
+  //   return "Password must contain at least one number";
+  // }
+  // if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
+  //   return "Password must contain at least one symbol";
+  // }
+  // return null;
 }
 
 
@@ -60,15 +83,20 @@ const Register = () => {
 
 
 
-  const handleFileInputChange = async event =>  {
-    const file = event.target.files[0]
+  // const handleFileInputChange = async event =>  {
+  //   const file = event.target.files[0]
 
-    // Later you have to use Cloudinary to upload  the images
+  //   // Later you have to use Cloudinary to upload  the images
 
-  }
+  // }
 
   const handleUserRegistration = async (data) => {
+
     console.log(data)
+    // const photo = await uploadImageToCloudinary(data.photo[0])
+    // console.log(data.photo[0])
+
+    // console.log(photo)
   }
 
   return (
@@ -94,23 +122,11 @@ const Register = () => {
 
             <form onSubmit={handleSubmit(handleUserRegistration)} className='space-y-4'>
 
-
-
               {/* Name Input Field */}
               <div>
                 <input type="text" placeholder="Full Name"
                       className={`${inputFieldStyle} ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                      {...register("name", {
-                      required: "Enter your name",
-                      minLength: {
-                          value: 4,
-                          message: "Your name must be at least 4 characters long"
-                      },
-                      pattern: {
-                          value: /^[a-zA-Z0-9\s]+$/,
-                          message: "Your name must be alphanumeric"
-                      }
-                      })}
+                      {...register("name", nameValidation)}
                     />
                 <p className={`plain-text text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
                     {errors.name?.message}.
@@ -122,13 +138,7 @@ const Register = () => {
               <div>
                   <input type="text" placeholder="Email"
                         className={`${inputFieldStyle} ${errors?.email ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
-                        {...register("email",{
-                        required:"Enter your email",
-                        pattern: {
-                            value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-                            message: "Enter a Valid Email"
-                        }
-                    })}
+                        {...register("email", emailValidation)}
                     />
                   <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
                       {errors.email?.message}.
@@ -143,7 +153,7 @@ const Register = () => {
                       <input type={showPassword ? 'text' : 'password'} placeholder="Password"
                             className={`${inputFieldStyle}   bg-transparent`}
                             {...register("password", {
-                                validate: validatePassword
+                                validate: passwordValidation
                             })}
                         />
                       <div className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full'
@@ -219,10 +229,15 @@ const Register = () => {
                 </figure>
 
                 <div className='relative w-[130px] h-[50px]'>
-                  <input type='file' id='customerFile' name='customerFile' 
+                  <input type='file'
                     accept='.jpg, .png'
-                    onChange={handleFileInputChange}
-                    className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'/>
+                    // onChange={handleFileInputChange}
+                    className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
+
+                    {...register("photo" )}
+
+
+                    />
                   <label htmlFor='customFile' 
                           className='absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] 
                             leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1
