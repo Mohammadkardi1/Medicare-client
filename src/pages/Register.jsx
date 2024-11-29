@@ -10,31 +10,31 @@ import uploadImageToCloudinary from './../utils/uplaodCloudinary';
 
 
 const nameValidation =  {
-  required: "Enter your name",
-  minLength: {
-      value: 4,
-      message: "Your name must be at least 4 characters long"
-  },
-    pattern: {
-        value: /^[a-zA-Z0-9\s]+$/,
-        message: "Your name must be alphanumeric"
-    }
+  // required: "Enter your name",
+  // minLength: {
+  //     value: 4,
+  //     message: "Your name must be at least 4 characters long"
+  // },
+  //   pattern: {
+  //       value: /^[a-zA-Z0-9\s]+$/,
+  //       message: "Your name must be alphanumeric"
+  //   }
 }
 
 
 const emailValidation = {
-  required:"Enter your email",
-  pattern: {
-      value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-      message: "Enter a Valid Email"
-  }
+  // required:"Enter your email",
+  // pattern: {
+  //     value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+  //     message: "Enter a Valid Email"
+  // }
 }
 
 
 const passwordValidation = (value) => {
-  if (!value) {
-    return "Enter your password";
-  }
+  // if (!value) {
+  //   return "Enter your password";
+  // }
   // if (value.length < 8) {
   //   return "Password must be at least 8 characters long";
   // }
@@ -92,11 +92,14 @@ const Register = () => {
 
   const handleUserRegistration = async (data) => {
 
-    console.log(data)
-    // const photo = await uploadImageToCloudinary(data.photo[0])
+  
+    console.log("Submited Data", data)
+
+
+    const photo = await uploadImageToCloudinary(data.photo[0])
     // console.log(data.photo[0])
 
-    // console.log(photo)
+    console.log(photo)
   }
 
   return (
@@ -177,7 +180,7 @@ const Register = () => {
                     <select
                         className={selectInputStyle}
                         {...register("role", { 
-                          required: "Select a role" 
+                          // required: "Select a role" 
                           })}
                         >
                       <option value="" disabled>Choose an option</option>
@@ -199,7 +202,7 @@ const Register = () => {
                     <select
                         className={selectInputStyle}
                         {...register("gender", { 
-                          required: "Select a gender" 
+                          // required: "Select a gender" 
                           })}
                         >
                       <option value="" disabled>Choose an option</option>

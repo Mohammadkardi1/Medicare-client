@@ -1,27 +1,41 @@
-const uplaod_preset = import.meta.env.VITE_UPLOAD_PRESET
-const cloud_name = import.meta.env.VITE_CLOUD_NAME
+
 
 
 const uploadImageToCloudinary = async file => {
 
-    console.log('VITE_CLOUD_NAME', cloud_name)
-    console.log('uplaod_preset', uplaod_preset)
-
-    const uplaodData = new FormData()
-
-    uplaodData.append('file', file)
-    uplaodData.append('upload_preset', "medicare")
-    uplaodData.append('cloud_name', "dziawjklk")
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
+    const folderName = import.meta.env.VITE_CLOUDINARY_FOLDER_NAME
 
 
-    const res = await fetch(`https://api.cloudinary.com/v1_1/dziawjklk/image/uplaod`, {
-        method: 'post',
-        body: uplaodData
-    })
 
-    const data = await res.json()
+    const uploadData = new FormData()
+    uploadData.append('file', file)
+    uploadData.append('upload_preset', uploadPreset)
+    uploadData.append("folder", folderName)
     
-    return data  // Return the details of the uploaded file (e.g., URL, ID) as a JavaScript object.
+
+    
+    try {
+        // Cloudinary's upload API endpoint
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: 'POST',
+            body: uploadData
+        })
+
+        const data = await response.json()
+
+
+        //data.secure_url
+        // Return the details of the uploaded file (e.g., URL, ID) as a JavaScript object.
+        return data  
+
+
+    } catch (error) {
+        console.log("Error uploading image to Cloudinary:", error.message);
+    }
+    
+
 }
 
 
