@@ -5,7 +5,7 @@ import axios from 'axios'
 // creates an instance of axios named API.
 // configure common options baseURL and headers for all HTTP requests made with this API instance
 const API = axios.create({
-    baseURL: process.env.VITE_BASE_URL,
+    baseURL: import.meta.env.VITE_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
     },

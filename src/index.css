@@ -37,7 +37,15 @@
     .form__label{
         @apply block text-[16px] leading-7 font-semibold text-headingColor mb-2
     }
+    .form__input__auth{
+        @apply w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
+        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1
+    }
+    .form__select__auth{
+        @apply text-textColor font-semibold text-[15px] leading-7 pr-4 py-1 focus:outline-none cursor-pointer
+    }
 }
+
 
 @media only screen and (max-width: 992px) {
     .container{

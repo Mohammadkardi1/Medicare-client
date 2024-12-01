@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-
+import { registerUser } from './../thunks/authThunks';
 
 
 const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
@@ -17,8 +17,8 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
 
         })
         .addCase(asyncThunk.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.payload || 'Something went wrong'; // Save error message            
+            state.loading = false
+            state.error = action.payload || 'Something went wrong' // Save error message            
         })
 }
 
@@ -28,7 +28,9 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
 const authSlice = createSlice({
     name: "auth",
     initialState: {
-
+        userInfo: {},
+        loading: false,
+        error: '', 
     },
     reducers: {
 
@@ -44,5 +46,5 @@ const authSlice = createSlice({
 
 
 
-export const { logout } = authSlice.actions
+export const authActions = authSlice.actions
 export default authSlice.reducer

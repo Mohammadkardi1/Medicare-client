@@ -11,31 +11,31 @@ import { registerUser } from '../redux/thunks/authThunks'
 
 
 const nameValidation =  {
-  // required: "Enter your name",
-  // minLength: {
-  //     value: 4,
-  //     message: "Your name must be at least 4 characters long"
-  // },
-  //   pattern: {
-  //       value: /^[a-zA-Z0-9\s]+$/,
-  //       message: "Your name must be alphanumeric"
-  //   }
+  required: "Enter your name",
+  minLength: {
+      value: 4,
+      message: "Your name must be at least 4 characters long"
+  },
+    pattern: {
+        value: /^[a-zA-Z0-9\s]+$/,
+        message: "Your name must be alphanumeric"
+    }
 }
 
 
 const emailValidation = {
-  // required:"Enter your email",
-  // pattern: {
-  //     value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
-  //     message: "Enter a Valid Email"
-  // }
+  required:"Enter your email",
+  pattern: {
+      value:/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i,
+      message: "Enter a Valid Email"
+  }
 }
 
 
 const passwordValidation = (value) => {
-  // if (!value) {
-  //   return "Enter your password";
-  // }
+  if (!value) {
+    return "Enter your password";
+  }
   // if (value.length < 8) {
   //   return "Password must be at least 8 characters long";
   // }
@@ -51,20 +51,33 @@ const passwordValidation = (value) => {
   // if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
   //   return "Password must contain at least one symbol";
   // }
-  // return null;
+  return null;
+}
+
+const validateImageType = (value) => {
+    
+  if (!value[0]) {
+      return true
+  }
+
+  const file = value[0]
+
+  const types = ['image/jpg', 'image/png', "image/jpeg"]
+
+  if ( !types.includes(file.type)  ) {
+    return 'Please select a valid photo JPG, PNG or JPEG';
+  }
+
+  return true
 }
 
 
-const selectInputStyle = `text-textColor font-semibold text-[15px] leading-7 px-4 py-1 focus:outline-none cursor-pointer`
-
-const inputFieldStyle = `w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
-                        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1`
-
 
 const Register = () => {
+  
+  const [showPassword, setShowPassword] = useState(false)
 
   const dispatch = useDispatch()
-
 
   const {register, handleSubmit, formState: {errors}, reset, watch} = useForm({
     defaultValues: {
@@ -73,26 +86,19 @@ const Register = () => {
     },
   })
 
-  const [showPassword, setShowPassword] = useState(false)
-
-
-
-  const [selectedFile, setSelectedFile] = useState(null)
-
-  // previewURL is used to hold the URL of the image because we have to upload the image to cloudinay 
-  const [previewURL, setPreviewURL] = useState('')
 
 
 
 
   const handleUserRegistration = async (userInfo) => {
-
   
-    console.log("Submited userInfo", userInfo)
+
+    console.log("Start submitting")
+
+    const photo = await uploadImageToCloudinary(userInfo.photo[0])
 
 
-    // const photo = await uploadImageToCloudinary(userInfo.photo[0])
-    
+    userInfo = {...userInfo , photo: photo.secure_url}
 
     try {
       const res = await dispatch(registerUser(userInfo))
@@ -104,11 +110,8 @@ const Register = () => {
       console.log(error)
     }
 
+    console.log("End submitting", userInfo)
 
-
-
-    //photo.secure_url
-    console.log(photo)
   }
 
   return (
@@ -137,7 +140,7 @@ const Register = () => {
               {/* Name Input Field */}
               <div>
                 <input type="text" placeholder="Full Name"
-                      className={`${inputFieldStyle} ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
+                      className={`form__input__auth ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
                       {...register("name", nameValidation)}
                     />
                 <p className={`plain-text text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
@@ -149,7 +152,7 @@ const Register = () => {
               {/* Email Input Field */}
               <div>
                   <input type="text" placeholder="Email"
-                        className={`${inputFieldStyle} ${errors?.email ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
+                        className={`form__input__auth ${errors?.email ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
                         {...register("email", emailValidation)}
                     />
                   <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
@@ -163,7 +166,7 @@ const Register = () => {
                   <div className={`flex items-center justify-between w-full overflow-hidden  
                                   ${errors?.password ? "bg-SemiTransparentBlue rounded-sm" : ""}`}>
                       <input type={showPassword ? 'text' : 'password'} placeholder="Password"
-                            className={`${inputFieldStyle}   bg-transparent`}
+                            className={`form__input__auth bg-transparent`}
                             {...register("password", {
                                 validate: passwordValidation
                             })}
@@ -187,9 +190,9 @@ const Register = () => {
                   <label htmlFor='role' className='text-headingColor font-bold text-[16px] leading-7'>
                     Your Role:
                     <select
-                        className={selectInputStyle}
+                        className="form__select__auth"
                         {...register("role", { 
-                          // required: "Select a role" 
+                          required: "Select a role" 
                           })}
                         >
                       <option value="" disabled>Choose an option</option>
@@ -209,9 +212,9 @@ const Register = () => {
                   <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
                     Gender:
                     <select
-                        className={selectInputStyle}
+                        className="form__select__auth"
                         {...register("gender", { 
-                          // required: "Select a gender" 
+                          required: "Select a gender" 
                           })}
                         >
                       <option value="" disabled>Choose an option</option>
@@ -232,32 +235,34 @@ const Register = () => {
 
 
 
+              {/* Image Input Field */}
+              <div>
+                <div className='flex items-center gap-3 '>
+                  <figure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor flex items-center
+                            justify-center'>
+                    <img src={avatar} alt='' className='w-full rounded-full'/>
+                  </figure>
 
+                  <div className='relative w-[130px] h-[50px]'>
+                    <input 
+                      type='file'
+                      className='absolute top-0 left-0 w-full h-full opacity-0 z-10'
+                      {...register("photo", {
+                        required: "Select a Photo",
+                        validate: validateImageType
+                      })}
+                      />
+                    <label htmlFor='customFile' 
+                            className='absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] 
+                              leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1'>
+                      Upload Photo
+                    </label>
 
-              <div className='flex items-center gap-3 '>
-                <figure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor flex items-center
-                          justify-center'>
-                  <img src={avatar} alt='' className='w-full rounded-full'/>
-                </figure>
-
-                <div className='relative w-[130px] h-[50px]'>
-                  <input type='file'
-                    accept='.jpg, .png'
-                    // onChange={handleFileInputChange}
-                    className='absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer z-10'
-
-                    {...register("photo" )}
-
-
-                    />
-                  <label htmlFor='customFile' 
-                          className='absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] 
-                            leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1
-                            cursor-pointer'>
-                    Upload Photo
-                  </label>
+                  </div>
                 </div>
-
+                <p className={`plain-text text-red-600 ${errors.photo?.message ? "visible" : "invisible"}`}>
+                    {errors.photo?.message}.
+                </p>
               </div>
 
 
