@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { MdRemoveRedEye } from "react-icons/md";
 import uploadImageToCloudinary from './../utils/uplaodCloudinary';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/thunks/authThunks'
 
 
@@ -34,24 +34,24 @@ const emailValidation = {
 
 const passwordValidation = (value) => {
   if (!value) {
-    return "Enter your password";
+    return "Enter your password"
   }
   // if (value.length < 8) {
-  //   return "Password must be at least 8 characters long";
+  //   return "Password must be at least 8 characters long"
   // }
   // if (!/[A-Z]/.test(value)) {
-  //   return "Password must contain at least one uppercase letter";
+  //   return "Password must contain at least one uppercase letter"
   // }
   // if (!/[a-z]/.test(value)) {
-  //   return "Password must contain at least one lowercase letter";
+  //   return "Password must contain at least one lowercase letter"
   // }
   // if (!/\d/.test(value)) {
-  //   return "Password must contain at least one number";
+  //   return "Password must contain at least one number"
   // }
   // if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
-  //   return "Password must contain at least one symbol";
+  //   return "Password must contain at least one symbol"
   // }
-  return null;
+  return null
 }
 
 const validateImageType = (value) => {
@@ -76,6 +76,8 @@ const validateImageType = (value) => {
 const Register = () => {
   
   const [showPassword, setShowPassword] = useState(false)
+  const { authError } = useSelector((state) => state.auth)
+
 
   const dispatch = useDispatch()
 
@@ -107,10 +109,10 @@ const Register = () => {
       //     navigate(redirectPath, {replace :true})
       //   }
     } catch (error) {
-      console.log(error)
+      console.log(error.message)
     }
 
-    console.log("End submitting", userInfo)
+    console.log("End submitting")
 
   }
 
@@ -272,6 +274,12 @@ const Register = () => {
                   className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
                   Register
                 </button>
+              </div>
+
+              <div>
+                <p className={`plain-text text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
+                    {authError}.
+                </p>
               </div>
 
 

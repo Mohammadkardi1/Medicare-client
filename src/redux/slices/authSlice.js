@@ -5,11 +5,17 @@ import { registerUser } from './../thunks/authThunks';
 const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
+
+            console.log("registration pending")
+
             state.loading = true
-            state.error = null
+            state.authError = null
 
         })
         .addCase(asyncThunk.fulfilled, (state, action) => {
+
+            console.log("registeration fulfilled")
+            console.log(action.payload)
 
             state.loading = false
             state.user = action.payload // Save user data to the state
@@ -17,8 +23,11 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
 
         })
         .addCase(asyncThunk.rejected, (state, action) => {
+
+            console.log("registration rejected")
+            console.log(action.payload)
             state.loading = false
-            state.error = action.payload || 'Something went wrong' // Save error message            
+            state.authError = action.payload || 'Something went wrong' // Save authError message            
         })
 }
 
@@ -30,7 +39,7 @@ const authSlice = createSlice({
     initialState: {
         userInfo: {},
         loading: false,
-        error: '', 
+        authError: '', 
     },
     reducers: {
 
