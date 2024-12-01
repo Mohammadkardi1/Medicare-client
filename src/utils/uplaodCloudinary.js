@@ -26,9 +26,9 @@ const uploadImageToCloudinary = async file => {
         const data = await response.json()
 
 
-        //data.secure_url
+        
         // Return the details of the uploaded file (e.g., URL, ID) as a JavaScript object.
-        return data  
+        return data
 
 
     } catch (error) {

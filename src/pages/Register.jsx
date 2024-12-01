@@ -5,7 +5,8 @@ import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { MdRemoveRedEye } from "react-icons/md";
 import uploadImageToCloudinary from './../utils/uplaodCloudinary';
-
+import { useDispatch } from 'react-redux';
+import { registerUser } from '../redux/thunks/authThunks'
 
 
 
@@ -62,6 +63,9 @@ const inputFieldStyle = `w-full pr-3 py-3 border-b border-solid border-SemiTrans
 
 const Register = () => {
 
+  const dispatch = useDispatch()
+
+
   const {register, handleSubmit, formState: {errors}, reset, watch} = useForm({
     defaultValues: {
       role: "", // Default to empty
@@ -81,24 +85,29 @@ const Register = () => {
 
 
 
-
-
-  // const handleFileInputChange = async event =>  {
-  //   const file = event.target.files[0]
-
-  //   // Later you have to use Cloudinary to upload  the images
-
-  // }
-
-  const handleUserRegistration = async (data) => {
+  const handleUserRegistration = async (userInfo) => {
 
   
-    console.log("Submited Data", data)
+    console.log("Submited userInfo", userInfo)
 
 
-    const photo = await uploadImageToCloudinary(data.photo[0])
-    // console.log(data.photo[0])
+    // const photo = await uploadImageToCloudinary(userInfo.photo[0])
+    
 
+    try {
+      const res = await dispatch(registerUser(userInfo))
+      // redirection the path after successfully registering
+      // if (!res.error) {
+      //     navigate(redirectPath, {replace :true})
+      //   }
+    } catch (error) {
+      console.log(error)
+    }
+
+
+
+
+    //photo.secure_url
     console.log(photo)
   }
 
