@@ -23,6 +23,7 @@ const AUTH_PATH = '/api/auth'
 // Authentication API calls: API.get('/endpoint')
 export const authAPI = {
   registerUser: (userInfo) => API.post(`${AUTH_PATH}/register`, userInfo),
+  loginUser : (userInfo) => API.post(`${AUTH_PATH}/login`, userInfo),
 
 
 

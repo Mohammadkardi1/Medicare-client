@@ -1,33 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { registerUser } from './../thunks/authThunks';
+import { loginUser, registerUser } from './../thunks/authThunks';
 
 
-const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
+const addAsyncThunkCases = (builder, asyncThunk, asyncThunkName, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
 
-            console.log("registration pending")
+            console.log(`${asyncThunkName} pending`)
 
-            state.loading = true
+            // state.loading = true
             state.authError = null
 
         })
-        .addCase(asyncThunk.fulfilled, (state, action) => {
+        .addCase(asyncThunk.fulfilled, (state, action) => { 
 
-            console.log("registeration fulfilled")
+            console.log(`${asyncThunkName} fulfilled`)
             console.log(action.payload)
 
-            state.loading = false
-            state.user = action.payload // Save user data to the state
+            // state.loading = false
+            // state.user = action.payload
             //localStorage.setItem('profile', JSON.stringify(action.payload)); // Optionally store data in localStorage
 
         })
         .addCase(asyncThunk.rejected, (state, action) => {
-
-            console.log("registration rejected")
+            console.log(`${asyncThunkName} rejected`)
             console.log(action.payload)
-            state.loading = false
-            state.authError = action.payload || 'Something went wrong' // Save authError message            
+
+            state.authError = action.payload || 'Something went wrong'         
+
+
+
+            // state.loading = false
         })
 }
 
@@ -46,8 +49,8 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
 
-        // Add async thunk cases for Registeration
-        addAsyncThunkCases(builder, registerUser);
+        addAsyncThunkCases(builder, registerUser, "registration thunk")
+        addAsyncThunkCases(builder, loginUser, "login thunk")
 
 
     }

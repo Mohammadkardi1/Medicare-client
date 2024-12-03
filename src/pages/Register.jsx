@@ -3,10 +3,11 @@ import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
 import {Link} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
-import { MdRemoveRedEye } from "react-icons/md";
-import uploadImageToCloudinary from './../utils/uplaodCloudinary';
-import { useDispatch, useSelector } from 'react-redux';
+import { MdRemoveRedEye } from "react-icons/md"
+import uploadImageToCloudinary from './../utils/uplaodCloudinary'
+import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from '../redux/thunks/authThunks'
+import { IoMdEyeOff } from "react-icons/io"
 
 
 
@@ -36,21 +37,21 @@ const passwordValidation = (value) => {
   if (!value) {
     return "Enter your password"
   }
-  // if (value.length < 8) {
-  //   return "Password must be at least 8 characters long"
-  // }
-  // if (!/[A-Z]/.test(value)) {
-  //   return "Password must contain at least one uppercase letter"
-  // }
-  // if (!/[a-z]/.test(value)) {
-  //   return "Password must contain at least one lowercase letter"
-  // }
-  // if (!/\d/.test(value)) {
-  //   return "Password must contain at least one number"
-  // }
-  // if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
-  //   return "Password must contain at least one symbol"
-  // }
+  if (value.length < 8) {
+    return "Password must be at least 8 characters long"
+  }
+  if (!/[A-Z]/.test(value)) {
+    return "Password must contain at least one uppercase letter"
+  }
+  if (!/[a-z]/.test(value)) {
+    return "Password must contain at least one lowercase letter"
+  }
+  if (!/\d/.test(value)) {
+    return "Password must contain at least one number"
+  }
+  if (!/[$-/:-?{-~@#!"^_`\[\]]/.test(value)) {
+    return "Password must contain at least one symbol"
+  }
   return null
 }
 
@@ -94,11 +95,7 @@ const Register = () => {
 
   const handleUserRegistration = async (userInfo) => {
   
-
-    console.log("Start submitting")
-
     const photo = await uploadImageToCloudinary(userInfo.photo[0])
-
 
     userInfo = {...userInfo , photo: photo.secure_url}
 
@@ -111,9 +108,6 @@ const Register = () => {
     } catch (error) {
       console.log(error.message)
     }
-
-    console.log("End submitting")
-
   }
 
   return (
@@ -137,9 +131,9 @@ const Register = () => {
               Create an <span className=' text-primaryColor'>account</span>
             </h1>
 
-            <form onSubmit={handleSubmit(handleUserRegistration)} className='space-y-4'>
+            <form className='space-y-4' onSubmit={handleSubmit(handleUserRegistration)}>
 
-              {/* Name Input Field */}
+              {/* Name input field */}
               <div>
                 <input type="text" placeholder="Full Name"
                       className={`form__input__auth ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
@@ -151,7 +145,7 @@ const Register = () => {
               </div>
 
 
-              {/* Email Input Field */}
+              {/* Email input field */}
               <div>
                   <input type="text" placeholder="Email"
                         className={`form__input__auth ${errors?.email ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
@@ -163,7 +157,7 @@ const Register = () => {
               </div>
 
 
-              {/* Password Input Field */}
+              {/* Password input field */}
               <div>
                   <div className={`flex items-center justify-between w-full overflow-hidden  
                                   ${errors?.password ? "bg-SemiTransparentBlue rounded-sm" : ""}`}>
@@ -175,7 +169,7 @@ const Register = () => {
                         />
                       <div className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full'
                           onClick={() => setShowPassword(!showPassword)}>
-                          <MdRemoveRedEye  size={25} />
+                        {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25}/>}
                       </div>
                   </div>
                   <p className={`plain-text text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
@@ -187,7 +181,7 @@ const Register = () => {
 
               <div className='flex items-center justify-between'>
                 
-                {/* Role Selection Dropdown */}
+                {/* Role selection dropdown */}
                 <div>
                   <label htmlFor='role' className='text-headingColor font-bold text-[16px] leading-7'>
                     Your Role:
@@ -209,7 +203,7 @@ const Register = () => {
 
 
 
-                {/* Gender Selection Dropdown */}
+                {/* Gender selection dropdown */}
                 <div>
                   <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
                     Gender:
