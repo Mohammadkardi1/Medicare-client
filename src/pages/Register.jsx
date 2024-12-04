@@ -11,6 +11,8 @@ import { IoMdEyeOff } from "react-icons/io"
 
 
 
+// alexia.ar19990@gmail.com
+
 const nameValidation =  {
   required: "Enter your name",
   minLength: {
