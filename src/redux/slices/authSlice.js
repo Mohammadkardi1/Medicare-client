@@ -2,55 +2,43 @@ import { createSlice } from "@reduxjs/toolkit"
 import { loginUser, registerUser } from './../thunks/authThunks';
 
 
-const addAsyncThunkCases = (builder, asyncThunk, asyncThunkName, stateKey, options = {}) => {
+const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
 
-            console.log(`${asyncThunkName} pending`)
-
-            // state.loading = true
             state.authError = null
-
         })
         .addCase(asyncThunk.fulfilled, (state, action) => { 
 
-            console.log(`${asyncThunkName} fulfilled`)
+            // state[stateKey] = action.payload
+
             console.log(action.payload)
-
-            // state.loading = false
-            // state.user = action.payload
-            //localStorage.setItem('profile', JSON.stringify(action.payload)); // Optionally store data in localStorage
-
         })
         .addCase(asyncThunk.rejected, (state, action) => {
-            console.log(`${asyncThunkName} rejected`)
             console.log(action.payload)
 
             state.authError = action.payload || 'Something went wrong'         
-
-
-
-            // state.loading = false
         })
 }
 
-
+const initialState = {
+    userInfo: {},
+    loading: false,
+    registration: "",
+    authError: '', 
+}
 
 
 const authSlice = createSlice({
     name: "auth",
-    initialState: {
-        userInfo: {},
-        loading: false,
-        authError: '', 
-    },
+    initialState,
     reducers: {
 
     },
     extraReducers: (builder) => {
 
-        addAsyncThunkCases(builder, registerUser, "registration thunk")
-        addAsyncThunkCases(builder, loginUser, "login thunk")
+        addAsyncThunkCases(builder, registerUser, "registration")
+        addAsyncThunkCases(builder, loginUser)
 
 
     }
