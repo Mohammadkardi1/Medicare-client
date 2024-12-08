@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
 import {Link} from 'react-router-dom'
@@ -8,6 +8,7 @@ import uploadImageToCloudinary from './../utils/uplaodCloudinary'
 import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from '../redux/thunks/authThunks'
 import { IoMdEyeOff } from "react-icons/io"
+import { authThunks } from './../redux/slices/authSlice';
 
 
 
@@ -90,6 +91,11 @@ const Register = () => {
       gender: ""
     },
   })
+
+
+  useEffect(() => {
+    dispatch(authThunks.clearAuthError())
+  }, [])
 
 
 

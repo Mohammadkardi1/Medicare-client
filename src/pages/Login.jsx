@@ -1,19 +1,28 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { loginUser } from '../redux/thunks/authThunks'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdRemoveRedEye } from "react-icons/md"
 import { IoMdEyeOff } from "react-icons/io"
+import { authThunks } from './../redux/slices/authSlice';
 
 const Login = () => {
 
   const dispatch = useDispatch()
 
   const { authError } = useSelector((state) => state.auth)
+
+
+  
   const [showPassword, setShowPassword] = useState(false)
 
   const {register, handleSubmit, formState: {errors}, reset, watch} = useForm()
+
+
+  useEffect(() => {
+    dispatch(authThunks.clearAuthError())
+  }, [])
   
 
   const handleUserLogin = async (userInfo) => {
@@ -68,7 +77,6 @@ const Login = () => {
                 {errors.password?.message}.
             </p>
           </div>
-
 
           <div>
             <button type='submit' 

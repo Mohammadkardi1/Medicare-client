@@ -2,15 +2,9 @@ import { useEffect } from "react"
 import {  Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { verifyEmail } from './../redux/thunks/authThunks';
-
-
 import success from "../assets/images/success.png"
 import failure from "../assets/images/failure.png"
-
-
-
-
-// import { verifyEmail } from "../redux/actions/AuthActions"
+import LoadingModel from '../components/Loading/LoadingModel';
 // import PageLoadingModel from "./Models/PageLoadingModel"
 
 
@@ -19,10 +13,7 @@ const VerifyEmail = () => {
 	const param = useParams()
 	const dispatch = useDispatch()
 
-
     const {isVerified, authError, loading} = useSelector(state => state.auth)
-
-
 
 
 	useEffect(() => {
@@ -33,30 +24,28 @@ const VerifyEmail = () => {
 		}
 	}, [])
 
-	// if (loading) {
-	// 	return <PageLoadingModel/>
-	// }
-	
 
+	if (loading) {
+		return (
+		<div className="flex justify-center items-center">
+			<LoadingModel/>
+		</div>
+		)
+	}
 
 	return (
-
-		<div className='w-full mt-12 flex flex-col gap-6 items-center justify-center font-bold'>
-
-
-		
+		<div className='w-full mt-12 flex flex-col items-center justify-center gap-6 plain-text text-textColor font-semibold'>
 			{isVerified === true &&
 				<>
 					<img src={success} alt="success_img" className='w-[150px] lg:w-[250px]' />
-					<h1 className="plain-text text-center">
+					<h1>
 						Email verified successfully! Please Log in.
+						<Link to='/login' className=' text-primaryColor ml-2 underline'>
+							Login
+						</Link>
 					</h1>
-					<Link to="/login">
-						<button className='primary px-4'>Login</button>
-					</Link>
 				</>
 				}
-				
 				{isVerified === false &&
 					<>
 						<img src={failure} alt="failure_img" className='w-[150px] lg:w-[250px]' />
@@ -66,7 +55,7 @@ const VerifyEmail = () => {
 					</>
 				}
 		</div>
-	);
-};
+	)
+}
 
 export default VerifyEmail

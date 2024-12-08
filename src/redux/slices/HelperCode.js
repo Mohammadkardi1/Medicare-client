@@ -3,8 +3,22 @@
 
 // http://localhost:5173/api/auth/${user.role}/${user._id}/verify/${verifiedToken.token}`
 
-
-
+// Visulation for state variable 
+state = {
+    places: { // stateKey: "places"
+        loading: false,  // Managed by state[stateKey].loading
+        placeError: '',  // Managed by state[stateKey].placeError
+        places: []       // Managed by the logic in the fulfilled/rejected case
+    },
+    placeRemoving: { // stateKey: "placeRemoving"
+        loading: false,
+        placeError: ''
+    },
+    placeReviewing: { // stateKey: "placeReviewing"
+        loading: false,
+        placeError: ''
+    }
+};
 
 
 // Helper function to add async thunk cases
