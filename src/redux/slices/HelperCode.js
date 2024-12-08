@@ -1,3 +1,12 @@
+
+
+
+// http://localhost:5173/api/auth/${user.role}/${user._id}/verify/${verifiedToken.token}`
+
+
+
+
+
 // Helper function to add async thunk cases
 const addAsyncThunkCases = (builder, asyncThunk, stateKey) => {
     builder

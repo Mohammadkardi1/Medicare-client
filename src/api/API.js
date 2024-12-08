@@ -5,11 +5,12 @@ import axios from 'axios'
 // creates an instance of axios named API.
 // configure common options baseURL and headers for all HTTP requests made with this API instance
 const API = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
       'Content-Type': 'application/json',
     },
 })
+
 
 
 
@@ -24,6 +25,8 @@ const AUTH_PATH = '/api/auth'
 export const authAPI = {
   registerUser: (userInfo) => API.post(`${AUTH_PATH}/register`, userInfo),
   loginUser : (userInfo) => API.post(`${AUTH_PATH}/login`, userInfo),
+  verifyEmail : (userInfo) => API.get(`${AUTH_PATH}/${userInfo.role}/${userInfo.id}/verify/${userInfo.token}`)
+
 
 
 
