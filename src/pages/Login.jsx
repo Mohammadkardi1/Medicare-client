@@ -1,15 +1,22 @@
 import React, {useState, useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { loginUser } from '../redux/thunks/authThunks'
 import { useDispatch, useSelector } from 'react-redux'
 import { MdRemoveRedEye } from "react-icons/md"
 import { IoMdEyeOff } from "react-icons/io"
-import { authThunks } from './../redux/slices/authSlice';
+import { authThunks } from './../redux/slices/authSlice'
 
 const Login = () => {
-
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+
+  console.log("location.state?.path", location.state?.path)
+  const redirectPath = location.state?.path || '/home'
+
+
 
   const { authError } = useSelector((state) => state.auth)
 
@@ -29,7 +36,9 @@ const Login = () => {
 
     try {
       const res = await dispatch(loginUser(userInfo))
-
+      if (!res.error) {
+        navigate(redirectPath, {replace :true})
+      }
     } catch (error) {
       console.log(error.message)
     }

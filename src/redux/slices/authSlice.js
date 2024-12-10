@@ -10,29 +10,28 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
             state.loading = true
             state.authError = null
 
-            console.log("Verify Email is working, pending")
         })
 
         .addCase(asyncThunk.fulfilled, (state, action) => { 
-            console.log("Verify Email is working, fulfilled")
 
             state.loading = false
             state.authError = null
-
 
             switch (stateKey) {
                 case "verifyEmail":
                     state.isVerified = true
                     break
+                case "login": 
+                    state.userInfo = action?.payload.data
+                    localStorage.setItem('profile', JSON.stringify({...action?.payload}))
+                    break
             }
         })
 
         .addCase(asyncThunk.rejected, (state, action) => {
-            console.log("Verify Email working, rejection")
-
 
             state.loading = false
-            state.authError = action.payload || 'Something went wrong'         
+            state.authError = action?.payload || 'Something went wrong'         
 
             
             switch (stateKey) {
@@ -58,13 +57,20 @@ const authSlice = createSlice({
     reducers: {
         clearAuthError: (state) => {
             state.authError = ''
-        }
+        },
+        logout: (state) => {
+            localStorage.clear()
+            state.userInfo = null
+        },
+        loginByToken: (state) => {
+            state.userInfo = JSON.parse(localStorage.getItem('profile')).data
+        },
 
     },
     extraReducers: (builder) => {
 
         addAsyncThunkCases(builder, registerUser, "registration")
-        addAsyncThunkCases(builder, loginUser)
+        addAsyncThunkCases(builder, loginUser, "login")
         addAsyncThunkCases(builder, verifyEmail, "verifyEmail")
 
 

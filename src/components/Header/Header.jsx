@@ -1,9 +1,11 @@
 import React, {useEffect, useRef} from 'react'
 import logo from '../../assets/images/logo.png'
-import {NavLink, Link} from 'react-router-dom'
+import {NavLink, Link, useLocation} from 'react-router-dom'
 import userImg from '../../assets/images/avatar-icon.png'
 import { BiMenu } from "react-icons/bi";
-
+import { useSelector } from 'react-redux';
+import { authThunks } from '../../redux/slices/authSlice';
+import { useDispatch } from 'react-redux';
 
 const navLinks = [
   {
@@ -25,9 +27,29 @@ const navLinks = [
 ]
 
 const Header = () => {
-
+  const location = useLocation()
   const headerRef = useRef(null)
   const menuRef = useRef(null)
+  const dispatch = useDispatch()
+
+  const {userInfo} = useSelector(state => state.auth)
+
+
+  
+
+  const pathSegment = location.pathname.split('/')[1]
+
+
+  const logout = async () => {
+    try {
+        await dispatch(authThunks.logout())
+
+
+    } catch (error) {
+        console.log(error)
+    }
+  }
+
 
 
   // The handleStickyHeader function is used to add or remove a "sticky" class (sticky__header) to an HTML element when 
@@ -58,7 +80,9 @@ const Header = () => {
 
           {/* ========= logo ========= */}
           <div>
-            <img src={logo} alt='logo-image'/>
+            <Link to='/home'>
+              <img src={logo} alt='logo-image'/>
+            </Link>
           </div>
 
 
@@ -84,19 +108,33 @@ const Header = () => {
 
           {/* ========= nav right ========= */}
             <div className='flex items-center gap-4'>
-              <div className='hidden'>
-                <Link to='/'>
-                  <figure className='w-[35px] h-[35px] rounded-full cursor-pointer'>
-                    <img src={userImg} className='w-full rounded-full' alt=''/>
-                  </figure>
-                </Link>
+
+
+              <div>
+                <figure className='w-[35px] rounded-full cursor-pointer'>
+                  <img src={userInfo?.photo ? userInfo.photo : userImg} className='w-full rounded-full' alt=''/>
+                </figure>
               </div>
-              <Link to='/login'>
-                <button 
+
+
+              {userInfo?.name ?
+                <button onClick={logout}
                   className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
-                  Login
+                  Logout
                 </button>
-              </Link>
+                :
+                <Link to= {pathSegment === "login" ? '/register' : '/login' }>
+                  <button 
+                    className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
+                    {pathSegment === "login" ? "Register" : "Login"}
+                  </button>
+                </Link>
+              }
+
+
+
+
+
               <span className='md:hidden' onClick={toggleMenu}>
                 <BiMenu className='w-6 h-6 cursor-pointer'/>
               </span>
