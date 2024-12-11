@@ -28,7 +28,7 @@ const VerifyEmail = () => {
 	if (loading) {
 		return (
 		<div className="flex justify-center items-center">
-			<LoadingModel/>
+			<LoadingModel dimensions='h-[250px] w-[250px]'/>
 		</div>
 		)
 	}

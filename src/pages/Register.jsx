@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
-import {Link} from 'react-router-dom'
+import {Link, useLocation, useNavigate} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { MdRemoveRedEye } from "react-icons/md"
 import uploadImageToCloudinary from './../utils/uplaodCloudinary'
@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registerUser } from '../redux/thunks/authThunks'
 import { IoMdEyeOff } from "react-icons/io"
 import { authThunks } from './../redux/slices/authSlice';
+import LoadingModel from '../components/Loading/LoadingModel'
 
 
 
@@ -78,9 +79,16 @@ const validateImageType = (value) => {
 
 
 const Register = () => {
+
+  const location = useLocation()
+  const navigate = useNavigate()
   
   const [showPassword, setShowPassword] = useState(false)
-  const { authError } = useSelector((state) => state.auth)
+  const { authError, loading } = useSelector((state) => state.auth)
+
+  const redirectPath = location.state?.path || '/home'
+
+  console.log("loading Register", loading)
 
 
   const dispatch = useDispatch()
@@ -102,6 +110,8 @@ const Register = () => {
 
 
   const handleUserRegistration = async (userInfo) => {
+
+    dispatch(authThunks.setLoading(true))
   
     const photo = await uploadImageToCloudinary(userInfo.photo[0])
 
@@ -109,10 +119,12 @@ const Register = () => {
 
     try {
       const res = await dispatch(registerUser(userInfo))
-      // redirection the path after successfully registering
-      // if (!res.error) {
-      //     navigate(redirectPath, {replace :true})
-      //   }
+
+
+
+      if (!res.error) {
+          navigate(redirectPath, {replace :true})
+        }
     } catch (error) {
       console.log(error.message)
     }
@@ -272,9 +284,14 @@ const Register = () => {
 
 
               <div>
-                <button type='submit' 
-                  className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
-                  Register
+                <button type='submit' disabled={loading}
+                  className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3`}>
+                  
+                  {
+                    loading ? <LoadingModel padding='' color='#FFFFFF'/> : "Register"
+                  }
+
+
                 </button>
               </div>
 

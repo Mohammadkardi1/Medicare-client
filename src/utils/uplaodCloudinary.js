@@ -2,13 +2,12 @@
 const uploadImageToCloudinary = async file => {
 
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET
-    const folderName = import.meta.env.VITE_CLOUDINARY_FOLDER_NAME
 
+    
     const uploadData = new FormData()
     uploadData.append('file', file)
-    uploadData.append('upload_preset', uploadPreset)
-    uploadData.append("folder", folderName)
+    uploadData.append('upload_preset', import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET)
+    uploadData.append("folder", import.meta.env.VITE_CLOUDINARY_FOLDER_NAME)
     
     try {
         // Cloudinary's upload API endpoint

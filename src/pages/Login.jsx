@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { MdRemoveRedEye } from "react-icons/md"
 import { IoMdEyeOff } from "react-icons/io"
 import { authThunks } from './../redux/slices/authSlice'
+import LoadingModel from '../components/Loading/LoadingModel'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -13,12 +14,12 @@ const Login = () => {
   const location = useLocation()
 
 
-  console.log("location.state?.path", location.state?.path)
   const redirectPath = location.state?.path || '/home'
 
 
 
-  const { authError } = useSelector((state) => state.auth)
+  const { authError, loading } = useSelector((state) => state.auth)
+
 
 
   
@@ -88,9 +89,11 @@ const Login = () => {
           </div>
 
           <div>
-            <button type='submit' 
-              className='w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3'>
-              Login
+            <button type='submit' disabled={loading}
+              className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
+              {
+                loading ? <LoadingModel padding='' color='#FFFFFF'/> : "Login"
+              }
             </button>
           </div>
 

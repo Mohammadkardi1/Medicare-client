@@ -8,16 +8,24 @@ import FindDoctor from '../pages/FindDoctor'
 import DoctorDetails from './../pages/DoctorDetails/DoctorDetails'
 import { Routes, Route } from 'react-router-dom'
 import VerifyEmail from '../pages/VerifyEmail'
+import AuthenticationProtect from './AuthenticationProtect'
 
 const Routers = () => {
   return (
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/home' element={<Home/>} />
+
+      <Route path='/login' element={<AuthenticationProtect><Login/></AuthenticationProtect>} />
+      <Route path='/register' element={<AuthenticationProtect><Register/></AuthenticationProtect>} />
+
+      
       <Route path='/FindDoctor' element={<FindDoctor/>} />
       <Route path='/doctors/:id' element={<DoctorDetails/>} />
-      <Route path='/login' element={<Login/>} />
-      <Route path='/register' element={<Register/>} />
+
+
+
+
       <Route path='/services' element={<Services/>} />
       <Route path='/contact' element={<Contact/>} />
 

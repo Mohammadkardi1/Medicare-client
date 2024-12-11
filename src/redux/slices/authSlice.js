@@ -65,6 +65,9 @@ const authSlice = createSlice({
         loginByToken: (state) => {
             state.userInfo = JSON.parse(localStorage.getItem('profile')).data
         },
+        setLoading: (state, loading) => {
+            state.loading = loading
+        },
 
     },
     extraReducers: (builder) => {
