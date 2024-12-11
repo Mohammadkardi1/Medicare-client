@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import signupImg from '../assets/images/signup.gif'
 import avatar from '../assets/images/doctor-img01.png'
-import {Link, useLocation, useNavigate} from 'react-router-dom'
+import {Link, useLocation} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import { MdRemoveRedEye } from "react-icons/md"
 import uploadImageToCloudinary from './../utils/uplaodCloudinary'
@@ -81,14 +81,11 @@ const validateImageType = (value) => {
 const Register = () => {
 
   const location = useLocation()
-  const navigate = useNavigate()
   
   const [showPassword, setShowPassword] = useState(false)
   const { authError, loading } = useSelector((state) => state.auth)
 
   const redirectPath = location.state?.path || '/home'
-
-  console.log("loading Register", loading)
 
 
   const dispatch = useDispatch()
@@ -122,9 +119,6 @@ const Register = () => {
 
 
 
-      if (!res.error) {
-          navigate(redirectPath, {replace :true})
-        }
     } catch (error) {
       console.log(error.message)
     }

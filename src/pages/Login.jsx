@@ -7,6 +7,7 @@ import { MdRemoveRedEye } from "react-icons/md"
 import { IoMdEyeOff } from "react-icons/io"
 import { authThunks } from './../redux/slices/authSlice'
 import LoadingModel from '../components/Loading/LoadingModel'
+import { showToastSuccess } from './../utils/toastUtils';
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -35,9 +36,11 @@ const Login = () => {
 
   const handleUserLogin = async (userInfo) => {
 
+
     try {
       const res = await dispatch(loginUser(userInfo))
       if (!res.error) {
+        showToastSuccess("You have logged in successfully!", { position: "top-right", autoClose: 3000 })
         navigate(redirectPath, {replace :true})
       }
     } catch (error) {

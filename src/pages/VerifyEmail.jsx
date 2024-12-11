@@ -5,7 +5,7 @@ import { verifyEmail } from './../redux/thunks/authThunks';
 import success from "../assets/images/success.png"
 import failure from "../assets/images/failure.png"
 import LoadingModel from '../components/Loading/LoadingModel';
-// import PageLoadingModel from "./Models/PageLoadingModel"
+import { showToastSuccess } from './../utils/toastUtils';
 
 
 
@@ -16,9 +16,12 @@ const VerifyEmail = () => {
     const {isVerified, authError, loading} = useSelector(state => state.auth)
 
 
-	useEffect(() => {
+	useEffect(async () => {
 		try {
-			dispatch(verifyEmail({role: param.role, id: param.id, token: param.token}))
+			const res = await dispatch(verifyEmail({role: param.role, id: param.id, token: param.token}))
+			if (!res.error) {
+				showToastSuccess("You have registered successfully!", { position: "top-right", autoClose: 3000 })
+			}
 		} catch (error) {
 			console.log(error)
 		}
