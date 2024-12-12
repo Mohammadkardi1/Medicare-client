@@ -1,3 +1,9 @@
+// VITE_CLOUDINARY_CLOUD_NAME = dziawjklk
+// VITE_CLOUDINARY_UPLOAD_PRESET = medicare
+// VITE_CLOUDINARY_FOLDER_NAME = medicare
+// VITE_API_BASE_URL = http://localhost:5000/
+
+
 
 
 
