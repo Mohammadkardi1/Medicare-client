@@ -6,7 +6,7 @@ export const showToastSuccess = (message, options = {}) => {
         autoClose = 3000,       // Auto close duration (in ms)
         hideProgressBar = false, // Option to show/hide progress bar
         closeOnClick = true,    // Close toast when clicked
-        pauseOnHover = true,    // Pause timer when hovered
+        pauseOnHover = false,    // Pause timer when hovered
         draggable = true,       // Allow toast dragging
         theme = "dark",        // Theme: 'light', 'dark', or 'colored'
     } = options
@@ -22,7 +22,7 @@ export const showToastFailuer = (message, options = {}) => {
         autoClose = 3000,
         hideProgressBar = false,
         closeOnClick = true,
-        pauseOnHover = true,
+        pauseOnHover = false,
         draggable = true,
         theme = "dark",
     } = options
