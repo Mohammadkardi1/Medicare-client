@@ -110,7 +110,7 @@ const Register = () => {
 
     dispatch(authThunks.setLoading(true))
   
-    const photo = await uploadImageToCloudinary(userInfo.photo[0])
+    const photo = await uploadImageToCloudinary(userInfo?.photo[0])
 
     userInfo = {...userInfo , photo: photo.secure_url}
 

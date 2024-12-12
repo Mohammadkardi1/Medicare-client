@@ -111,9 +111,11 @@ const Header = () => {
 
 
               <div>
-                <figure className='w-[35px] rounded-full cursor-pointer'>
-                  <img src={userInfo?.photo ? userInfo.photo : userImg} className='w-full rounded-full' alt=''/>
-                </figure>
+                <Link to={userInfo?.role ? `/${userInfo?.role}/profile` : "/home"}>
+                  <figure className='w-[35px] rounded-full cursor-pointer'>
+                    <img src={userInfo?.photo ? userInfo.photo : userImg} className='w-full rounded-full' alt=''/>
+                  </figure>
+                </Link>
               </div>
 
 

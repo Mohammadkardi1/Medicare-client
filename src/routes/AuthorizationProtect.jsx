@@ -1,10 +1,12 @@
 import React from 'react'
+import { Navigate } from 'react-router-dom'
 
-const AuthorizationProtect = ({children}) => {
+const AuthorizationProtect = ({children, allowedRoles}) => {
 
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const userInfo = JSON.parse(localStorage.getItem('profile'))
+    const isAllowed = allowedRoles.includes(userInfo?.role)
 
-  return user?.data ? children : <Navigate to='/login' state={{ path:location.pathname}}/>
+  return isAllowed ? children : <Navigate to='/login' replace={true}/>
   
 }
 
