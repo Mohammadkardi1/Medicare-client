@@ -9,10 +9,12 @@ import DoctorDetails from './../pages/DoctorDetails/DoctorDetails'
 import { Routes, Route } from 'react-router-dom'
 import VerifyEmail from '../pages/VerifyEmail'
 import AuthenticationProtect from './AuthenticationProtect'
-import PatientAccount from '../Dashboard/patient-account/PatientAccount'
-import Dashboard from '../Dashboard/doctor-account/Dashboard'
 import AuthorizationProtect from './AuthorizationProtect';
 import NotFoundPage from '../pages/NotFoundPage';
+import PatientProfile from './../Dashboard/PatientProfile/PatientProfile';
+import Dashboard from '../Dashboard/DoctorProfile/Dashboard'
+
+
 
 const Routers = () => {
   return (
@@ -36,7 +38,7 @@ const Routers = () => {
 
       <Route path='/patient/profile' element={
                 <AuthorizationProtect allowedRoles={['patient']}>
-                  <PatientAccount/>
+                  <PatientProfile/>
                 </AuthorizationProtect>
                 }/>
       <Route path='/doctor/profile' element={

@@ -5,10 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Bookings from './Bookings';
 import Settings from './Settings';
-import LoadingModel from './../../components/Loading/LoadingModel';
+import LoadingModel from '../../components/Loading/LoadingModel';
 import ErrorModel from '../../components/ErrorModel/ErrorModel';
 
-const PatientAccount = () => {
+const PatientProfile = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -92,4 +92,4 @@ const PatientAccount = () => {
   )
 }
 
-export default PatientAccount
+export default PatientProfile

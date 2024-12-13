@@ -1,7 +1,7 @@
 import React from 'react'
-import ErrorModel from './../../components/ErrorModel/ErrorModel';
-import LoadingModel from './../../components/Loading/LoadingModel';
-import DoctorList from './../../components/DoctorsList/DoctorList';
+import ErrorModel from '../../components/ErrorModel/ErrorModel';
+import LoadingModel from '../../components/Loading/LoadingModel';
+import DoctorList from '../../components/DoctorsList/DoctorList';
 import DoctorCard from '../../components/DoctorsList/DoctorCard';
 
 const Bookings = () => {
