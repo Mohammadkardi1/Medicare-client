@@ -5,18 +5,17 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Bookings from './Bookings';
 import Settings from './Settings';
-import NotFound from '../../components/NotFound';
 import LoadingModel from './../../components/Loading/LoadingModel';
+import ErrorModel from '../../components/ErrorModel/ErrorModel';
 
 const PatientAccount = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [tab, setTab] = useState('')
+    const [tab, setTab] = useState('bookings')
 
-    const {userInfo, loading} = useSelector(state => state.auth)
-
+    const {userInfo, loading, authError} = useSelector(state => state.auth)
 
 
     const handleLogout = () => {
@@ -25,15 +24,18 @@ const PatientAccount = () => {
     }
 
 
+    if (loading && !authError) {
+        return <LoadingModel styles={"h-[40vh]"}/>
+    }
+
+    if (authError && !loading) {
+        return <ErrorModel errorMsg={authError} styles={"h-[40vh]"}/>
+    }
+
 
   return (
     <section className='mt-[75px]'>
-        {loading ? 
-
-        <LoadingModel/>
-
-        :
-
+        {!loading && !authError && (
         <div className='max-w-[1170px] px-5 mx-auto'>
             <div className='grid md:grid-cols-3 gap-10'>
                 <div className='pb=[50px] px-[30px] rounded-md'>
@@ -67,30 +69,25 @@ const PatientAccount = () => {
 
                 </div>
             
-                <div className='md:col-span-2 md:px-[30px]'>
-                    <div>
-                        <button onClick={() => setTab('bookings')} 
+                <div className='md:col-span-2 md:px-[30px] space-y-4'>
+                    <div className='flex justify-around'>
+                        <button onClick={() => setTab('bookings')} disabled
                                 className={`${tab === 'bookings' && ' bg-primaryColor text-white font-normal'} p-2 mr-5 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border 
                                             border-solid border-primaryColor`}>
                             My Bookings
                         </button>
-                        <button onClick={() => setTab('settings')} 
+                        {/* <button onClick={() => setTab('settings')} 
                                 className={`${tab === 'settings' && ' bg-primaryColor text-white font-normal'} py-2 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border 
                                             border-solid border-primaryColor`}>
                             Profile Settings
-                        </button>
+                        </button> */}
                     </div>
 
-                    {
-                        tab === 'settings' ? <Settings/> : <Bookings/>
-                    }
-
+                    {tab === 'settings' ? <Settings/> : <Bookings/>}
                 </div>
-
             </div>
         </div>
-
-        }
+        )}
     </section>
   )
 }

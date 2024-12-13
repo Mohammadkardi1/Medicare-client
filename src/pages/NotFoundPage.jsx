@@ -1,6 +1,6 @@
 import React from 'react'
 
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <div className="h-[40vh] flex flex-col gap-2 justify-center items-center ">
         <div className='text-center'>
@@ -12,4 +12,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default NotFoundPage

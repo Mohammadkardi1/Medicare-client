@@ -12,6 +12,7 @@ import AuthenticationProtect from './AuthenticationProtect'
 import PatientAccount from '../Dashboard/patient-account/PatientAccount'
 import Dashboard from '../Dashboard/doctor-account/Dashboard'
 import AuthorizationProtect from './AuthorizationProtect';
+import NotFoundPage from '../pages/NotFoundPage';
 
 const Routers = () => {
   return (
@@ -38,17 +39,13 @@ const Routers = () => {
                   <PatientAccount/>
                 </AuthorizationProtect>
                 }/>
-
       <Route path='/doctor/profile' element={
                 <AuthorizationProtect allowedRoles={['doctor']}>
                   <Dashboard/>
                 </AuthorizationProtect>
                 }/>
 
-      {/* here we should add a Not Found page */}
-      {/* in case not matched by previously defined routes */}
-      {/* This can be used for handling 404 errors  */}
-      <Route path='*' element={<Home/>}/>
+      <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
   )
 }

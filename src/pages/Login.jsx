@@ -21,8 +21,6 @@ const Login = () => {
 
   const { authError, loading } = useSelector((state) => state.auth)
 
-
-
   
   const [showPassword, setShowPassword] = useState(false)
 
@@ -95,7 +93,7 @@ const Login = () => {
             <button type='submit' disabled={loading}
               className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
               {
-                loading ? <LoadingModel padding='' color='#FFFFFF'/> : "Login"
+                loading ? <LoadingModel color='#FFFFFF'/> : "Login"
               }
             </button>
           </div>

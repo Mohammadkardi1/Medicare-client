@@ -1,13 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import doctorImg from '../../assets/images/doctor-img02.png'
 import starIcon from '../../assets/images/Star.png'
 import DoctorAbout from './DoctorAbout'
 import DoctorFeedback from './DoctorFeedback'
 import SidePanel from './SidePanel'
+import { useLocation } from 'react-router-dom';
 
 const DoctorDetails = () => {
 
+  const { pathname } = useLocation()
+
+
   const [tab, setTab] = useState('about')
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, [pathname])
 
 
   return (

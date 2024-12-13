@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import {  Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { verifyEmail } from './../redux/thunks/authThunks';
-import success from "../assets/images/success.png"
+import successImg from "../assets/images/success.png"
 import failure from "../assets/images/failure.png"
 import LoadingModel from '../components/Loading/LoadingModel';
 import { showToastSuccess } from './../utils/toastUtils';
@@ -31,7 +31,7 @@ const VerifyEmail = () => {
 	if (loading) {
 		return (
 		<div className="flex justify-center items-center">
-			<LoadingModel dimensions='h-[250px] w-[250px]'/>
+			<LoadingModel styles='h-[250px] w-[250px]'/>
 		</div>
 		)
 	}
@@ -40,7 +40,7 @@ const VerifyEmail = () => {
 		<div className='w-full mt-12 flex flex-col items-center justify-center gap-6 plain-text text-textColor font-semibold'>
 			{isVerified === true &&
 				<>
-					<img src={success} alt="success_img" className='w-[150px] lg:w-[250px]' />
+					<img src={successImg} alt="success_img" className='w-[150px] lg:w-[250px]' />
 					<h1>
 						Email verified successfully! Please Log in.
 						<Link to='/login' className=' text-primaryColor ml-2 underline'>

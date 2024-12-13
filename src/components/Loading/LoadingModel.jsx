@@ -2,10 +2,10 @@ import React from 'react'
 import { CircularProgress } from '@mui/material'
 
 
-const LoadingModel = ({padding = "py-2", color= "#2196f3", isFixed= false, dimensions, size}) => {
+const LoadingModel = ({color= "#2196f3", isFixed= false, size, styles}) => {
 
-  return (
-    <div className={`${isFixed ? "fixed inset-0 z-20 " : ""} ${dimensions} flex items-center justify-center  ${padding}`}>
+  return (  
+    <div className={`${isFixed ? "fixed inset-0 z-20 " : ""} flex items-center justify-center ${styles}`}>
           <CircularProgress style={{ color: color }} size={size}/>
     </div>
   )

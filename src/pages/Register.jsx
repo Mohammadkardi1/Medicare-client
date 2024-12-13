@@ -282,7 +282,7 @@ const Register = () => {
                   className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3`}>
                   
                   {
-                    loading ? <LoadingModel padding='' color='#FFFFFF'/> : "Register"
+                    loading ? <LoadingModel color='#FFFFFF'/> : "Register"
                   }
 
 
