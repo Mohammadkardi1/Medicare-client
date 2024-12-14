@@ -76,7 +76,7 @@ const SupportItems = [
 ]
 
 const navHeaderClasses = 'text-[20px] leading-[30px] font-[700] text-headingColor mb-3'
-const navLinksClasses= 'text-[15px] leading-[30px] font-[500] text-textColor mt-1'
+const navLinksClasses= 'text-[15px] leading-[30px] font-[500] text-textColor mt-1 hover:underline hover:font-bold hover:text-headingColor'
 
 
 const Footer = () => {
@@ -85,7 +85,7 @@ const Footer = () => {
 
 
   return (
-    <footer className='mb-4 mt-auto'>
+    <footer className='mb-4 mt-auto '>
       <div className='container'>
         <div className=' grid grid-cols-5 gap-8'>
 

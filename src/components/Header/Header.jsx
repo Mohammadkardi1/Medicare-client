@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 import logo from '../../assets/images/logo.png'
-import {NavLink, Link, useLocation} from 'react-router-dom'
+import {NavLink, Link, useLocation, useNavigate} from 'react-router-dom'
 import userImg from '../../assets/images/avatar-icon.png'
 import { BiMenu } from "react-icons/bi";
 import { useSelector } from 'react-redux';
@@ -31,6 +31,7 @@ const Header = () => {
   const headerRef = useRef(null)
   const menuRef = useRef(null)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const {userInfo} = useSelector(state => state.auth)
 
@@ -43,6 +44,7 @@ const Header = () => {
   const logout = async () => {
     try {
         await dispatch(authThunks.logout())
+        navigate('/home')
 
 
     } catch (error) {
@@ -112,9 +114,15 @@ const Header = () => {
 
               <div>
                 <Link to={userInfo?.role ? `/${userInfo?.role}/profile` : "/home"}>
-                  <figure className='w-[35px] rounded-full cursor-pointer'>
-                    <img src={userInfo?.photo ? userInfo.photo : userImg} className='w-full rounded-full' alt=''/>
-                  </figure>
+                  <div className="aspect-square w-full overflow-hidden rounded-full">
+                    <img className="object-cover w-[45px] "
+                          src={userInfo?.photo ? userInfo?.photo : userImg}/>
+                  </div>
+
+                
+                  {/* <figure className='rounded-full cursor-pointer'>
+                    <img src={userInfo?.photo ? userInfo?.photo : userImg} className='w-[45px] h-[45px] rounded-full' alt=''/>
+                  </figure> */}
                 </Link>
               </div>
 

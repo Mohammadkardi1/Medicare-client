@@ -10,7 +10,7 @@ const DoctorCard = ({doctor}) => {
     const {name, specialization, avgRating, totalRating, photo, totalPatients, hospital} = doctor
 
   return (
-    <Link to='/doctors/1'>
+    <Link to='/doctor/1'>
         <div className='p-3 lg:p-5'>
 
             <div><img src={photo} alt={`${name}-photo`} className='w-full'/></div>

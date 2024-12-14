@@ -5,7 +5,6 @@ import Login from './../pages/Login'
 import Services from './../pages/Services'
 import Register from './../pages/Register'
 import FindDoctor from '../pages/FindDoctor'
-import DoctorDetails from './../pages/DoctorDetails/DoctorDetails'
 import { Routes, Route } from 'react-router-dom'
 import VerifyEmail from '../pages/VerifyEmail'
 import AuthenticationProtect from './AuthenticationProtect'
@@ -13,7 +12,7 @@ import AuthorizationProtect from './AuthorizationProtect';
 import NotFoundPage from '../pages/NotFoundPage';
 import PatientProfile from './../Dashboard/PatientProfile/PatientProfile';
 import Dashboard from '../Dashboard/DoctorProfile/Dashboard'
-
+import DoctorProfile from './../pages/DoctorProfile';
 
 
 const Routers = () => {
@@ -27,7 +26,7 @@ const Routers = () => {
 
       
       <Route path='/FindDoctor' element={<FindDoctor/>} />
-      <Route path='/doctors/:id' element={<DoctorDetails/>} />
+      <Route path='/doctor/:id' element={<DoctorProfile/>} />
 
       <Route path='/services' element={<Services/>} />
       <Route path='/contact' element={<Contact/>} />
