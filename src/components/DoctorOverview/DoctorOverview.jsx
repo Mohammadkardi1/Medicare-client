@@ -40,10 +40,14 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
                 </div>
 
                 <div className='col-span-2'>
-                  <div className='bg-[#CCF0F3] text-irisBlueColor py-1 px-6 lg:py-2 lg:px-6 text-[12px] leading-4 inline-block 
-                                  lg:text-[16px] lg:leading-7 font-semibold rounded'>
-                    Surgeon
-                  </div>
+
+                  {doctorInfo?.specialization &&
+                    <div className='bg-[#CCF0F3] text-irisBlueColor py-1 px-6 lg:py-2 lg:px-6 text-[12px] leading-4 inline-block 
+                                    lg:text-[16px] lg:leading-7 font-semibold rounded'>
+                      {doctorInfo?.specialization}
+                    </div>
+                  }
+
                   <h3 className=' text-headingColor text-[22px] leading-9 mt-3 font-[700]'>
                     Dr. {doctorInfo?.name}
                   </h3>
@@ -62,10 +66,12 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
 
 
 
+                  {doctorInfo?.bio &&
+                    <p className='text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]'>
+                      {doctorInfo?.bio}
+                    </p>
+                  }
 
-                  <p className='text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]'>
-                    {doctorInfo?.bio}
-                  </p>
                 </div>
 
               </div>

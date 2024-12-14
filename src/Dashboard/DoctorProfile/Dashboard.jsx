@@ -6,8 +6,8 @@ import { BiMenu } from 'react-icons/bi'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { authThunks } from '../../redux/slices/authSlice';
 import Appointments from './Appointments';
-import Settings from './../PatientProfile/Settings';
 import DoctorOverview from './../../components/DoctorOverview/DoctorOverview';
+import DashboardForm from '../../components/Form/DashboardForm';
 
 
 
@@ -39,12 +39,7 @@ const Dashboard = () => {
 
   const {userInfo, loading, authError} = useSelector(state => state.auth)
 
-
-
   console.log(userInfo)
-
-
-
 
 
   const queryParams = new URLSearchParams(location.search)
@@ -118,17 +113,17 @@ const Dashboard = () => {
             {userInfo?.isApproved === 'pending' && (
               <div className='flex p-4 text-yellow-800 bg-yellow-50 rounded-lg'>
 
-              <svg aria-hidden="true"
-                    className="flex-shrink-0 w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg">
-              <path fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 
-                    1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clipRule="evenodd"
-                ></path>
-              </svg>
+                <svg aria-hidden="true"
+                      className="flex-shrink-0 w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 
+                      1 0 100-2v-3a1 1 0 00-1-1H9z"
+                      clipRule="evenodd">
+                </path>
+                </svg>
 
               {/* <span className='sr-only'>Info</span> */}
               <div className='ml-3 text-sm font-medium'>
@@ -142,22 +137,20 @@ const Dashboard = () => {
             <div>
               {tab === 'overview' && <DoctorOverview doctorInfo={userInfo} patientViewMode={false}/>}
               {tab === 'appointments' && <Appointments/>}
-              {tab === 'settings' && <Settings/>}
+
+
+
+              {tab === 'settings' && (
+                <div>
+                  <h2 className='text-headingColor font-bold text-[24px] leading-9 mb-10'>
+                    Profile Information
+                  </h2>
+                  <DashboardForm/>
+                </div>
+              )}
             </div>
 
         </div>
-
-
-
-
-
-        
-
-
-
-
-
-
 
         </div>
     )}

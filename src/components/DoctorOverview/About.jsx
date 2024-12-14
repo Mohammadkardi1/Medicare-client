@@ -46,9 +46,24 @@ const About = ({doctorInfo}) => {
             </span>
         </h3>
         <p className='text__para'>
-            {doctorInfo?.about}
+          {doctorInfo?.about ? doctorInfo?.about : ""}
         </p>
       </div>
+
+
+
+      {doctorInfo?.phone &&
+      <div className='mt-12'>
+        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
+            Phone Number
+        </h1>
+        <ul className='pt-4 md:p-5'>
+            <li className='text-[16px] leading-6 font-medium text-textColor'>
+              {doctorInfo?.phone}
+            </li>
+        </ul>
+      </div>
+      }
 
 
       <div className='mt-12'>
