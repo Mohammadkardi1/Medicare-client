@@ -59,13 +59,13 @@ export const validateImageType = (value) => {
 }
 
 export const phoneValidation = {
-  required: "Enter your phone number",
+  // required: "Enter your phone number",
   pattern: {
-    value: /^\+?[1-9]\d{1,14}$/, // E.164 format validation (international phone numbers)
+    value: /^\+?[1-9]\d{1,14}$/, 
     message: "Enter a valid phone number",
   },
   minLength: {
-    value: 10, // Adjust this based on your application's requirements
+    value: 10,
     message: "Phone number must be at least 10 digits long",
   },
   maxLength: {
@@ -75,7 +75,6 @@ export const phoneValidation = {
 }
 
 export const bioValidation = {
-  required: "Enter your phone number",
   maxLength: {
     value: 50, 
     message: "Bio must not exceed 50 characters",
@@ -83,7 +82,7 @@ export const bioValidation = {
 }
 
 export const ticketPriceValidation = {
-  required: "Enter the ticket price",
+  // required: "Enter the ticket price",
   min: {
     value: 0.01, 
     message: "Ticket price must be at least $0.01",
@@ -96,4 +95,4 @@ export const ticketPriceValidation = {
     value: /^\d+(\.\d{1,2})?$/,
     message: "Enter a valid price (e.g., 10 or 10.99)",
   },
-};
+}

@@ -4,16 +4,40 @@ import { useSelector } from 'react-redux'
 import LoadingModel from '../Loading/LoadingModel'
 import { nameValidation, phoneValidation, bioValidation, ticketPriceValidation } from './../../utils/validation';
 import { AiOutlineDelete } from "react-icons/ai";
+import FormInput from './FormInput';
+import FormTextArea from './FormTextArea';
+import FormSelect from './FormSelect';
 
+
+
+const genderOptions = [
+    { value: 'Male', label: 'Male' },
+    { value: 'Female', label: 'Female' },
+    { value: 'Other', label: 'Other' },
+]
+
+const specializationOptions = [
+    { value: 'Nephrologists', label: 'Nephrologists' },
+    { value: 'Hematologists', label: 'Hematologists' },
+    { value: 'Infectious', label: 'Infectious' },
+    { value: 'Surgeon', label: 'Surgeon' },
+]
+
+  const dayOfWeekOptions = [
+    { value: 'Monday', label: 'Monday' },
+    { value: 'Tuesday', label: 'Tuesday' },
+    { value: 'Wednesday', label: 'Wednesday' },
+    { value: 'Thursday', label: 'Thursday' },
+    { value: 'Friday', label: 'Friday' },
+    { value: 'Saturday', label: 'Saturday' },
+    { value: 'Sunday', label: 'Sunday' },
+  ]
 
 
 
 const DashboardForm = () => {
 
     const { userInfo, authError, loading } = useSelector((state) => state.auth)
-
-
-    console.log(userInfo)
 
 
 
@@ -25,25 +49,20 @@ const DashboardForm = () => {
 
     const { fields: qualificationsFields, remove: removeQualification, append:appendQualification } = useFieldArray({
         control,
-        name: 'qualifications', // Name of the array in your form state
+        name: 'qualifications',
     })
 
 
     const { fields: experiencesFields, remove: removeExperience, append:appendExperience } = useFieldArray({
         control,
-        name: 'experiences', // Name of the array in your form state
+        name: 'experiences',
     })
 
 
     const { fields: timeSlotsFields, remove: removeTimeSlots, append:appendTimeSlots } = useFieldArray({
         control,
-        name: 'timeSlots', // Name of the array in your form state
+        name: 'timeSlots', 
     })
-
-
-
-
-    
 
 
 
@@ -68,121 +87,41 @@ const DashboardForm = () => {
   return (
     <form className='space-y-4' onSubmit={handleSubmit(handleFormSubmit)}>
 
+        <FormInput fieldName="name" labelText="Name" placeholder="Full Name" labelStyle="form__label" 
+            inputStyle="form__input" register={register} validationRules={nameValidation} errors={errors}/>
 
-        {/* Name Input Field */}
-        <div>
-            <label className='form__label'>Name</label>
-            <input type="text" placeholder="Full Name"
-                    className={`form__input ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("name", nameValidation)}
-                />
-            <p className={`plain-text text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
-                {errors.name?.message}.
-            </p>
-        </div>
+        <FormInput fieldName="phone" labelText="Phone Number" placeholder="Phone Number" labelStyle="form__label" 
+            inputStyle="form__input" register={register} validationRules={phoneValidation} errors={errors}/>
+
+        <FormInput fieldName="bio" labelText="Bio" placeholder="Bio" labelStyle="form__label" 
+            inputStyle="form__input" register={register} validationRules={bioValidation} errors={errors}/>
 
 
 
-        {/* Phone number input field */}
-        <div>
-            <label className='form__label'>Phone Number</label>
-            <input type="text" placeholder="Phone Number"
-                    className={`form__input ${errors?.phone ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("phone", phoneValidation)}
-                />
-            <p className={`plain-text text-red-600 ${errors.phone?.message ? "visible" : "invisible"}`}>
-                {errors.phone?.message}.
-            </p>
-        </div>
-
-
-        {/* Bio input field */}
-        <div>
-            <label className='form__label'>Bio</label>
-            <input type="text" placeholder="Bio"
-                    className={`form__input ${errors?.bio ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("bio", bioValidation)}
-                />
-            <p className={`plain-text text-red-600 ${errors.bio?.message ? "visible" : "invisible"}`}>
-                {errors.bio?.message}.
-            </p>
-        </div>
-
-
-        {/* About textarea field */}
-        <div>
-            <label className='form__label'>About</label>
-            <textarea rows={4} type="text" placeholder="About"
-                    className={`form__input ${errors?.about ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("about",)}
-                />
-            <p className={`plain-text text-red-600 ${errors.about?.message ? "visible" : "invisible"}`}>
-                {errors.about?.message}.
-            </p>
-        </div>
+        <FormTextArea fieldName="about" rows={4} labelText="About" placeholder="About" labelStyle="form__label" 
+            inputStyle="form__input" register={register} errors={errors}/>
 
 
 
 
         <div className=' grid grid-cols-3'>
+
             {/* Gender selection dropdown */}   
-            <div>
-                <label htmlFor='gender' className='form__label'>
-                    Gender
-                </label>
-                <select
-                    className="form__select"
-                    {...register("gender", { 
-                        required: "Select a Gender" 
-                        })}
-                    >
-                    <option value="" disabled>Choose an option</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='other'>Other</option>
-                </select>
-                <p className={`plain-text text-red-600 ${errors.gender?.message ? "visible" : "invisible"}`}>
-                    {errors.gender?.message}.
-                </p>
-            </div>
+            <FormSelect fieldName="gender" labelText="Gender" options={genderOptions} register={register}
+                validationRules={{ required: 'Select a Gender' }} errors={errors} selectStyle="form__select" labelStyle="form__label"/>
 
+            {/* Specialization selection dropdown */}  
+            <FormSelect fieldName="specialization" labelText="Specialization" options={specializationOptions} register={register}
+                errors={errors} selectStyle="form__select" labelStyle="form__label"/>
 
-            {/* Specialization selection dropdown */}   
-            <div>
-                <label htmlFor='specialization' className='form__label'>
-                    Specialization
-                </label>
-                <select
-                    className="form__select"
-                    {...register("specialization", { 
-                        required: "Select a Specialization" 
-                        })}
-                    >
-                    <option value="" disabled>Choose an option</option>
-                    <option value='Nephrologists'>Nephrologists</option>
-                    <option value='Hematologists'>Hematologists</option>
-                    <option value='Infectious'>Infectious</option>
-                    <option value='Surgeon'>Surgeon</option>
-                </select>
-                <p className={`plain-text text-red-600 ${errors.specialization?.message ? "visible" : "invisible"}`}>
-                    {errors.specialization?.message}.
-                </p>
-            </div>
+             
 
+            {/* Ticket Price Input Field */} 
+            <FormInput fieldName="ticketPrice" labelText="Ticket Price" placeholder="Ticket Price" labelStyle="form__label"
+                register={register} validationRules={ticketPriceValidation} errors={errors}
+                inputStyle="py-1 px-4 text-textColor outline outline-1 rounded-sm font-semibold text-[15px] leading-7 focus:outline-none
+                focus:border focus:border-primaryColor"/>
 
-            {/* Ticket Price selection dropdown */}   
-            <div>
-                <label htmlFor='ticketPrice' className='form__label'>
-                    Ticket Price
-                </label>
-                <input
-                    className="py-1 px-4 text-textColor outline outline-1 rounded-sm font-semibold text-[15px] leading-7 focus:outline-none focus:border focus:border-primaryColor"
-                    {...register("ticketPrice", ticketPriceValidation)}
-                    />
-                <p className={`plain-text text-red-600 ${errors.ticketPrice?.message ? "visible" : "invisible"}`}>
-                    {errors.ticketPrice?.message}.
-                </p>
-            </div>
         </div>
 
 
@@ -194,36 +133,25 @@ const DashboardForm = () => {
                     <div key={index}>
                         <div>
                             <div  className='grid grid-cols-2 gap-2'>
+                                <FormInput fieldName={`qualifications.${index}.degree`} labelText="Degree"
+                                            placeholder="Degree" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>
 
-                                <div>
-                                    <label className='form__label__branch'>Degree</label>
-                                    <input type="text" placeholder="Degree"
-                                            className={`form__input  `}
-                                            {...register(`qualifications.${index}.degree`, )}/>
-                                </div>
+                                <FormInput fieldName={`qualifications.${index}.institution`} labelText="Institution"
+                                            placeholder="Institution" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>
 
-                                <div>
-                                    <label className='form__label__branch'>Institution</label>
-                                    <input type="text" placeholder="Institution"
-                                            className={`form__input  `}
-                                            {...register(`qualifications.${index}.institution`, )}/>
-                                </div>
+                                <FormInput fieldName={`qualifications.${index}.startingDate`} labelText="Starting Date"
+                                            placeholder="Starting Date" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>
 
-                                <div>
-                                    <label className='form__label__branch'>Starting Date</label>
-                                    <input type="date" placeholder="Starting Date"
-                                        className={`form__input `}
-                                        {...register(`qualifications.${index}.startingDate`, )}/>
-                                </div>
-
-
-                                <div>
-                                    <label className='form__label__branch'>Ending Date</label>
-                                    <input type="date" placeholder="Ending Date"
-                                        className={`form__input `}
-                                        {...register(`qualifications.${index}.endingDate`, )}/>
-                                </div>
-
+                                <FormInput fieldName={`qualifications.${index}.endingDate`} labelText="Ending Date"
+                                            placeholder="Ending Date" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>
                             </div>
 
                             <button onClick={() => removeQualification(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
@@ -252,39 +180,25 @@ const DashboardForm = () => {
                     <div key={index}>
                         <div>
                             <div  className='grid grid-cols-2 gap-2'>
+                                <FormInput fieldName={`experiences.${index}.position`} labelText="Position"
+                                            placeholder="Position" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>                            
 
-                                <div>
-                                    <label className='form__label__branch'>Position</label>
-                                    <input type="text" placeholder="Position"
-                                            className={`form__input  `}
-                                            {...register(`experiences.${index}.position`, )}/>
-                                </div>
+                                <FormInput fieldName={`experiences.${index}.company`} labelText="Company"
+                                            placeholder="Company" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>      
 
-                                <div>
-                                    <label className='form__label__branch'>Company</label>
-                                    <input type="text" placeholder="company"
-                                            className={`form__input  `}
-                                            {...register(`experiences.${index}.company`, )}/>
-                                </div>
+                                 <FormInput fieldName={`experiences.${index}.startingDate`} type="date" labelText="Starting Date"
+                                            placeholder="Starting Date" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>      
 
-                                <div>
-                                    <label className='form__label__branch'>Starting Date</label>
-                                    <input type="date" placeholder="Starting Date"
-                                        className={`form__input `}
-                                        {...register(`experiences.${index}.startingDate`, )}/>
-                                </div>
-
-
-                                <div>
-                                    <label className='form__label__branch'>Ending Date</label>
-                                    <input type="date" placeholder="Ending Date"
-                                        className={`form__input `}
-                                        {...register(`experiences.${index}.endingDate`, )}/>
-                                </div>
-
-
-
-
+                                 <FormInput fieldName={`experiences.${index}.endingDate`} type="date" labelText="Ending Date"
+                                            placeholder="Ending Date" labelStyle="form__label__branch" 
+                                            inputStyle="form__input" register={register} 
+                                            errors={errors}/>     
                             </div>
 
                             <button onClick={() => removeExperience(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
@@ -311,54 +225,30 @@ const DashboardForm = () => {
             <div className='space-y-6'>
                 {timeSlotsFields?.map((item, index) => (
                     <div key={index} className='grid grid-cols-4 gap-2'>
-                        <div className=' flex flex-col justify-between'>
-                            <label className='form__label__branch'>Day of Week</label>
-                            {/* <input type="text" placeholder="dayOfWeek"
-                                    className={`form__input  `}
-                                    {...register(`timeSlots.${index}.dayOfWeek`, )}/> */}
-                        
-
-                            <select
-                                className="form__input h-full"
-                                {...register(`timeSlots.${index}.dayOfWeek`,)}
-                                >, , , ,  and 
-                                <option value="" disabled>Choose an option</option>
-                                <option value='Monday'>Monday</option>
-                                <option value='Tuesday'>Tuesday</option>
-                                <option value='Wednesday'>Wednesday</option>
-                                <option value='Thursday'>Thursday</option>
-                                <option value='Friday'>Friday</option>
-                                <option value='Saturday'>Saturday</option>
-                                <option value='Sunday'>Sunday</option>
-                            </select>
 
 
 
-                        </div>
+                    {/* Gender selection dropdown */}   
+                    <FormSelect  fieldName={`timeSlots.${index}.dayOfWeek`} labelText="Day of Week" options={dayOfWeekOptions} 
+                        register={register} errors={errors} selectStyle="form__input h-full" 
+                        containerStyle= "flex flex-col justify-between" labelStyle="form__label__branch"/>
 
 
 
 
 
-
-                        <div>
-                            <label className='form__label__branch'>Starting Time</label>
-                            <input type="time" placeholder="Starting Time"
-                                className={`form__input `}
-                                {...register(`timeSlots.${index}.startingTime`, )}/>
-                        </div>
+                    <FormInput fieldName={`timeSlots.${index}.startingTime`} type="time" labelText="Starting Time"
+                            placeholder="Starting Time" labelStyle="form__label__branch" inputStyle="form__input" register={register} 
+                            errors={errors}/>   
 
 
 
-                        <div>
-                            <label className='form__label__branch'>Ending Time</label>
-                            <input type="time" placeholder="Ending Time"
-                                className={`form__input `}
-                                {...register(`timeSlots.${index}.endingTime`, )}/>
-                        </div>
+                    <FormInput fieldName={`timeSlots.${index}.endingTime`} type="time" labelText="Ending Time"
+                            placeholder="Ending Time" labelStyle="form__label__branch" inputStyle="form__input" register={register} 
+                            errors={errors}/>   
 
                         <div className='flex justify-start items-center'>
-                            <button onClick={() => removeTimeSlots(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                            <button onClick={() => removeTimeSlots(index)} className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
                                 <AiOutlineDelete />
                             </button>
                         </div>
@@ -372,19 +262,6 @@ const DashboardForm = () => {
                 </button>
             </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
