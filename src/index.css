@@ -37,6 +37,10 @@
     .form__label{
         @apply block text-[16px] leading-7 font-semibold text-headingColor mb-2
     }
+    .form__select{
+        @apply py-2 px-4 text-textColor outline outline-1 rounded-sm font-semibold text-[15px] leading-7 cursor-pointer 
+        focus:outline-none focus:border focus:border-primaryColor
+    }
     .form__input__auth{
         @apply w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
         focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1

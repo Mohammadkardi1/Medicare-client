@@ -69,7 +69,7 @@ export const phoneValidation = {
     message: "Phone number must be at least 10 digits long",
   },
   maxLength: {
-    value: 15, // E.164 standard allows a maximum of 15 digits
+    value: 15, 
     message: "Phone number must not exceed 15 digits",
   },
 }
@@ -77,7 +77,23 @@ export const phoneValidation = {
 export const bioValidation = {
   required: "Enter your phone number",
   maxLength: {
-    value: 50, // E.164 standard allows a maximum of 15 digits
+    value: 50, 
     message: "Bio must not exceed 50 characters",
   },
 }
+
+export const ticketPriceValidation = {
+  required: "Enter the ticket price",
+  min: {
+    value: 0.01, 
+    message: "Ticket price must be at least $0.01",
+  },
+  max: {
+    value: 10000,
+    message: "Ticket price must not exceed $10,000",
+  },
+  pattern: {
+    value: /^\d+(\.\d{1,2})?$/,
+    message: "Enter a valid price (e.g., 10 or 10.99)",
+  },
+};

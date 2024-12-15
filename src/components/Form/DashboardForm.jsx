@@ -2,14 +2,18 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import LoadingModel from '../Loading/LoadingModel'
-import { nameValidation, phoneValidation } from './../../utils/validation';
+import { nameValidation, phoneValidation, ticketPriceValidation } from './../../utils/validation';
 
 const DashboardForm = () => {
 
-    const { authError, loading } = useSelector((state) => state.auth)
+    const { userInfo, authError, loading } = useSelector((state) => state.auth)
 
 
-    const {register, handleSubmit, formState: {errors}, reset, watch} = useForm()
+    const {register, handleSubmit, formState: {errors}, reset, watch} = useForm(
+    {
+        defaultValues: userInfo
+        }
+    )
 
 
 
@@ -71,31 +75,98 @@ const DashboardForm = () => {
             </label>
             <input type="text" placeholder="Bio"
                     className={`form__input ${errors?.bio ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("phone", phoneValidation)}
+                    {...register("bio", phoneValidation)}
                 />
             <p className={`plain-text text-red-600 ${errors.bio?.message ? "visible" : "invisible"}`}>
                 {errors.bio?.message}.
             </p>
         </div>
 
-        {/* Password input field */}
-        {/* <div>
-            <div className={`flex items-center justify-between w-full overflow-hidden `}>
-                <input type={showPassword ? 'text' : 'password'} placeholder="Password"
-                        className={`form__input__auth bg-transparent`}
-                        {...register("password", {
-                            required: "Enter your password",
+
+
+
+        <div className=' grid grid-cols-3'>
+
+
+        
+            {/* Gender selection dropdown */}   
+            <div>
+                <label htmlFor='gender' className='form__label'>
+                    Gender
+                </label>
+                <select
+                    className="form__select"
+                    {...register("gender", { 
+                        required: "Select a Gender" 
                         })}
-                    />
-                <div className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full'
-                    onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25} />} 
-                </div>
+                    >
+                    <option value="" disabled>Choose an option</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='other'>Other</option>
+                </select>
+                <p className={`plain-text text-red-600 ${errors.gender?.message ? "visible" : "invisible"}`}>
+                    {errors.gender?.message}.
+                </p>
             </div>
-            <p className={`plain-text text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
-                {errors.password?.message}.
-            </p>
-        </div> */}
+
+
+
+
+            {/* Specialization selection dropdown */}   
+            <div>
+                <label htmlFor='specialization' className='form__label'>
+                    Specialization
+                </label>
+                <select
+                    className="form__select"
+                    {...register("specialization", { 
+                        required: "Select a Specialization" 
+                        })}
+                    >
+                    <option value="" disabled>Choose an option</option>
+                    <option value='FamilyMedicine'>Family medicine</option>
+                    <option value='Nephrologists'>Nephrologists</option>
+                    <option value='Hematologists'>Hematologists</option>
+                    <option value='Infectious'>Infectious</option>
+                    <option value='Surgeon'>Surgeon</option>
+                </select>
+                <p className={`plain-text text-red-600 ${errors.specialization?.message ? "visible" : "invisible"}`}>
+                    {errors.specialization?.message}.
+                </p>
+            </div>
+
+
+
+            {/* Ticket Price selection dropdown */}   
+            <div>
+                <label htmlFor='ticketPrice' className='form__label'>
+                    Ticket Price
+                </label>
+                <input
+                    className="py-1 px-4 text-textColor outline outline-1 rounded-sm font-semibold text-[15px] leading-7 focus:outline-none focus:border focus:border-primaryColor"
+                    {...register("ticketPrice", ticketPriceValidation)}
+                    />
+                <p className={`plain-text text-red-600 ${errors.ticketPrice?.message ? "visible" : "invisible"}`}>
+                    {errors.ticketPrice?.message}.
+                </p>
+            </div>
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
+
 
         <div className='flex justify-center'>
             <button type='submit' disabled={loading}
