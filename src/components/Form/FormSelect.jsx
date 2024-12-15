@@ -17,7 +17,7 @@ const FormSelect = ({fieldName, labelText, options = [], register, validationRul
             ))}
       </select>
       <p className={`plain-text text-red-600 ${errors?.[fieldName]?.message ? "visible" : "invisible"}`}>
-        {errors?.[fieldName]?.message}
+        {errors?.[fieldName]?.message}.
       </p>
     </div>
   );

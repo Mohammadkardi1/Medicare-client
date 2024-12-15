@@ -11,11 +11,25 @@ import { IoMdEyeOff } from "react-icons/io"
 import { authThunks } from './../redux/slices/authSlice';
 import LoadingModel from '../components/Loading/LoadingModel'
 import { nameValidation, emailValidation, passwordValidation, validateImageType } from '../utils/validation'
+import FormInput from './../components/Form/FormInput';
+import FormSelect from './../components/Form/FormSelect';
 
 
 // alexia.ar19990@gmail.com
 
 
+
+const roleOptions = [
+  { value: 'patient', label: 'patient' },
+  { value: 'doctor', label: 'doctor' },
+]
+
+
+const genderOptions = [
+  { value: 'Male', label: 'Male' },
+  { value: 'Female', label: 'Female' },
+  { value: 'Other', label: 'Other' },
+]
 
 
 const Register = () => {
@@ -87,28 +101,17 @@ const Register = () => {
 
             <form className='space-y-4' onSubmit={handleSubmit(handleUserRegistration)}>
 
+
+
               {/* Name input field */}
-              <div>
-                <input type="text" placeholder="Full Name"
-                      className={`form__input__auth ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                      {...register("name", nameValidation)}
-                    />
-                <p className={`plain-text text-red-600 ${errors.name?.message ? "visible" : "invisible"}`}>
-                    {errors.name?.message}.
-                </p>
-              </div>
+              <FormInput fieldName="name" placeholder="Full Name" 
+                  inputStyle="form__input__auth" register={register} validationRules={nameValidation} errors={errors}/>
 
 
               {/* Email input field */}
-              <div>
-                  <input type="text" placeholder="Email"
-                        className={`form__input__auth ${errors?.email ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
-                        {...register("email", emailValidation)}
-                    />
-                  <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
-                      {errors.email?.message}.
-                  </p>
-              </div>
+              <FormInput fieldName="email" placeholder="Email" 
+                  inputStyle="form__input__auth" register={register} validationRules={emailValidation} errors={errors}/>
+
 
 
               {/* Password input field */}
@@ -134,55 +137,23 @@ const Register = () => {
 
 
               <div className='flex items-center justify-between'>
-                
-                {/* Role selection dropdown */}
-                <div>
-                  <label htmlFor='role' className='text-headingColor font-bold text-[16px] leading-7'>
-                    Your Role:
-                  </label>
-                  <select
-                      className="form__select__auth"
-                      {...register("role", { 
-                        required: "Select a role" 
-                        })}
-                      >
-                    <option value="" disabled>Choose an option</option>
-                    <option value='patient'>Patient</option>
-                    <option value='doctor'>Doctor</option>
-                  </select>
-                  <p className={`plain-text text-red-600 ${errors.role?.message ? "visible" : "invisible"}`}>
-                      {errors.role?.message}.
-                  </p>
-                </div>
 
+                {/* Role selection dropdown */}  
+                <FormSelect fieldName="role" labelText="Your Role:" 
+                            labelStyle="text-headingColor font-bold text-[16px] leading-7"
+                            options={roleOptions} validationRules={{ required: 'Select a role' }}
+                            register={register} errors={errors} selectStyle="form__select__auth" />
 
 
                 {/* Gender selection dropdown */}
-                <div>
-                  <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
-                    Gender:
-                  </label>
-                  <select
-                      className="form__select__auth"
-                      {...register("gender", { 
-                        required: "Select a gender" 
-                        })}
-                      >
-                    <option value="" disabled>Choose an option</option>
-                    <option value='male'>Male</option>
-                    <option value='female'>Female</option>
-                    <option value='other'>Other</option>
-                  </select>
-                  <p className={`plain-text text-red-600 ${errors.gender?.message ? "visible" : "invisible"}`}>
-                      {errors.gender?.message}.
-                  </p>
-                </div>
+                <FormSelect fieldName="gender" labelText="Gender:" 
+                            labelStyle="text-headingColor font-bold text-[16px] leading-7"
+                            options={genderOptions} validationRules={{ required: 'Select a gender' }}
+                            register={register} errors={errors} selectStyle="form__select__auth" />
+
+
 
               </div>
-
-
-
-
 
 
               {/* Image Input Field */}

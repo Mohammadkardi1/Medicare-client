@@ -1,12 +1,12 @@
 import React from 'react';
 
-const FormInput = ({fieldName, labelText, type = "text", placeholder, labelStyle, inputStyle, register, 
+const FormInput = ({fieldName, labelText= "", type = "text", placeholder, labelStyle, inputStyle, register, 
                     validationRules={}, errors ={},}) => {
 
 
   return (
     <div>
-        <label className={labelStyle}>{labelText}</label>
+        {labelText && <label className={labelStyle}>{labelText}</label>}
         <input type={type} placeholder={placeholder}
                 className={`${inputStyle} ${errors?.[fieldName] ? "bg-SemiTransparentBlue rounded-sm" : ""}`}
                 {...register(fieldName, validationRules)}/>
