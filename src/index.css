@@ -35,7 +35,7 @@
         rounded-md focus:outline-none focus:border-primaryColor placeholder:text-textColor
     }
     .form__label{
-        @apply block text-[16px] leading-7 font-bold text-headingColor mb-2
+        @apply block text-[18px] leading-7 font-bold text-headingColor mb-2
     }
     .form__label__branch{
         @apply block text-[14px] leading-7 font-semibold text-headingColor mb-1

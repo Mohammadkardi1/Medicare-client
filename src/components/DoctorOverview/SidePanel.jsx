@@ -3,16 +3,19 @@ import React from 'react'
 
 const availableTimeSolts = [
     {
-        dayOfWeek : 'Sonday',
-        timeRange: '09:00AM - 02:30PM'
+        dayOfWeek : "Sonday",
+        startingTime: "09:00AM",
+        endingTime: "02:30PM"
     },
     {
-        dayOfWeek : 'Tuesday',
-        timeRange: '04:00PM - 09:30PM'
+        dayOfWeek : "Tuesday",
+        startingTime: "04:00PM",
+        endingTime: "09:30PM"
     },
     {
-        dayOfWeek : 'Friday',
-        timeRange: '06:00PM - 09:30PM'
+        dayOfWeek : "Friday",
+        startingTime: "06:00PM",
+        endingTime: "09:30PM"
     },
 ]
 
@@ -31,13 +34,13 @@ const SidePanel = ({doctorInfo, patientViewMode}) => {
                 Available Time Slots:
             </p>
             <ul className='mt-3'>
-                {availableTimeSolts.map((item, index) => (
+                {doctorInfo?.timeSlots?.map((item, index) => (
                     <li key={index} className='flex items-center justify-between mb-2'>
                         <p className='text-[15px] leading-6 text-textColor font-semibold'>
                             {item.dayOfWeek}
                         </p>
                         <p className='text-[15px] leading-6 text-textColor font-semibold'>
-                            {item.timeRange}
+                            {item.startingTime} - {item.endingTime}
                         </p>
                     </li>
                 ))}

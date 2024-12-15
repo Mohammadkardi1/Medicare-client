@@ -26,12 +26,18 @@ const DashboardForm = () => {
     const { fields: qualificationsFields, remove: removeQualification, append:appendQualification } = useFieldArray({
         control,
         name: 'qualifications', // Name of the array in your form state
-      })
+    })
 
 
     const { fields: experiencesFields, remove: removeExperience, append:appendExperience } = useFieldArray({
-    control,
-    name: 'experiences', // Name of the array in your form state
+        control,
+        name: 'experiences', // Name of the array in your form state
+    })
+
+
+    const { fields: timeSlotsFields, remove: removeTimeSlots, append:appendTimeSlots } = useFieldArray({
+        control,
+        name: 'timeSlots', // Name of the array in your form state
     })
 
 
@@ -60,7 +66,7 @@ const DashboardForm = () => {
 
 
   return (
-    <form className=' space-y-4' onSubmit={handleSubmit(handleFormSubmit)}>
+    <form className='space-y-4' onSubmit={handleSubmit(handleFormSubmit)}>
 
 
         {/* Name Input Field */}
@@ -183,53 +189,56 @@ const DashboardForm = () => {
 
         <div>
             <label className='form__label'>Qualifications</label>
-            {qualificationsFields.map((item, index) => (
-                <div key={index} className=' mb-[50px]'>
-                    <div  className='grid grid-cols-2 gap-2'>
-
+            <div className='space-y-6'>
+                {qualificationsFields?.map((item, index) => (
+                    <div key={index}>
                         <div>
-                            <label className='form__label__branch'>Degree</label>
-                            <input type="text" placeholder="Degree"
-                                    className={`form__input  `}
-                                    {...register(`qualifications.${index}.degree`, )}/>
+                            <div  className='grid grid-cols-2 gap-2'>
+
+                                <div>
+                                    <label className='form__label__branch'>Degree</label>
+                                    <input type="text" placeholder="Degree"
+                                            className={`form__input  `}
+                                            {...register(`qualifications.${index}.degree`, )}/>
+                                </div>
+
+                                <div>
+                                    <label className='form__label__branch'>Institution</label>
+                                    <input type="text" placeholder="Institution"
+                                            className={`form__input  `}
+                                            {...register(`qualifications.${index}.institution`, )}/>
+                                </div>
+
+                                <div>
+                                    <label className='form__label__branch'>Starting Date</label>
+                                    <input type="date" placeholder="Starting Date"
+                                        className={`form__input `}
+                                        {...register(`qualifications.${index}.startingDate`, )}/>
+                                </div>
+
+
+                                <div>
+                                    <label className='form__label__branch'>Ending Date</label>
+                                    <input type="date" placeholder="Ending Date"
+                                        className={`form__input `}
+                                        {...register(`qualifications.${index}.endingDate`, )}/>
+                                </div>
+
+                            </div>
+
+                            <button onClick={() => removeQualification(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                                <AiOutlineDelete />
+                            </button>
                         </div>
-
-                        <div>
-                            <label className='form__label__branch'>Institution</label>
-                            <input type="text" placeholder="Institution"
-                                    className={`form__input  `}
-                                    {...register(`qualifications.${index}.institution`, )}/>
-                        </div>
-
-                        <div>
-                            <label className='form__label__branch'>Starting Date</label>
-                            <input type="date" placeholder="Starting Date"
-                                className={`form__input `}
-                                {...register(`qualifications.${index}.startingDate`, )}/>
-                        </div>
-
-
-                        <div>
-                            <label className='form__label__branch'>Ending Date</label>
-                            <input type="date" placeholder="Ending Date"
-                                className={`form__input `}
-                                {...register(`qualifications.${index}.endingDate`, )}/>
-                        </div>
-
-
-
-
                     </div>
-
-                    <button onClick={() => removeQualification(index)}  className='bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] '>
-                        <AiOutlineDelete />
-                    </button>
-                </div>
-            ))}
-            <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
-                    onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
-                Add Qualification
-            </button>
+                ))}
+            </div>
+            <div className='flex justify-center'>
+                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
+                    Add Qualification
+                </button>
+            </div>
         </div>
 
 
@@ -238,53 +247,130 @@ const DashboardForm = () => {
         
         <div>
             <label className='form__label'>Experiences</label>
-            {experiencesFields.map((item, index) => (
-                <div key={index} className=' mb-[50px]'>
-                    <div  className='grid grid-cols-2 gap-2'>
-
+            <div className='space-y-6'>
+                {experiencesFields?.map((item, index) => (
+                    <div key={index}>
                         <div>
-                            <label className='form__label__branch'>Position</label>
-                            <input type="text" placeholder="Position"
-                                    className={`form__input  `}
-                                    {...register(`experiences.${index}.position`, )}/>
+                            <div  className='grid grid-cols-2 gap-2'>
+
+                                <div>
+                                    <label className='form__label__branch'>Position</label>
+                                    <input type="text" placeholder="Position"
+                                            className={`form__input  `}
+                                            {...register(`experiences.${index}.position`, )}/>
+                                </div>
+
+                                <div>
+                                    <label className='form__label__branch'>Company</label>
+                                    <input type="text" placeholder="company"
+                                            className={`form__input  `}
+                                            {...register(`experiences.${index}.company`, )}/>
+                                </div>
+
+                                <div>
+                                    <label className='form__label__branch'>Starting Date</label>
+                                    <input type="date" placeholder="Starting Date"
+                                        className={`form__input `}
+                                        {...register(`experiences.${index}.startingDate`, )}/>
+                                </div>
+
+
+                                <div>
+                                    <label className='form__label__branch'>Ending Date</label>
+                                    <input type="date" placeholder="Ending Date"
+                                        className={`form__input `}
+                                        {...register(`experiences.${index}.endingDate`, )}/>
+                                </div>
+
+
+
+
+                            </div>
+
+                            <button onClick={() => removeExperience(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                                <AiOutlineDelete />
+                            </button>
                         </div>
-
-                        <div>
-                            <label className='form__label__branch'>Company</label>
-                            <input type="text" placeholder="company"
-                                    className={`form__input  `}
-                                    {...register(`experiences.${index}.company`, )}/>
-                        </div>
-
-                        <div>
-                            <label className='form__label__branch'>Starting Date</label>
-                            <input type="date" placeholder="Starting Date"
-                                className={`form__input `}
-                                {...register(`experiences.${index}.startingDate`, )}/>
-                        </div>
-
-
-                        <div>
-                            <label className='form__label__branch'>Ending Date</label>
-                            <input type="date" placeholder="Ending Date"
-                                className={`form__input `}
-                                {...register(`experiences.${index}.endingDate`, )}/>
-                        </div>
-
-
-
-
                     </div>
+                ))}
+            </div>
+            <div className='flex justify-center'>
+                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
+                    Add Experience
+                </button>
+            </div>
+        </div>
 
-                    <button onClick={() => removeExperience(index)}  className='bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] '>
-                        <AiOutlineDelete />
-                    </button>
-                </div>
-            ))}
-            <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
-                    onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
-                Add Experience
-            </button>
+
+
+
+        
+        <div>
+            <label className='form__label'>Time Slots</label>
+            <div className='space-y-6'>
+                {timeSlotsFields?.map((item, index) => (
+                    <div key={index} className='grid grid-cols-4 gap-2'>
+                        <div className=' flex flex-col justify-between'>
+                            <label className='form__label__branch'>Day of Week</label>
+                            {/* <input type="text" placeholder="dayOfWeek"
+                                    className={`form__input  `}
+                                    {...register(`timeSlots.${index}.dayOfWeek`, )}/> */}
+                        
+
+                            <select
+                                className="form__input h-full"
+                                {...register(`timeSlots.${index}.dayOfWeek`,)}
+                                >, , , ,  and 
+                                <option value="" disabled>Choose an option</option>
+                                <option value='Monday'>Monday</option>
+                                <option value='Tuesday'>Tuesday</option>
+                                <option value='Wednesday'>Wednesday</option>
+                                <option value='Thursday'>Thursday</option>
+                                <option value='Friday'>Friday</option>
+                                <option value='Saturday'>Saturday</option>
+                                <option value='Sunday'>Sunday</option>
+                            </select>
+
+
+
+                        </div>
+
+
+
+
+
+
+                        <div>
+                            <label className='form__label__branch'>Starting Time</label>
+                            <input type="time" placeholder="Starting Time"
+                                className={`form__input `}
+                                {...register(`timeSlots.${index}.startingTime`, )}/>
+                        </div>
+
+
+
+                        <div>
+                            <label className='form__label__branch'>Ending Time</label>
+                            <input type="time" placeholder="Ending Time"
+                                className={`form__input `}
+                                {...register(`timeSlots.${index}.endingTime`, )}/>
+                        </div>
+
+                        <div className='flex justify-start items-center'>
+                            <button onClick={() => removeTimeSlots(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                                <AiOutlineDelete />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className='flex justify-center'>
+                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() => appendTimeSlots({dayOfWeek: "", startingTime: "", endingTime: ""})}>
+                    Add Time Slots
+                </button>
+            </div>
         </div>
 
 
@@ -304,9 +390,9 @@ const DashboardForm = () => {
 
 
 
-        <div className='flex justify-center'>
+        <div className='flex justify-center '>
             <button type='submit' disabled={loading}
-                className={`${loading ? "opacity-[0.7]" : ""} px-14 py-3 bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg`}>
+                className={`${loading ? "opacity-[0.7]" : ""} w-full mt-[30px] px-14 py-3 bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg`}>
                 {loading ? <LoadingModel color='#FFFFFF'/> : "Update"}
             </button>
         </div>

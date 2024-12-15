@@ -1,36 +1,36 @@
 import React from 'react'
 import { formateDate } from '../../utils/formateDate';
 
-const educationHistory = [
-  {
-  beginDate: '2005-09-01',
-  completionDate: '2009-05-15',
-  degree: 'Bachelor of Science in Biology',
-  institution: 'University of California, Los Angeles',
-  },
-  {
-    beginDate: '07-28-2009',
-    completionDate: '08-12-2013',
-    degree: 'Master in Surgery',
-    institution: 'New Apollo Hospital, New York'
-  }
-]
+// const educationHistory = [
+//   {
+//   beginDate: '2005-09-01',
+//   completionDate: '2009-05-15',
+//   degree: 'Bachelor of Science in Biology',
+//   institution: 'University of California, Los Angeles',
+//   },
+//   {
+//     beginDate: '07-28-2009',
+//     completionDate: '08-12-2013',
+//     degree: 'Master in Surgery',
+//     institution: 'New Apollo Hospital, New York'
+//   }
+// ]
 
 
-const experienceHistory = [
-  {
-    startDate: '2005-09-01',
-    endDate: '2009-05-15',
-    position: 'Junior Biologist',
-    company: 'Greenfield Environmental Research Institute, Los Angeles, CA',
-  },
-  {
-    startDate: '2009-07-28',
-    endDate: '2013-08-12',
-    position: 'Surgical Resident',
-    company: 'New Apollo Hospital, New York, NY',
-  }
-]
+// const experienceHistory = [
+//   {
+//     startDate: '2005-09-01',
+//     endDate: '2009-05-15',
+//     position: 'Junior Biologist',
+//     company: 'Greenfield Environmental Research Institute, Los Angeles, CA',
+//   },
+//   {
+//     startDate: '2009-07-28',
+//     endDate: '2013-08-12',
+//     position: 'Surgical Resident',
+//     company: 'New Apollo Hospital, New York, NY',
+//   }
+// ]
 
 
 const About = ({doctorInfo}) => {
@@ -69,7 +69,7 @@ const About = ({doctorInfo}) => {
             Education
         </h1>
         <ul className='pt-4 md:p-5'>
-          {educationHistory.map((item, index) => (
+          {doctorInfo?.qualifications?.map((item, index) => (
             <li key={index} className='flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]'>
                 <div>
                     <span className=' text-irisBlueColor text-[15px] leading-6 font-semibold'>
@@ -98,7 +98,7 @@ const About = ({doctorInfo}) => {
 
 
         <ul className='grid sm:grid-cols-2 gap-[30px] pt-4 md:p-5'>
-          {experienceHistory.map((item, index) => (
+          {doctorInfo?.experiences?.map((item, index) => (
             <li key={index} className=' p-4 rounded bg-[#fff9ea]'>
               <span className=' text-yellowColor text-[15px] leading-6 font-semibold'>
                   {formateDate(item.startDate)} - {formateDate(item.endDate)}
