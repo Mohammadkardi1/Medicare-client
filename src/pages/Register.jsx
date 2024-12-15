@@ -139,17 +139,17 @@ const Register = () => {
                 <div>
                   <label htmlFor='role' className='text-headingColor font-bold text-[16px] leading-7'>
                     Your Role:
-                    <select
-                        className="form__select__auth"
-                        {...register("role", { 
-                          required: "Select a role" 
-                          })}
-                        >
-                      <option value="" disabled>Choose an option</option>
-                      <option value='patient'>Patient</option>
-                      <option value='doctor'>Doctor</option>
-                    </select>
                   </label>
+                  <select
+                      className="form__select__auth"
+                      {...register("role", { 
+                        required: "Select a role" 
+                        })}
+                      >
+                    <option value="" disabled>Choose an option</option>
+                    <option value='patient'>Patient</option>
+                    <option value='doctor'>Doctor</option>
+                  </select>
                   <p className={`plain-text text-red-600 ${errors.role?.message ? "visible" : "invisible"}`}>
                       {errors.role?.message}.
                   </p>
@@ -161,18 +161,18 @@ const Register = () => {
                 <div>
                   <label htmlFor='gender' className='text-headingColor font-bold text-[16px] leading-7'>
                     Gender:
-                    <select
-                        className="form__select__auth"
-                        {...register("gender", { 
-                          required: "Select a gender" 
-                          })}
-                        >
-                      <option value="" disabled>Choose an option</option>
-                      <option value='male'>Male</option>
-                      <option value='female'>Female</option>
-                      <option value='other'>Other</option>
-                    </select>
                   </label>
+                  <select
+                      className="form__select__auth"
+                      {...register("gender", { 
+                        required: "Select a gender" 
+                        })}
+                      >
+                    <option value="" disabled>Choose an option</option>
+                    <option value='male'>Male</option>
+                    <option value='female'>Female</option>
+                    <option value='other'>Other</option>
+                  </select>
                   <p className={`plain-text text-red-600 ${errors.gender?.message ? "visible" : "invisible"}`}>
                       {errors.gender?.message}.
                   </p>
@@ -220,12 +220,7 @@ const Register = () => {
               <div>
                 <button type='submit' disabled={loading}
                   className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3`}>
-                  
-                  {
-                    loading ? <LoadingModel color='#FFFFFF'/> : "Register"
-                  }
-
-
+                  {loading ? <LoadingModel color='#FFFFFF'/> : "Register"}
                 </button>
               </div>
 

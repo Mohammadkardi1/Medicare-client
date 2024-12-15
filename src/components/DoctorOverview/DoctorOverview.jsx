@@ -65,7 +65,6 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
                   </div>
 
 
-
                   {doctorInfo?.bio &&
                     <p className='text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]'>
                       {doctorInfo?.bio}

@@ -22,17 +22,15 @@ const experienceHistory = [
     startDate: '2005-09-01',
     endDate: '2009-05-15',
     position: 'Junior Biologist',
-    company: 'Greenfield Environmental Research Institute',
-    location: 'Los Angeles, CA',
+    company: 'Greenfield Environmental Research Institute, Los Angeles, CA',
   },
   {
     startDate: '2009-07-28',
     endDate: '2013-08-12',
     position: 'Surgical Resident',
-    company: 'New Apollo Hospital',
-    location: 'New York, NY',
+    company: 'New Apollo Hospital, New York, NY',
   }
-];
+]
 
 
 const About = ({doctorInfo}) => {

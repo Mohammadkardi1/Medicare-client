@@ -92,9 +92,7 @@ const Login = () => {
           <div>
             <button type='submit' disabled={loading}
               className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
-              {
-                loading ? <LoadingModel color='#FFFFFF'/> : "Login"
-              }
+              {loading ? <LoadingModel color='#FFFFFF'/> : "Login"}
             </button>
           </div>
 

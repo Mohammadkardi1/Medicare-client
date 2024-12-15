@@ -1,26 +1,49 @@
 import React from 'react'
-import {useForm} from 'react-hook-form'
+import {useForm, useFieldArray } from 'react-hook-form'
 import { useSelector } from 'react-redux'
 import LoadingModel from '../Loading/LoadingModel'
-import { nameValidation, phoneValidation, ticketPriceValidation } from './../../utils/validation';
+import { nameValidation, phoneValidation, bioValidation, ticketPriceValidation } from './../../utils/validation';
+import { AiOutlineDelete } from "react-icons/ai";
+
+
+
 
 const DashboardForm = () => {
 
     const { userInfo, authError, loading } = useSelector((state) => state.auth)
 
 
-    const {register, handleSubmit, formState: {errors}, reset, watch} = useForm(
+    console.log(userInfo)
+
+
+
+    const {register, control, handleSubmit, formState: {errors}, reset, watch} = useForm(
     {
         defaultValues: userInfo
         }
     )
 
+    const { fields: qualificationsFields, remove: removeQualification, append:appendQualification } = useFieldArray({
+        control,
+        name: 'qualifications', // Name of the array in your form state
+      })
+
+
+    const { fields: experiencesFields, remove: removeExperience, append:appendExperience } = useFieldArray({
+    control,
+    name: 'experiences', // Name of the array in your form state
+    })
 
 
 
-    const handleFormSubmit = async (userInfo) => {
 
-        console.log(userInfo)
+    
+
+
+
+    const handleFormSubmit = async (submitedData) => {
+
+        console.log("HandleSubmit", submitedData)
 
 
         try {
@@ -39,10 +62,10 @@ const DashboardForm = () => {
   return (
     <form className=' space-y-4' onSubmit={handleSubmit(handleFormSubmit)}>
 
+
+        {/* Name Input Field */}
         <div>
-            <label className='form__label'>
-                Name
-            </label>
+            <label className='form__label'>Name</label>
             <input type="text" placeholder="Full Name"
                     className={`form__input ${errors?.name ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
                     {...register("name", nameValidation)}
@@ -54,10 +77,9 @@ const DashboardForm = () => {
 
 
 
+        {/* Phone number input field */}
         <div>
-            <label className='form__label'>
-                Phone Number
-            </label>
+            <label className='form__label'>Phone Number</label>
             <input type="text" placeholder="Phone Number"
                     className={`form__input ${errors?.phone ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
                     {...register("phone", phoneValidation)}
@@ -68,14 +90,12 @@ const DashboardForm = () => {
         </div>
 
 
-
+        {/* Bio input field */}
         <div>
-            <label className='form__label'>
-                Bio
-            </label>
+            <label className='form__label'>Bio</label>
             <input type="text" placeholder="Bio"
                     className={`form__input ${errors?.bio ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-                    {...register("bio", phoneValidation)}
+                    {...register("bio", bioValidation)}
                 />
             <p className={`plain-text text-red-600 ${errors.bio?.message ? "visible" : "invisible"}`}>
                 {errors.bio?.message}.
@@ -83,12 +103,22 @@ const DashboardForm = () => {
         </div>
 
 
+        {/* About textarea field */}
+        <div>
+            <label className='form__label'>About</label>
+            <textarea rows={4} type="text" placeholder="About"
+                    className={`form__input ${errors?.about ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
+                    {...register("about",)}
+                />
+            <p className={`plain-text text-red-600 ${errors.about?.message ? "visible" : "invisible"}`}>
+                {errors.about?.message}.
+            </p>
+        </div>
+
+
 
 
         <div className=' grid grid-cols-3'>
-
-
-        
             {/* Gender selection dropdown */}   
             <div>
                 <label htmlFor='gender' className='form__label'>
@@ -111,8 +141,6 @@ const DashboardForm = () => {
             </div>
 
 
-
-
             {/* Specialization selection dropdown */}   
             <div>
                 <label htmlFor='specialization' className='form__label'>
@@ -125,7 +153,6 @@ const DashboardForm = () => {
                         })}
                     >
                     <option value="" disabled>Choose an option</option>
-                    <option value='FamilyMedicine'>Family medicine</option>
                     <option value='Nephrologists'>Nephrologists</option>
                     <option value='Hematologists'>Hematologists</option>
                     <option value='Infectious'>Infectious</option>
@@ -135,7 +162,6 @@ const DashboardForm = () => {
                     {errors.specialization?.message}.
                 </p>
             </div>
-
 
 
             {/* Ticket Price selection dropdown */}   
@@ -151,15 +177,125 @@ const DashboardForm = () => {
                     {errors.ticketPrice?.message}.
                 </p>
             </div>
-
-
-
-
-
-
-
-
         </div>
+
+
+
+        <div>
+            <label className='form__label'>Qualifications</label>
+            {qualificationsFields.map((item, index) => (
+                <div key={index} className=' mb-[50px]'>
+                    <div  className='grid grid-cols-2 gap-2'>
+
+                        <div>
+                            <label className='form__label__branch'>Degree</label>
+                            <input type="text" placeholder="Degree"
+                                    className={`form__input  `}
+                                    {...register(`qualifications.${index}.degree`, )}/>
+                        </div>
+
+                        <div>
+                            <label className='form__label__branch'>Institution</label>
+                            <input type="text" placeholder="Institution"
+                                    className={`form__input  `}
+                                    {...register(`qualifications.${index}.institution`, )}/>
+                        </div>
+
+                        <div>
+                            <label className='form__label__branch'>Starting Date</label>
+                            <input type="date" placeholder="Starting Date"
+                                className={`form__input `}
+                                {...register(`qualifications.${index}.startingDate`, )}/>
+                        </div>
+
+
+                        <div>
+                            <label className='form__label__branch'>Ending Date</label>
+                            <input type="date" placeholder="Ending Date"
+                                className={`form__input `}
+                                {...register(`qualifications.${index}.endingDate`, )}/>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <button onClick={() => removeQualification(index)}  className='bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] '>
+                        <AiOutlineDelete />
+                    </button>
+                </div>
+            ))}
+            <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                    onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
+                Add Qualification
+            </button>
+        </div>
+
+
+
+
+        
+        <div>
+            <label className='form__label'>Experiences</label>
+            {experiencesFields.map((item, index) => (
+                <div key={index} className=' mb-[50px]'>
+                    <div  className='grid grid-cols-2 gap-2'>
+
+                        <div>
+                            <label className='form__label__branch'>Position</label>
+                            <input type="text" placeholder="Position"
+                                    className={`form__input  `}
+                                    {...register(`experiences.${index}.position`, )}/>
+                        </div>
+
+                        <div>
+                            <label className='form__label__branch'>Company</label>
+                            <input type="text" placeholder="company"
+                                    className={`form__input  `}
+                                    {...register(`experiences.${index}.company`, )}/>
+                        </div>
+
+                        <div>
+                            <label className='form__label__branch'>Starting Date</label>
+                            <input type="date" placeholder="Starting Date"
+                                className={`form__input `}
+                                {...register(`experiences.${index}.startingDate`, )}/>
+                        </div>
+
+
+                        <div>
+                            <label className='form__label__branch'>Ending Date</label>
+                            <input type="date" placeholder="Ending Date"
+                                className={`form__input `}
+                                {...register(`experiences.${index}.endingDate`, )}/>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <button onClick={() => removeExperience(index)}  className='bg-red-600 p-2 rounded-full text-white text-[18px] mt-2 mb-[30px] '>
+                        <AiOutlineDelete />
+                    </button>
+                </div>
+            ))}
+            <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                    onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
+                Add Experience
+            </button>
+        </div>
+
+
+
+
+
+
+
+
+
+
 
 
 

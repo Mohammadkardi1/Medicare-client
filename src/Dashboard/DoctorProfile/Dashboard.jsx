@@ -39,8 +39,6 @@ const Dashboard = () => {
 
   const {userInfo, loading, authError} = useSelector(state => state.auth)
 
-  console.log(userInfo)
-
 
   const queryParams = new URLSearchParams(location.search)
   const activeTabFromURL = queryParams.get('tab') || sidebarItems[0].tab
