@@ -10,8 +10,8 @@ import VerifyEmail from '../pages/VerifyEmail'
 import AuthenticationProtect from './AuthenticationProtect'
 import AuthorizationProtect from './AuthorizationProtect';
 import NotFoundPage from '../pages/NotFoundPage';
-import PatientProfile from './../Dashboard/PatientProfile/PatientProfile';
-import Dashboard from '../Dashboard/DoctorProfile/Dashboard'
+import PatientDashboard from './../Dashboard/PatientProfile/PatientDashboard';
+import DoctorDashboard from '../Dashboard/DoctorProfile/DoctorDashboard'
 import DoctorProfile from './../pages/DoctorProfile';
 
 
@@ -37,12 +37,12 @@ const Routers = () => {
 
       <Route path='/patient/profile' element={
                 <AuthorizationProtect allowedRoles={['patient']}>
-                  <PatientProfile/>
+                  <PatientDashboard/>
                 </AuthorizationProtect>
                 }/>
       <Route path='/doctor/profile' element={
                 <AuthorizationProtect allowedRoles={['doctor']}>
-                  <Dashboard/>
+                  <DoctorDashboard/>
                 </AuthorizationProtect>
                 }/>
 

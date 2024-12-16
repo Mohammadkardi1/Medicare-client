@@ -1,41 +1,13 @@
 import React from 'react'
 import { formateDate } from '../../utils/formateDate';
 
-// const educationHistory = [
-//   {
-//   beginDate: '2005-09-01',
-//   completionDate: '2009-05-15',
-//   degree: 'Bachelor of Science in Biology',
-//   institution: 'University of California, Los Angeles',
-//   },
-//   {
-//     beginDate: '07-28-2009',
-//     completionDate: '08-12-2013',
-//     degree: 'Master in Surgery',
-//     institution: 'New Apollo Hospital, New York'
-//   }
-// ]
-
-
-// const experienceHistory = [
-//   {
-//     startDate: '2005-09-01',
-//     endDate: '2009-05-15',
-//     position: 'Junior Biologist',
-//     company: 'Greenfield Environmental Research Institute, Los Angeles, CA',
-//   },
-//   {
-//     startDate: '2009-07-28',
-//     endDate: '2013-08-12',
-//     position: 'Surgical Resident',
-//     company: 'New Apollo Hospital, New York, NY',
-//   }
-// ]
 
 
 const About = ({doctorInfo}) => {
   return (
     <div>
+
+      {doctorInfo?.about && 
       <div>
         <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2'>
             About of
@@ -44,9 +16,10 @@ const About = ({doctorInfo}) => {
             </span>
         </h3>
         <p className='text__para'>
-          {doctorInfo?.about ? doctorInfo?.about : ""}
+          {doctorInfo?.about}
         </p>
       </div>
+      }
 
 
 
@@ -63,7 +36,7 @@ const About = ({doctorInfo}) => {
       </div>
       }
 
-
+      {doctorInfo?.qualifications?.length !== 0 && 
       <div className='mt-12'>
         <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
             Education
@@ -86,11 +59,12 @@ const About = ({doctorInfo}) => {
           ))}
         </ul>
       </div>
+      }
 
 
 
 
-
+      {doctorInfo?.experiences?.length !== 0 && 
       <div className='mt-12'>
         <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
             Experience
@@ -113,6 +87,7 @@ const About = ({doctorInfo}) => {
           ))}
         </ul>
       </div>
+      }
     </div>
   )
 }

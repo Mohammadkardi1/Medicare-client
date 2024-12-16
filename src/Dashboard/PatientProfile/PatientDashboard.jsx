@@ -8,7 +8,7 @@ import Settings from './Settings';
 import LoadingModel from '../../components/Loading/LoadingModel';
 import ErrorModel from '../../components/ErrorModel/ErrorModel';
 
-const PatientProfile = () => {
+const PatientDashboard = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -71,16 +71,16 @@ const PatientProfile = () => {
             
                 <div className='md:col-span-2 md:px-[30px] space-y-4'>
                     <div className='flex justify-around'>
-                        <button onClick={() => setTab('bookings')} disabled
+                        <button onClick={() => setTab('bookings')}
                                 className={`${tab === 'bookings' && ' bg-primaryColor text-white font-normal'} p-2 mr-5 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border 
                                             border-solid border-primaryColor`}>
                             My Bookings
                         </button>
-                        {/* <button onClick={() => setTab('settings')} 
+                        <button onClick={() => setTab('settings')} 
                                 className={`${tab === 'settings' && ' bg-primaryColor text-white font-normal'} py-2 px-5 rounded-md text-headingColor font-semibold text-[16px] leading-7 border 
                                             border-solid border-primaryColor`}>
                             Profile Settings
-                        </button> */}
+                        </button>
                     </div>
 
                     {tab === 'settings' ? <Settings/> : <Bookings/>}
@@ -92,4 +92,4 @@ const PatientProfile = () => {
   )
 }
 
-export default PatientProfile
+export default PatientDashboard

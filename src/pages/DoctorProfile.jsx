@@ -8,7 +8,7 @@ const DoctorProfile = () => {
   
 
   return (
-    <DoctorOverview doctorInfo={userInfo} patientViewMode={true}/>
+    <DoctorOverview doctorInfo={userInfo}/>
   )
 }
 

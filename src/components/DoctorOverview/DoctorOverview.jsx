@@ -6,9 +6,13 @@ import Feedback from './Feedback'
 import SidePanel from './SidePanel'
 import { useLocation } from 'react-router-dom';
 
-const DoctorOverview = ({doctorInfo, patientViewMode}) => {
+const DoctorOverview = ({doctorInfo,  doctorViewMode=false}) => {
 
   const { pathname } = useLocation()
+
+
+  console.log(doctorInfo?.ticketPrice)
+
 
 
   const [tab, setTab] = useState('about')
@@ -18,11 +22,11 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
   useEffect(() => {
     window.scrollTo(0, 0); 
   }, [pathname])
-
+ 
 
   return (
     <section className='pt-[35px] lg:pt-[75px]'>
-      <div className={`${patientViewMode ? "container" : ""}`}>
+      <div className={`${doctorViewMode ? "" : "container"}`}>
         <div className='max-w-[1170px] mx-auto'>
 
 
@@ -53,6 +57,8 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
                   </h3>
 
 
+
+                  {doctorInfo?.totalRating && 
                   <div className='flex items-center gap-[6px]'>
                     <span className='flex items-center gap-[6px] text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[600] 
                                   text-headingColor'>
@@ -63,6 +69,11 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
                       ({doctorInfo?.totalRating})
                     </span>
                   </div>
+                  }
+
+
+
+
                   {doctorInfo?.bio &&
                     <p className='text__para text-[14px] leading-6 md:text-[15px] lg:max-w-[390px]'>
                       {doctorInfo?.bio}
@@ -83,7 +94,7 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
 
                 <button onClick={() => setTab('feedback')}
                         className={`${tab === 'feedback' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px]
-                                     leading-7 text-headingColor font-semibold`}>
+                                      leading-7 text-headingColor font-semibold`}>
                   Reviews
                 </button>
 
@@ -93,12 +104,12 @@ const DoctorOverview = ({doctorInfo, patientViewMode}) => {
               <div className='mt-[50px]'>
                 {tab === 'about' ? 
                   <About doctorInfo={doctorInfo}/> : 
-                  <Feedback doctorInfo={doctorInfo} patientViewMode={patientViewMode}/>}
+                  <Feedback doctorInfo={doctorInfo} doctorViewMode={doctorViewMode}/>}
               </div>
             </div>
             
             <div className=' flex justify-center'>
-              <SidePanel doctorInfo={doctorInfo} patientViewMode={patientViewMode}/>
+              <SidePanel doctorInfo={doctorInfo} doctorViewMode={doctorViewMode}/>
             </div>
 
           </div>

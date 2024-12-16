@@ -1,12 +1,12 @@
 import {useState, useEffect} from 'react'
-import LoadingModel from './../../components/Loading/LoadingModel';
-import ErrorModel from './../../components/ErrorModel/ErrorModel';
+import LoadingModel from '../../components/Loading/LoadingModel';
+import ErrorModel from '../../components/ErrorModel/ErrorModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { BiMenu } from 'react-icons/bi'
 import { useNavigate, useLocation } from 'react-router-dom';
 import { authThunks } from '../../redux/slices/authSlice';
 import Appointments from './Appointments';
-import DoctorOverview from './../../components/DoctorOverview/DoctorOverview';
+import DoctorOverview from '../../components/DoctorOverview/DoctorOverview';
 import DashboardForm from '../../components/Form/DashboardForm';
 
 
@@ -28,7 +28,7 @@ const sidebarItems = [
 ]
 
 
-const Dashboard = () => {
+const DoctorDashboard = () => {
 
   const navigate = useNavigate()
   const location = useLocation()
@@ -38,6 +38,8 @@ const Dashboard = () => {
   const [tab, setTab] = useState('overview')
 
   const {userInfo, loading, authError} = useSelector(state => state.auth)
+
+
 
 
   const queryParams = new URLSearchParams(location.search)
@@ -133,7 +135,7 @@ const Dashboard = () => {
 
 
             <div>
-              {tab === 'overview' && <DoctorOverview doctorInfo={userInfo} patientViewMode={false}/>}
+              {tab === 'overview' && <DoctorOverview doctorInfo={userInfo} doctorViewMode={true}/>}
               {tab === 'appointments' && <Appointments/>}
 
 
@@ -157,4 +159,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default DoctorDashboard

@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react'
 import logo from '../../assets/images/logo.png'
 import {NavLink, Link, useLocation, useNavigate} from 'react-router-dom'
-import userImg from '../../assets/images/avatar-icon.png'
+import avatar from '../../assets/images/avatar-icon.png'
 import { BiMenu } from "react-icons/bi";
 import { useSelector } from 'react-redux';
 import { authThunks } from '../../redux/slices/authSlice';
@@ -116,12 +116,12 @@ const Header = () => {
                 <Link to={userInfo?.role ? `/${userInfo?.role}/profile` : "/home"}>
                   <div className="aspect-square w-full overflow-hidden rounded-full">
                     <img className="object-cover w-[45px] "
-                          src={userInfo?.photo ? userInfo?.photo : userImg}/>
+                          src={userInfo?.photo ? userInfo?.photo : avatar}/>
                   </div>
 
                 
                   {/* <figure className='rounded-full cursor-pointer'>
-                    <img src={userInfo?.photo ? userInfo?.photo : userImg} className='w-[45px] h-[45px] rounded-full' alt=''/>
+                    <img src={userInfo?.photo ? userInfo?.photo : avatar} className='w-[45px] h-[45px] rounded-full' alt=''/>
                   </figure> */}
                 </Link>
               </div>

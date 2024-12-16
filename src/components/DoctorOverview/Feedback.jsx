@@ -4,7 +4,31 @@ import { formateDate } from '../../utils/formateDate';
 import { AiFillStar } from "react-icons/ai";
 
 
-const Feedback = ({doctorInfo, patientViewMode}) => {
+
+
+
+const reviews = [
+  {
+    patient: "Ali Ahmad",
+    reviewText: "Very nice doctor",
+    rating: 4,
+    patientPhoto: avatar,
+    timestamps: '02-12-2023'
+  },
+  {
+    patient: "Ibrahiem Omar",
+    reviewText: "Thank you for alls",
+    rating: 2,
+    patientPhoto: avatar,
+    timestamps: '11-09-2013'
+  }
+]
+
+
+
+
+const Feedback = ({doctorInfo, doctorViewMode}) => {
+
 
   const [rating, setRating] = useState(0)
   const [hover, setHover] = useState(0)
@@ -24,47 +48,54 @@ const Feedback = ({doctorInfo, patientViewMode}) => {
       <div className='mb-[50px]'>
 
         <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
-          All reviews ({doctorInfo?.totalRating})
+          All reviews {doctorInfo?.totalRating ? `(${doctorInfo?.totalRating})` : "" }
         </h1>
 
-        <div className='flex justify-between gap-10 mb-[30px]'>
-          <div className=''>
+        <div className='space-y-4'>
+          {reviews.map((item, index) => (
+          <div key={index} className='grid grid-cols-[60px_auto] grid-rows-2 gap-2'>
 
-            <div className='flex items-center gap-4'>
-              <figure className='w-10 h-10 rounded-full'>
-                <img src={avatar} alt='avatar-icon' className='w-full'/>
-              </figure>
-
-              <div>
-                <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>
-                  Ali Ahmad
-                </h1>
-
-                <p className='text-[14px] leading-6 text-textColor'>
-                  {formateDate('02-14-2023')}
-                </p>
+            <div class="col-start-1 row-start-1 ">
+              <div className="flex items-center justify-center aspect-square w-full overflow-hidden rounded-full">
+                <img className="object-cover w-[45px]"
+                      src={item?.patientPhoto ? item?.patientPhoto : avatar}/>
               </div>
+
+                    
+                                
             </div>
 
-            <div>
-              <p className='text__para mt-3 font-medium text-[15px]'>
-                Good services, highly recommended
+            <div class="col-start-2 row-start-1">
+              <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>
+                {item?.patient}
+              </h1>
+
+              <div className='flex gap-1'>
+                {[...Array(item?.rating).keys()].map((_, index) => (
+                  <AiFillStar key={index} className="text-yellowColor"/>
+                ))}
+              </div>                
+
+              <p className='text-[12px] leading-6 text-textColor'>
+                {formateDate(item?.timestamps)}
+              </p>
+            </div>
+
+            <div class="col-start-2 row-start-2">
+              <p className='text__para mt-0 font-medium text-[16px] '>
+                {item?.reviewText}
               </p>
             </div>
           </div>
-
-          <div className='flex gap-1'>
-            {[...Array(3).keys()].map((_, index) => (
-              <AiFillStar key={index} className="text-yellowColor"/>
-            ))}
-          </div>
-
+          ))}
         </div>
+
+
+
       </div>
 
 
-
-      {patientViewMode && 
+      {!doctorViewMode && 
       <form action='#'>
         <div>
             <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4'>
@@ -76,11 +107,8 @@ const Feedback = ({doctorInfo, patientViewMode}) => {
                     index += 1
                     return (
                         <button key={index} type="button"
-                            className={`${
-                                index <= ((rating & hover) || hover)
-                                ? 'text-yellowColor'
-                                : 'text-gray-400'
-                            } bg-transparent border-none outline-none text-[22px] cursor-pointer`}
+                            className={`${index <= ((rating & hover) || hover) ? 'text-yellowColor': 'text-gray-400'} 
+                                bg-transparent border-none outline-none text-[22px] cursor-pointer`}
                             onClick={() => setRating(index)}
                             onMouseEnter={() => setHover(index)}
                             onMouseLeave={() => setHover(rating)}
@@ -107,16 +135,16 @@ const Feedback = ({doctorInfo, patientViewMode}) => {
                     onChange={e => setReviewText(e.target.value)}>
                 </textarea>
             </div>
-
+            
+            
             <button type='submit' onClick={handleSubmitReview} className='btn'>
                 Submit Review
             </button>
+            
 
         </div>
       </form>
-       }
-
-
+      }
     </div>
   )
 }

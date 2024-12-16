@@ -1,6 +1,61 @@
 
 
 
+
+const educationHistory = [
+    {
+    beginDate: '2005-09-01',
+    completionDate: '2009-05-15',
+    degree: 'Bachelor of Science in Biology',
+    institution: 'University of California, Los Angeles',
+    },
+    {
+      beginDate: '07-28-2009',
+      completionDate: '08-12-2013',
+      degree: 'Master in Surgery',
+      institution: 'New Apollo Hospital, New York'
+    }
+  ]
+  
+  
+  const experienceHistory = [
+    {
+      startDate: '2005-09-01',
+      endDate: '2009-05-15',
+      position: 'Junior Biologist',
+      company: 'Greenfield Environmental Research Institute, Los Angeles, CA',
+    },
+    {
+      startDate: '2009-07-28',
+      endDate: '2013-08-12',
+      position: 'Surgical Resident',
+      company: 'New Apollo Hospital, New York, NY',
+    }
+  ]
+
+
+  const availableTimeSolts = [
+    {
+        dayOfWeek : "Sonday",
+        startingTime: "09:00AM",
+        endingTime: "02:30PM"
+    },
+    {
+        dayOfWeek : "Tuesday",
+        startingTime: "04:00PM",
+        endingTime: "09:30PM"
+    },
+    {
+        dayOfWeek : "Friday",
+        startingTime: "06:00PM",
+        endingTime: "09:30PM"
+    },
+]
+
+
+
+
+
 // http://localhost:5173/api/auth/${user.role}/${user._id}/verify/${verifiedToken.token}`
 
 // Visulation for state variable 

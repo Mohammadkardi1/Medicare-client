@@ -7,31 +7,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import FormInput from './FormInput';
 import FormTextArea from './FormTextArea';
 import FormSelect from './FormSelect';
-
-
-
-const genderOptions = [
-    { value: 'Male', label: 'Male' },
-    { value: 'Female', label: 'Female' },
-    { value: 'Other', label: 'Other' },
-]
-
-const specializationOptions = [
-    { value: 'Nephrologists', label: 'Nephrologists' },
-    { value: 'Hematologists', label: 'Hematologists' },
-    { value: 'Infectious', label: 'Infectious' },
-    { value: 'Surgeon', label: 'Surgeon' },
-]
-
-  const dayOfWeekOptions = [
-    { value: 'Monday', label: 'Monday' },
-    { value: 'Tuesday', label: 'Tuesday' },
-    { value: 'Wednesday', label: 'Wednesday' },
-    { value: 'Thursday', label: 'Thursday' },
-    { value: 'Friday', label: 'Friday' },
-    { value: 'Saturday', label: 'Saturday' },
-    { value: 'Sunday', label: 'Sunday' },
-  ]
+import { genderOptions, specializationOptions, dayOfWeekOptions } from '../../constants/options';
 
 
 
