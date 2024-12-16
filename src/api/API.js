@@ -12,11 +12,17 @@ const API = axios.create({
 })
 
 
-
+// add the following headers to each outgoing HTTP request
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('profile')) {
+      req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+  }
+  return req
+})
 
 
 const AUTH_PATH = '/api/auth'
-
+const DOCTOR_PATH = '/api/doctor'
 
 
 
@@ -25,15 +31,20 @@ const AUTH_PATH = '/api/auth'
 export const authAPI = {
   registerUser: (userInfo) => API.post(`${AUTH_PATH}/register`, userInfo),
   loginUser : (userInfo) => API.post(`${AUTH_PATH}/login`, userInfo),
-  verifyEmail : (userInfo) => API.get(`${AUTH_PATH}/${userInfo.role}/${userInfo.id}/verify/${userInfo.token}`)
+  verifyEmail : (userInfo) => API.get(`${AUTH_PATH}/${userInfo.role}/${userInfo.id}/verify/${userInfo.token}`),
 
+}
 
+// Doctor-related API calls
+export const doctorAPI = {
+  updateDoctor: (userInfo) => API.patch(`${DOCTOR_PATH}/updateDoctor/${userInfo._id}`, userInfo)
 
+}
 
   // verifyEmail: (id, token) => API.get(`${AUTH_PATH}/${id}/verify/${token}`),
   // resendVerification: (email) => API.get(`${AUTH_PATH}/resendVerification`, { params: { email } }),
   // googleLogin: (userInfo) => API.post(`${AUTH_PATH}/googleLogin`, userInfo),
-};
+
 
 
 // Example usage

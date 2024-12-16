@@ -1,6 +1,6 @@
 import React from 'react'
 import {useForm, useFieldArray } from 'react-hook-form'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import LoadingModel from '../Loading/LoadingModel'
 import { nameValidation, phoneValidation, bioValidation, ticketPriceValidation } from './../../utils/validation';
 import { AiOutlineDelete } from "react-icons/ai";
@@ -8,10 +8,13 @@ import FormInput from './FormInput';
 import FormTextArea from './FormTextArea';
 import FormSelect from './FormSelect';
 import { genderOptions, specializationOptions, dayOfWeekOptions } from '../../constants/options';
-
+import { updateDoctor } from './../../redux/thunks/doctorThunks';
+import { showToastSuccess } from './../../utils/toastUtils';
 
 
 const DashboardForm = () => {
+
+    const dispatch = useDispatch()
 
     const { userInfo, authError, loading } = useSelector((state) => state.auth)
 
@@ -47,12 +50,12 @@ const DashboardForm = () => {
 
 
         try {
-        //   const res = await dispatch(loginUser(userInfo))
+          const res = await dispatch(updateDoctor(submitedData))
           if (!res.error) {
             // here you have to update the data exsited in Localstorage and reread it
 
 
-            // showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
+            showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
             // navigate(redirectPath, {replace :true})
           }
         } catch (error) {
