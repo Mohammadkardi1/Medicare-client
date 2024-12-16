@@ -61,7 +61,7 @@ export const validateImageType = (value) => {
 export const phoneValidation = {
   // required: "Enter your phone number",
   pattern: {
-    value: /^\+?[1-9]\d{1,14}$/, 
+    value: /^(\+|0)[1-9]\d{0,14}$/, 
     message: "Enter a valid phone number",
   },
   minLength: {
@@ -72,12 +72,16 @@ export const phoneValidation = {
     value: 15, 
     message: "Phone number must not exceed 15 digits",
   },
+  validate: {
+    noSpaces: (value) => 
+      !value.includes(" ") || "Phone number cannot contain spaces",
+  },
 }
 
 export const bioValidation = {
   maxLength: {
-    value: 50, 
-    message: "Bio must not exceed 50 characters",
+    value: 100, 
+    message: "Bio must not exceed 100 characters",
   },
 }
 

@@ -16,7 +16,6 @@ const DashboardForm = () => {
     const { userInfo, authError, loading } = useSelector((state) => state.auth)
 
 
-
     const {register, control, handleSubmit, formState: {errors}, reset, watch} = useForm(
     {
         defaultValues: userInfo
@@ -44,13 +43,16 @@ const DashboardForm = () => {
 
     const handleFormSubmit = async (submitedData) => {
 
-        console.log("HandleSubmit", submitedData)
+        console.log("submitedData", submitedData)
 
 
         try {
         //   const res = await dispatch(loginUser(userInfo))
           if (!res.error) {
-            // showToastSuccess("You have logged in successfully!", { position: "top-right", autoClose: 3000 })
+            // here you have to update the data exsited in Localstorage and reread it
+
+
+            // showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
             // navigate(redirectPath, {replace :true})
           }
         } catch (error) {
@@ -88,7 +90,7 @@ const DashboardForm = () => {
 
             {/* Specialization selection dropdown */}  
             <FormSelect fieldName="specialization" labelText="Specialization" options={specializationOptions} register={register}
-                errors={errors} selectStyle="form__select" labelStyle="form__label"/>
+                selectStyle="form__select" labelStyle="form__label"/>
 
              
 
@@ -102,8 +104,17 @@ const DashboardForm = () => {
 
 
 
-        <div>
-            <label className='form__label'>Qualifications</label>
+        <div className='pb-[25px]'>
+            <div className='flex justify-between'>
+                <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>
+                    Qualifications
+                </div>
+                <button className=' bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
+                    Add Qualification
+                </button>
+            </div>
+
             <div className='space-y-6'>
                 {qualificationsFields?.map((item, index) => (
                     <div key={index}>
@@ -119,12 +130,12 @@ const DashboardForm = () => {
                                             inputStyle="form__input" register={register} 
                                             errors={errors}/>
 
-                                <FormInput fieldName={`qualifications.${index}.startingDate`} labelText="Starting Date"
+                                <FormInput fieldName={`qualifications.${index}.startingDate`} type='date' labelText="Starting Date"
                                             placeholder="Starting Date" labelStyle="form__label__branch" 
                                             inputStyle="form__input" register={register} 
                                             errors={errors}/>
 
-                                <FormInput fieldName={`qualifications.${index}.endingDate`} labelText="Ending Date"
+                                <FormInput fieldName={`qualifications.${index}.endingDate`} type='date' labelText="Ending Date"
                                             placeholder="Ending Date" labelStyle="form__label__branch" 
                                             inputStyle="form__input" register={register} 
                                             errors={errors}/>
@@ -137,20 +148,22 @@ const DashboardForm = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex justify-center'>
-                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
-                        onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
-                    Add Qualification
-                </button>
-            </div>
+
         </div>
 
 
 
 
         
-        <div>
-            <label className='form__label'>Experiences</label>
+        <div className='pb-[25px]'>
+            <div className='flex justify-between'>
+                <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>Experiences</div>
+                <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
+                    Add Experience
+                </button>
+            </div>
+
             <div className='space-y-6'>
                 {experiencesFields?.map((item, index) => (
                     <div key={index}>
@@ -184,20 +197,23 @@ const DashboardForm = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex justify-center'>
-                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
-                        onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
-                    Add Experience
-                </button>
-            </div>
+
         </div>
 
 
 
 
         
-        <div>
-            <label className='form__label'>Time Slots</label>
+        <div className='pb-[25px]'>
+            
+            <div className='flex justify-between'>
+                <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>Time Slots</div>
+                <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() => appendTimeSlots({dayOfWeek: "", startingTime: "", endingTime: ""})}>
+                    Add Time Slots
+                </button>
+            </div>
+
             <div className='space-y-6'>
                 {timeSlotsFields?.map((item, index) => (
                     <div key={index} className='grid grid-cols-4 gap-2'>
@@ -231,12 +247,7 @@ const DashboardForm = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex justify-center'>
-                <button className='mt-4 bg-[#000] py-2 px-5 rounded text-white h-fit'
-                        onClick={() => appendTimeSlots({dayOfWeek: "", startingTime: "", endingTime: ""})}>
-                    Add Time Slots
-                </button>
-            </div>
+
         </div>
 
 

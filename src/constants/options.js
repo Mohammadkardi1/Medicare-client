@@ -5,8 +5,8 @@ export const genderOptions = [
 ]
 
 export const specializationOptions = [
-    { value: 'Nephrologists', label: 'Nephrologists' },
     { value: 'Hematologists', label: 'Hematologists' },
+    { value: 'Nephrologists', label: 'Nephrologists' },
     { value: 'Infectious', label: 'Infectious' },
     { value: 'Surgeon', label: 'Surgeon' },
 ]

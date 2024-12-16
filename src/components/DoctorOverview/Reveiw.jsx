@@ -27,7 +27,7 @@ const reviews = [
 
 
 
-const Feedback = ({doctorInfo, doctorViewMode}) => {
+const Reveiw = ({doctorInfo, doctorViewMode}) => {
 
 
   const [rating, setRating] = useState(0)
@@ -149,4 +149,4 @@ const Feedback = ({doctorInfo, doctorViewMode}) => {
   )
 }
 
-export default Feedback
+export default Reveiw

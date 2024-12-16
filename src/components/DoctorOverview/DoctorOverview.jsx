@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import doctorImg from '../../assets/images/doctor-img02.png'
 import starIcon from '../../assets/images/Star.png'
 import About from './About'
-import Feedback from './Feedback'
+import Reveiw from './Reveiw'
 import SidePanel from './SidePanel'
 import { useLocation } from 'react-router-dom';
 
@@ -92,8 +92,8 @@ const DoctorOverview = ({doctorInfo,  doctorViewMode=false}) => {
                   About
                 </button>
 
-                <button onClick={() => setTab('feedback')}
-                        className={`${tab === 'feedback' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px]
+                <button onClick={() => setTab('Reveiw')}
+                        className={`${tab === 'Reveiw' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px]
                                       leading-7 text-headingColor font-semibold`}>
                   Reviews
                 </button>
@@ -104,7 +104,7 @@ const DoctorOverview = ({doctorInfo,  doctorViewMode=false}) => {
               <div className='mt-[50px]'>
                 {tab === 'about' ? 
                   <About doctorInfo={doctorInfo}/> : 
-                  <Feedback doctorInfo={doctorInfo} doctorViewMode={doctorViewMode}/>}
+                  <Reveiw doctorInfo={doctorInfo} doctorViewMode={doctorViewMode}/>}
               </div>
             </div>
             

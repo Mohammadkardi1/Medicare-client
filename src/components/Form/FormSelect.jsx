@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormSelect = ({fieldName, labelText, options = [], register, validationRules = {}, errors, selectStyle = "", containerStyle= "", 
+const FormSelect = ({fieldName, labelText, options = [], register, validationRules = {}, errors= {}, selectStyle = "", containerStyle= "", 
         labelStyle = "",}) => {
   return (
     <div className={containerStyle}>
