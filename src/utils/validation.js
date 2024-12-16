@@ -71,11 +71,7 @@ export const phoneValidation = {
   maxLength: {
     value: 15, 
     message: "Phone number must not exceed 15 digits",
-  },
-  validate: {
-    noSpaces: (value) => 
-      !value.includes(" ") || "Phone number cannot contain spaces",
-  },
+  }
 }
 
 export const bioValidation = {

@@ -1,31 +1,53 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { updateDoctor } from "../thunks/doctorThunks"
+import { fetchDoctor, updateDoctor } from "../thunks/doctorThunks"
 
+
+const updateLocalStorageDataField = (updatedData) => {
+    const storedProfile = JSON.parse(localStorage.getItem('profile'));
+
+    if (storedProfile) {
+        const updatedProfile = {
+            ...storedProfile,
+            data: updatedData, 
+        }
+        localStorage.setItem('profile', JSON.stringify(updatedProfile));
+    } else {
+        console.error('No profile data found in localStorage.');
+    }
+}
 
 
 const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
-            state.loading = true
+            state.doctorLoading = true
             state.doctorError = null
 
         })
         .addCase(asyncThunk.fulfilled, (state, action) => { 
-            state.loading = false
+            state.doctorLoading = false
             state.doctorError = null
+
+            switch (stateKey) {
+                case "updateDoctor":
+                    updateLocalStorageDataField({...action?.payload?.data})
+                    console.log("updateDoctor Thunk", {...action?.payload})
+                    break
+                default:
+                    break
+            }
 
 
         })
         .addCase(asyncThunk.rejected, (state, action) => {
-            state.loading = false
+            state.doctorLoading = false
             state.doctorError = action?.payload || 'Something went wrong'         
 
         })
 }
 
 const initialState = {
-    userInfo: {},
-    loading: false,
+    doctorLoading: false,
     doctorError: '', 
 }
 
@@ -39,6 +61,7 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
 
         addAsyncThunkCases(builder, updateDoctor, "updateDoctor")
+        addAsyncThunkCases(builder, fetchDoctor, "fetchDoctor")
 
 
 

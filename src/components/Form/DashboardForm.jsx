@@ -8,15 +8,18 @@ import FormInput from './FormInput';
 import FormTextArea from './FormTextArea';
 import FormSelect from './FormSelect';
 import { genderOptions, specializationOptions, dayOfWeekOptions } from '../../constants/options';
-import { updateDoctor } from './../../redux/thunks/doctorThunks';
+import { fetchDoctor, updateDoctor } from './../../redux/thunks/doctorThunks';
 import { showToastSuccess } from './../../utils/toastUtils';
+import { authThunks } from './../../redux/slices/authSlice';
 
 
 const DashboardForm = () => {
 
     const dispatch = useDispatch()
 
-    const { userInfo, authError, loading } = useSelector((state) => state.auth)
+    const { userInfo } = useSelector((state) => state.auth)
+    const { doctorLoading } = useSelector((state) => state.doctor)
+
 
 
     const {register, control, handleSubmit, formState: {errors}, reset, watch} = useForm(
@@ -24,6 +27,9 @@ const DashboardForm = () => {
         defaultValues: userInfo
         }
     )
+
+    console.log(errors)
+
 
     const { fields: qualificationsFields, remove: removeQualification, append:appendQualification } = useFieldArray({
         control,
@@ -45,16 +51,11 @@ const DashboardForm = () => {
 
 
     const handleFormSubmit = async (submitedData) => {
-
-        console.log("submitedData", submitedData)
-
-
         try {
           const res = await dispatch(updateDoctor(submitedData))
+          dispatch(authThunks.syncLocalStorage())
+
           if (!res.error) {
-            // here you have to update the data exsited in Localstorage and reread it
-
-
             showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
             // navigate(redirectPath, {replace :true})
           }
@@ -80,7 +81,7 @@ const DashboardForm = () => {
 
 
         <FormTextArea fieldName="about" rows={4} labelText="About" placeholder="About" labelStyle="form__label" 
-            inputStyle="form__input" register={register} errors={errors}/>
+            inputStyle="form__input" register={register} errors={errors} />
 
 
 
@@ -111,14 +112,15 @@ const DashboardForm = () => {
             <div className='flex justify-between'>
                 <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>
                     Qualifications
+                    {errors?.qualifications?.message }
                 </div>
-                <button className=' bg-[#000] py-2 px-5 rounded text-white h-fit'
+                <button type="button" className=' bg-[#000] py-2 px-5 rounded text-white h-fit'
                         onClick={() =>appendQualification({degree: "", institution: "", startingDate: "", endingDate: ""})}>
                     Add Qualification
                 </button>
             </div>
 
-            <div className='space-y-6'>
+            <div className='space-y-6 mt-6'>
                 {qualificationsFields?.map((item, index) => (
                     <div key={index}>
                         <div>
@@ -126,25 +128,27 @@ const DashboardForm = () => {
                                 <FormInput fieldName={`qualifications.${index}.degree`} labelText="Degree"
                                             placeholder="Degree" labelStyle="form__label__branch" 
                                             inputStyle="form__input" register={register} 
-                                            errors={errors}/>
+                                            errors={errors}
+                                            startValidationError = {true} validationRules={{ required: 'required' }}/>
 
                                 <FormInput fieldName={`qualifications.${index}.institution`} labelText="Institution"
                                             placeholder="Institution" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>
+                                            inputStyle="form__input" register={register}
+                                            startValidationError = {true}
+                                            errors={errors}  validationRules={{ required: 'required' }}/>
 
                                 <FormInput fieldName={`qualifications.${index}.startingDate`} type='date' labelText="Starting Date"
                                             placeholder="Starting Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>
+                                            inputStyle="form__input" register={register} errors={errors}
+                                            validationRules={{ required: 'required' }} startValidationError = {true}/>
 
                                 <FormInput fieldName={`qualifications.${index}.endingDate`} type='date' labelText="Ending Date"
                                             placeholder="Ending Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>
+                                            inputStyle="form__input" register={register} errors={errors}  
+                                            validationRules={{required: 'required'}} startValidationError = {true}/>
                             </div>
 
-                            <button onClick={() => removeQualification(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                            <button type="button" onClick={() => removeQualification(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
                                 <AiOutlineDelete />
                             </button>
                         </div>
@@ -161,39 +165,39 @@ const DashboardForm = () => {
         <div className='pb-[25px]'>
             <div className='flex justify-between'>
                 <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>Experiences</div>
-                <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
-                        onClick={() =>appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
+                <button type="button"  className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                        onClick={() => appendExperience({position: "", company: "", startingDate: "", endingDate: ""})}>
                     Add Experience
                 </button>
             </div>
 
-            <div className='space-y-6'>
+            <div className='space-y-6 mt-6'>
                 {experiencesFields?.map((item, index) => (
                     <div key={index}>
                         <div>
                             <div  className='grid grid-cols-2 gap-2'>
                                 <FormInput fieldName={`experiences.${index}.position`} labelText="Position"
                                             placeholder="Position" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>                            
+                                            inputStyle="form__input" register={register} errors={errors}
+                                            validationRules={{required: 'required'}} startValidationError = {true}/>                            
 
                                 <FormInput fieldName={`experiences.${index}.company`} labelText="Company"
                                             placeholder="Company" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>      
+                                            inputStyle="form__input" register={register} errors={errors}
+                                            validationRules={{required: 'required'}} startValidationError = {true}/>      
 
                                  <FormInput fieldName={`experiences.${index}.startingDate`} type="date" labelText="Starting Date"
                                             placeholder="Starting Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>      
+                                            inputStyle="form__input" register={register} errors={errors}
+                                            validationRules={{required: 'required'}} startValidationError = {true}/>      
 
                                  <FormInput fieldName={`experiences.${index}.endingDate`} type="date" labelText="Ending Date"
                                             placeholder="Ending Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} 
-                                            errors={errors}/>     
+                                            inputStyle="form__input" register={register} errors={errors}
+                                            validationRules={{required: 'required'}} startValidationError = {true}/>     
                             </div>
 
-                            <button onClick={() => removeExperience(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                            <button type="button" onClick={() => removeExperience(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
                                 <AiOutlineDelete />
                             </button>
                         </div>
@@ -211,42 +215,41 @@ const DashboardForm = () => {
             
             <div className='flex justify-between'>
                 <div className='flex items-center text-[18px] leading-7 font-bold text-headingColor'>Time Slots</div>
-                <button className='bg-[#000] py-2 px-5 rounded text-white h-fit'
+                <button type="button" className='bg-[#000] py-2 px-5 rounded text-white h-fit'
                         onClick={() => appendTimeSlots({dayOfWeek: "", startingTime: "", endingTime: ""})}>
                     Add Time Slots
                 </button>
             </div>
 
-            <div className='space-y-6'>
+            <div className='space-y-6 mt-6'>
                 {timeSlotsFields?.map((item, index) => (
-                    <div key={index} className='grid grid-cols-4 gap-2'>
+                    <div key={index} className='grid grid-cols-3 gap-2'>
 
 
 
                     {/* Gender selection dropdown */}   
-                    <FormSelect  fieldName={`timeSlots.${index}.dayOfWeek`} labelText="Day of Week" options={dayOfWeekOptions} 
-                        register={register} errors={errors} selectStyle="form__input h-full" 
-                        containerStyle= "flex flex-col justify-between" labelStyle="form__label__branch"/>
-
-
+                    <FormSelect fieldName={`timeSlots.${index}.dayOfWeek`} labelText="Day of Week" options={dayOfWeekOptions} 
+                        register={register} errors={errors} selectStyle="form__input h-full" labelStyle="form__label__branch"
+                        containerStyle= "flex flex-col justify-between" validationRules={{required: 'required'}} 
+                        startValidationError = {true}/>
 
 
 
                     <FormInput fieldName={`timeSlots.${index}.startingTime`} type="time" labelText="Starting Time"
                             placeholder="Starting Time" labelStyle="form__label__branch" inputStyle="form__input" register={register} 
-                            errors={errors}/>   
+                            errors={errors} validationRules={{required: 'required'}} startValidationError = {true}/>   
 
 
 
                     <FormInput fieldName={`timeSlots.${index}.endingTime`} type="time" labelText="Ending Time"
                             placeholder="Ending Time" labelStyle="form__label__branch" inputStyle="form__input" register={register} 
-                            errors={errors}/>   
+                            errors={errors} validationRules={{required: 'required'}} startValidationError = {true}/>   
 
-                        <div className='flex justify-start items-center'>
-                            <button onClick={() => removeTimeSlots(index)} className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
-                                <AiOutlineDelete />
-                            </button>
-                        </div>
+                    <div className='flex justify-start items-center'>
+                        <button type="button" onClick={() => removeTimeSlots(index)} className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
+                            <AiOutlineDelete />
+                        </button>
+                    </div>
                     </div>
                 ))}
             </div>
@@ -258,9 +261,9 @@ const DashboardForm = () => {
 
 
         <div className='flex justify-center '>
-            <button type='submit' disabled={loading}
-                className={`${loading ? "opacity-[0.7]" : ""} w-full mt-[30px] px-14 py-3 bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg`}>
-                {loading ? <LoadingModel color='#FFFFFF'/> : "Update"}
+            <button disabled={doctorLoading}
+                className={`${doctorLoading ? "opacity-[0.7]" : ""} w-full mt-[30px] px-14 py-3 bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg`}>
+                {doctorLoading ? <LoadingModel color='#FFFFFF'/> : "Update"}
             </button>
         </div>
 

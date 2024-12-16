@@ -15,7 +15,7 @@ const PatientDashboard = () => {
 
     const [tab, setTab] = useState('bookings')
 
-    const {userInfo, loading, authError} = useSelector(state => state.auth)
+    const {userInfo, authLoading, authError} = useSelector(state => state.auth)
 
 
     const handleLogout = () => {
@@ -24,18 +24,18 @@ const PatientDashboard = () => {
     }
 
 
-    if (loading && !authError) {
+    if (authLoading && !authError) {
         return <LoadingModel styles={"h-[40vh]"}/>
     }
 
-    if (authError && !loading) {
+    if (authError && !authLoading) {
         return <ErrorModel errorMsg={authError} styles={"h-[40vh]"}/>
     }
 
 
   return (
     <section className='mt-[75px]'>
-        {!loading && !authError && (
+        {!authLoading && !authError && (
         <div className='max-w-[1170px] px-5 mx-auto'>
             <div className='grid md:grid-cols-3 gap-10'>
                 <div className='pb=[50px] px-[30px] rounded-md'>

@@ -1,10 +1,16 @@
 import React from 'react';
 
 const FormSelect = ({fieldName, labelText, options = [], register, validationRules = {}, errors= {}, selectStyle = "", containerStyle= "", 
-        labelStyle = "",}) => {
+        labelStyle = "", startValidationError= false}) => {
   return (
     <div className={containerStyle}>
-      <label className={labelStyle}>{labelText}</label>
+      <label className={labelStyle}>
+        {labelText}
+
+        {startValidationError && errors?.[fieldName.split('.')[0]] && 
+          <span className='font-bold text-[16px] text-red-600'>*</span>
+        }
+      </label>
       <select className={`${selectStyle}`}
               {...register(fieldName, validationRules)}>
             <option value="" disabled>
@@ -16,9 +22,11 @@ const FormSelect = ({fieldName, labelText, options = [], register, validationRul
               </option>
             ))}
       </select>
+      {!startValidationError &&
       <p className={`plain-text text-red-600 ${errors?.[fieldName]?.message ? "visible" : "invisible"}`}>
         {errors?.[fieldName]?.message}.
       </p>
+      }
     </div>
   );
 };

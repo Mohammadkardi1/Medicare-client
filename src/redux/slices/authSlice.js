@@ -6,13 +6,13 @@ import { loginUser, registerUser, verifyEmail } from './../thunks/authThunks';
 const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
-            state.loading = true
+            state.authLoading = true
             state.authError = null
 
         })
 
         .addCase(asyncThunk.fulfilled, (state, action) => { 
-            state.loading = false
+            state.authLoading = false
             state.authError = null
 
             switch (stateKey) {
@@ -23,24 +23,30 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     state.userInfo = action?.payload.data
                     localStorage.setItem('profile', JSON.stringify({...action?.payload}))
                     break
+                
+                default:
+                    break;
             }
         })
 
         .addCase(asyncThunk.rejected, (state, action) => {
-            state.loading = false
+            state.authLoading = false
             state.authError = action?.payload || 'Something went wrong'         
 
             switch (stateKey) {
                 case "verifyEmail":
                     state.isVerified = false
                     break
+                
+                default:
+                    break;
             }
         })
 }
 
 const initialState = {
     userInfo: {},
-    loading: false,
+    authLoading: false,
     isVerified: false,
     authError: '', 
 }
@@ -60,8 +66,17 @@ const authSlice = createSlice({
         loginByToken: (state) => {
             state.userInfo = JSON.parse(localStorage.getItem('profile')).data
         },
-        setLoading: (state, loading) => {
-            state.loading = loading
+        setLoading: (state, authLoading) => {
+            state.authLoading = authLoading
+        },
+        syncLocalStorage: (state) => {
+            const storedProfile = localStorage.getItem('profile')
+            if (storedProfile) {
+                state.userInfo = JSON.parse(storedProfile).data
+
+
+                console.log('syncLocalStorage', state.userInfo)
+            }
         },
 
     },

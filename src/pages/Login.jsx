@@ -19,7 +19,7 @@ const Login = () => {
 
 
 
-  const { authError, loading } = useSelector((state) => state.auth)
+  const { authError, authLoading } = useSelector((state) => state.auth)
 
   
   const [showPassword, setShowPassword] = useState(false)
@@ -90,9 +90,9 @@ const Login = () => {
           </div>
 
           <div>
-            <button type='submit' disabled={loading}
-              className={`${loading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
-              {loading ? <LoadingModel color='#FFFFFF'/> : "Login"}
+            <button type='submit' disabled={authLoading}
+              className={`${authLoading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
+              {authLoading ? <LoadingModel color='#FFFFFF'/> : "Login"}
             </button>
           </div>
 

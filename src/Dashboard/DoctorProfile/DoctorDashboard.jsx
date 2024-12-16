@@ -37,7 +37,7 @@ const DoctorDashboard = () => {
   
   const [tab, setTab] = useState('overview')
 
-  const {userInfo, loading, authError} = useSelector(state => state.auth)
+  const {userInfo, authLoading, authError} = useSelector(state => state.auth)
 
 
 
@@ -63,18 +63,18 @@ const DoctorDashboard = () => {
   }
 
 
-  if (loading && !authError) {
+  if (authLoading && !authError) {
       return <LoadingModel styles={"h-[40vh]"}/>
   }
 
-  if (authError && !loading) {
+  if (authError && !authLoading) {
       return <ErrorModel errorMsg={authError} styles={"h-[40vh]"}/>
   }
 
 
   return (
     <section className='mt-[75px] max-width-[1170px] px-5 mx-auto'>
-    {!loading && !authError && (
+    {!authLoading && !authError && (
         <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
 
 

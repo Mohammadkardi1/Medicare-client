@@ -13,7 +13,7 @@ const VerifyEmail = () => {
 	const param = useParams()
 	const dispatch = useDispatch()
 
-    const {isVerified, authError, loading} = useSelector(state => state.auth)
+    const {isVerified, authError, authLoading} = useSelector(state => state.auth)
 
 
 	useEffect(async () => {
@@ -28,7 +28,7 @@ const VerifyEmail = () => {
 	}, [])
 
 
-	if (loading) {
+	if (authLoading) {
 		return (
 		<div className="flex justify-center items-center">
 			<LoadingModel styles='h-[250px] w-[250px]'/>
