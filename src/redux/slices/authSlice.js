@@ -71,12 +71,7 @@ const authSlice = createSlice({
         },
         syncLocalStorage: (state) => {
             const storedProfile = localStorage.getItem('profile')
-            if (storedProfile) {
-                state.userInfo = JSON.parse(storedProfile).data
-
-
-                console.log('syncLocalStorage', state.userInfo)
-            }
+            state.userInfo = JSON.parse(storedProfile)?.data
         },
 
     },

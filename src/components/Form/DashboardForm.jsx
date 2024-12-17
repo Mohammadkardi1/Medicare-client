@@ -21,6 +21,9 @@ const DashboardForm = () => {
     const { doctorLoading } = useSelector((state) => state.doctor)
 
 
+    console.log(userInfo)
+
+
 
     const {register, control, handleSubmit, formState: {errors}, reset, watch} = useForm(
     {
@@ -53,9 +56,9 @@ const DashboardForm = () => {
     const handleFormSubmit = async (submitedData) => {
         try {
           const res = await dispatch(updateDoctor(submitedData))
-          dispatch(authThunks.syncLocalStorage())
 
           if (!res.error) {
+            dispatch(authThunks.syncLocalStorage())
             showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
             // navigate(redirectPath, {replace :true})
           }

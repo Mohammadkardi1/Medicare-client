@@ -23,7 +23,7 @@ API.interceptors.request.use((req) => {
 
 const AUTH_PATH = '/api/auth'
 const DOCTOR_PATH = '/api/doctor'
-
+const PATIENT_PATH = '/api/patient'
 
 
 
@@ -36,12 +36,19 @@ export const authAPI = {
 }
 
 
-// http://localhost:5000/api/doctor/fetchDoctor/673c85f603b6b7d04de3cc4e
+// http://localhost:5000/api/doctor/deleteDoctor/673c9c0b7df32330bfd74e42
 // Doctor-related API calls
 export const doctorAPI = {
   updateDoctor: (userInfo) => API.patch(`${DOCTOR_PATH}/updateDoctor/${userInfo._id}`, userInfo),
-  fetchDoctor: (doctorID) => API.get(`${DOCTOR_PATH}/fetchDoctor/${doctorID}`)
+  fetchDoctor: (doctorID) => API.get(`${DOCTOR_PATH}/fetchDoctor/${doctorID}`),
+  deleteDoctor: (doctorID) => API.delete(`${DOCTOR_PATH}/deleteDoctor/${doctorID}`)
 
+}
+
+// http://localhost:5000/api/patient/deletePatient/673b8c59664f9f200017124b
+export const patientAPI = {
+  deletePatient: (patientID) => API.delete(`${PATIENT_PATH}/deletePatient/${patientID}`),
+  
 }
 
   // verifyEmail: (id, token) => API.get(`${AUTH_PATH}/${id}/verify/${token}`),

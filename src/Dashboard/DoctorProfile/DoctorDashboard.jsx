@@ -8,6 +8,8 @@ import { authThunks } from '../../redux/slices/authSlice';
 import Appointments from './Appointments';
 import DoctorOverview from '../../components/DoctorOverview/DoctorOverview';
 import DashboardForm from '../../components/Form/DashboardForm';
+import { showToastSuccess } from './../../utils/toastUtils';
+import { deleteDoctor } from './../../redux/thunks/doctorThunks';
 
 
 
@@ -38,8 +40,7 @@ const DoctorDashboard = () => {
   const [tab, setTab] = useState('overview')
 
   const {userInfo, authLoading, authError} = useSelector(state => state.auth)
-
-
+  const { doctorLoading } = useSelector(state => state.doctor)
 
 
   const queryParams = new URLSearchParams(location.search)
@@ -60,6 +61,16 @@ const DoctorDashboard = () => {
   const handleLogout = () => {
     dispatch(authThunks.logout())
     navigate('/home')
+  }
+
+  const DeleteDoctorAccount = async () => {
+    const res = await dispatch(deleteDoctor(userInfo._id))
+
+    if (!res.error) {
+      dispatch(authThunks.syncLocalStorage())
+      showToastSuccess("Your account has been deleted successfully!", { position: "top-right", autoClose: 3000 })
+      navigate('/home')
+    }
   }
 
 
@@ -94,14 +105,15 @@ const DoctorDashboard = () => {
                       {item.label}
                   </button>
               ))}
-              <div className='mt-[50px] md:mt-[100px]'>
+              <div className='w-full mt-[50px] md:mt-[100px]'>
                   <button 
                       onClick={handleLogout} 
                       className='w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white'>
                       Logout
                   </button>
-                  <button className='w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white'>
-                      Delete Account
+                  
+                  <button onClick={DeleteDoctorAccount} className='w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white'>
+                   {doctorLoading ? <LoadingModel/> : "Delete Account"}
                   </button>
               </div>
             </div> 

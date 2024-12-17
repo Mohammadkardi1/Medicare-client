@@ -76,8 +76,8 @@ export const phoneValidation = {
 
 export const bioValidation = {
   maxLength: {
-    value: 50, 
-    message: "Bio must not exceed 50 characters",
+    value: 100, 
+    message: "Bio must not exceed 100 characters",
   },
 }
 

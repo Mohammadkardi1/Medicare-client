@@ -1,6 +1,5 @@
-
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import { doctorAPI } from '../../api/API';
+import { createAsyncThunk } from '@reduxjs/toolkit'
+import { doctorAPI } from '../../api/API'
 
 
 
@@ -22,6 +21,14 @@ export const fetchDoctor = createAsyncThunk('doctor/fetchDoctor', async(doctorID
     }
 })
 
+
+export const deleteDoctor = createAsyncThunk('doctor/deleteDoctor', async(doctorID, {rejectWithValue}) => {
+    try {
+        return await doctorAPI.deleteDoctor(doctorID).then((response) => response.data)
+    } catch (error) {
+        return rejectWithValue(error.response.data.message)
+    }
+})
 
 
 

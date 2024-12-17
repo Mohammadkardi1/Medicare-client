@@ -1,7 +1,6 @@
 
 
 
-
 const educationHistory = [
     {
     beginDate: '2005-09-01',

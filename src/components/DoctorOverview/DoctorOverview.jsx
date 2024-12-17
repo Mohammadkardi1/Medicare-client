@@ -11,10 +11,6 @@ const DoctorOverview = ({doctorInfo,  doctorViewMode=false}) => {
   const { pathname } = useLocation()
 
 
-  console.log(doctorInfo?.ticketPrice)
-
-
-
   const [tab, setTab] = useState('about')
 
 

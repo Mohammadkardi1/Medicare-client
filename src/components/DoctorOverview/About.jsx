@@ -45,7 +45,7 @@ const About = ({doctorInfo}) => {
             <li key={index} className='flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]'>
                 <div>
                     <span className=' text-irisBlueColor text-[15px] leading-6 font-semibold'>
-                        {formateDate(item.beginDate)} - {formateDate(item.completionDate)}
+                        {formateDate(item.startingDate)} - {formateDate(item.endingDate)}
                     </span>
                     <p className='text-[16px] leading-6 font-medium text-textColor'>
                       {item.degree}
@@ -74,7 +74,7 @@ const About = ({doctorInfo}) => {
           {doctorInfo?.experiences?.map((item, index) => (
             <li key={index} className=' p-4 rounded bg-[#fff9ea]'>
               <span className=' text-yellowColor text-[15px] leading-6 font-semibold'>
-                  {formateDate(item.startDate)} - {formateDate(item.endDate)}
+                  {formateDate(item.startingDate)} - {formateDate(item.endingDate)}
               </span>
               <p className='text-[16px] leading-6 font-medium text-textColor'>
                 {item.position}
