@@ -18,7 +18,7 @@ const DoctorList = () => {
     dispatch(fetchDoctors())
   }, [])
 
-
+ 
   if (doctorLoading && !doctorError) {
       return <LoadingModel styles={"h-[40vh]"}/>
   }

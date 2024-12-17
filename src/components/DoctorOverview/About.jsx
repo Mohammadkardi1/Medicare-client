@@ -20,7 +20,18 @@ const About = ({doctorInfo}) => {
       </div>
       }
 
-
+      {doctorInfo?.hospital &&
+      <div className='mt-12'>
+        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
+            Hospital
+        </h1>
+        <ul className='pt-4 md:p-5'>
+            <li className='text-[16px] leading-6 font-medium text-textColor'>
+              {doctorInfo?.hospital}
+            </li>
+        </ul>
+      </div>
+      }
 
       {doctorInfo?.phone &&
       <div className='mt-12'>

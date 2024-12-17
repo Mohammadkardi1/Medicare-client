@@ -5,7 +5,6 @@ import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors } from "../thunks
 const updateLocalStorageDataField = (updatedData) => {
     const storedProfile = JSON.parse(localStorage.getItem('profile'))
 
-
     if (storedProfile) {
         const updatedProfile = {
             ...storedProfile,
@@ -28,8 +27,10 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
         .addCase(asyncThunk.fulfilled, (state, action) => { 
             state.doctorLoading = false
             state.doctorError = null
-
             switch (stateKey) {
+                case "fetchDoctor": 
+                    state.doctor = action?.payload?.data
+                    break
                 case "fetchDoctors": 
                     state.doctors = action?.payload?.data
                     break
@@ -43,7 +44,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     break
             }
 
-
         })
         .addCase(asyncThunk.rejected, (state, action) => {
             state.doctorLoading = false
@@ -56,6 +56,7 @@ const initialState = {
     doctorLoading: false,
     doctorError: '',
     doctors: [],
+    doctor: {}
 }
 
 

@@ -36,7 +36,6 @@ export const authAPI = {
 }
 
 
-// http://localhost:5000/api/doctor/fetchDoctors
 // Doctor-related API calls
 export const doctorAPI = {
   fetchDoctors: () => API.get(`${DOCTOR_PATH}/fetchDoctors`),
