@@ -29,7 +29,7 @@ const About = () => {
               Eu reprehenderit Lorem culpa voluptate eu mollit velit cillum ad consequat aute reprehenderit. 
               Minim veniam incididunt eu ea deserunt ex cupidatat veniam velit aliquip officia ut veniam.
             </p>
-            <Link to='/'>
+            <Link to='#'>
               <button className='btn'>Learn More</button>
             </Link>
 

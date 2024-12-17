@@ -36,11 +36,12 @@ export const authAPI = {
 }
 
 
-// http://localhost:5000/api/doctor/deleteDoctor/673c9c0b7df32330bfd74e42
+// http://localhost:5000/api/doctor/fetchDoctors
 // Doctor-related API calls
 export const doctorAPI = {
-  updateDoctor: (userInfo) => API.patch(`${DOCTOR_PATH}/updateDoctor/${userInfo._id}`, userInfo),
+  fetchDoctors: () => API.get(`${DOCTOR_PATH}/fetchDoctors`),
   fetchDoctor: (doctorID) => API.get(`${DOCTOR_PATH}/fetchDoctor/${doctorID}`),
+  updateDoctor: (userInfo) => API.patch(`${DOCTOR_PATH}/updateDoctor/${userInfo._id}`, userInfo),
   deleteDoctor: (doctorID) => API.delete(`${DOCTOR_PATH}/deleteDoctor/${doctorID}`)
 
 }

@@ -1,8 +1,8 @@
 import React from 'react'
-import patientAvatar1 from '../../assets/images/patient-avatar-1.png'
-import patientAvatar2 from '../../assets/images/patient-avatar-2.png'
-import patientAvatar3 from '../../assets/images/patient-avatar-3.jpg'
-import patientAvatar4 from '../../assets/images/patient-avatar-4.jpeg'
+import patientAvatar1 from '../../assets/images/doctor-img01.png'
+import patientAvatar2 from '../../assets/images/doctor-img02.png'
+import patientAvatar3 from '../../assets/images/doctor-img03.png'
+import patientAvatar4 from '../../assets/images/hero-img01.png'
 
 
 import TestimonialSlider from '../../components/Testimonial/TestimonialSlider'

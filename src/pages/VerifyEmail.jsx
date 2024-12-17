@@ -16,15 +16,19 @@ const VerifyEmail = () => {
     const {isVerified, authError, authLoading} = useSelector(state => state.auth)
 
 
-	useEffect(async () => {
-		try {
-			const res = await dispatch(verifyEmail({role: param.role, id: param.id, token: param.token}))
-			if (!res.error) {
-				showToastSuccess("You have registered successfully!", { position: "top-right", autoClose: 3000 })
+	useEffect(() => {
+		const verifyEmailAsync = async () => {
+			try {
+				const res = await dispatch(verifyEmail({ role: param.role, id: param.id, token: param.token }));
+				if (!res.error) {
+					showToastSuccess("You have registered successfully!", { position: "top-right", autoClose: 3000 });
+				}
+			} catch (error) {
+				console.log(error);
 			}
-		} catch (error) {
-			console.log(error)
 		}
+	
+		verifyEmailAsync()
 	}, [])
 
 

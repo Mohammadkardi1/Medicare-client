@@ -96,3 +96,19 @@ export const ticketPriceValidation = {
     message: "Enter a valid price (e.g., 10 or 10.99)",
   },
 }
+
+
+export const totalPatientsValidation={
+  min: {
+    value: 0,
+    message: "Number must be at least 0",
+  },
+  max: {
+    value: 10000,
+    message: "Number must not exceed 10,000",
+  },
+  pattern: {
+    value: /^[0-9]+$/,
+    message: "Please enter a valid number",
+  },
+}

@@ -1,10 +1,19 @@
-import React from 'react'
+import {useEffect} from 'react'
+import { useLocation } from 'react-router-dom';
 
 
 const formLabelStyle = ``
 const formInputStyle = ` `
 
 const Contact = () => {
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+
   return (
     <section className='mt-10 px-4 mx-auto max-w-screen-md space-y-12'>
       <div className='text-center space-y-4'>

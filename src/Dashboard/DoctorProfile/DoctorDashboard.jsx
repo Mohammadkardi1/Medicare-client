@@ -77,7 +77,7 @@ const DoctorDashboard = () => {
   if (authLoading && !authError) {
       return <LoadingModel styles={"h-[40vh]"}/>
   }
-
+ 
   if (authError && !authLoading) {
       return <ErrorModel errorMsg={authError} styles={"h-[40vh]"}/>
   }

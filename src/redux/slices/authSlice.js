@@ -23,7 +23,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     state.userInfo = action?.payload.data
                     localStorage.setItem('profile', JSON.stringify({...action?.payload}))
                     break
-                
                 default:
                     break;
             }
@@ -37,7 +36,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                 case "verifyEmail":
                     state.isVerified = false
                     break
-                
                 default:
                     break;
             }

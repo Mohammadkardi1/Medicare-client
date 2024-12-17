@@ -31,7 +31,7 @@ const Feature = () => {
                         ))}
                     </ol>
 
-                    <Link to='/'>
+                    <Link to='#'>
                         <button className='btn'>Learn More</button>
                     </Link>
                 </div>

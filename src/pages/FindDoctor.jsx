@@ -1,8 +1,17 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import DoctorList from '../components/DoctorsList/DoctorList';
 import PatientTestimonials from './Home/PatientTestimonials';
+import { useLocation } from 'react-router-dom';
 
 const FindDoctor = () => {
+
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
+
   return (
     <>
     <section className='bg-[#fff9ea]'>

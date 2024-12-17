@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchDoctor, updateDoctor, deleteDoctor } from "../thunks/doctorThunks"
+import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors } from "../thunks/doctorThunks"
 
 
 const updateLocalStorageDataField = (updatedData) => {
-    const storedProfile = JSON.parse(localStorage.getItem('profile'));
+    const storedProfile = JSON.parse(localStorage.getItem('profile'))
+
 
     if (storedProfile) {
         const updatedProfile = {
@@ -29,11 +30,15 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
             state.doctorError = null
 
             switch (stateKey) {
+                case "fetchDoctors": 
+                    state.doctors = action?.payload?.data
+                    break
                 case "updateDoctor":
                     updateLocalStorageDataField({...action?.payload?.data})
                     break
                 case "deleteDoctor": 
                     localStorage.clear()
+                    break
                 default:
                     break
             }
@@ -49,7 +54,8 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
 
 const initialState = {
     doctorLoading: false,
-    doctorError: '', 
+    doctorError: '',
+    doctors: [],
 }
 
 
@@ -60,8 +66,9 @@ const doctorSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        addAsyncThunkCases(builder, updateDoctor, "updateDoctor")
         addAsyncThunkCases(builder, fetchDoctor, "fetchDoctor")
+        addAsyncThunkCases(builder, fetchDoctors, "fetchDoctors")
+        addAsyncThunkCases(builder, updateDoctor, "updateDoctor")
         addAsyncThunkCases(builder, deleteDoctor, "deleteDoctor")
 
     }

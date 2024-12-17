@@ -10,19 +10,19 @@ const servicesList = [
       icon: icon01,
       title: 'Find a Doctor',
       description: 'Sit velit aliquip duis mollit deserunt est voluptate eu qui adipisicing dolor elit irure. Minim cillum ex nostrud magna aute culpa pariatur adipisicing in ipsum minim.',
-      path: '/doctors'
+      path: '#'
     },
     {
       icon: icon02,
       title: 'Find a Location',
       description: 'Sit velit aliquip duis mollit deserunt est voluptate eu qui adipisicing dolor elit irure. Minim cillum ex nostrud magna aute culpa pariatur adipisicing in ipsum minim.',
-      path: '/doctors'
+      path: '#'
     },
     {
       icon: icon03,
       title: 'Book Appointment',
       description: 'Sit velit aliquip duis mollit deserunt est voluptate eu qui adipisicing dolor elit irure. Minim cillum ex nostrud magna aute culpa pariatur adipisicing in ipsum minim.',
-      path: '/doctors'
+      path: '#'
     }
   ]
 

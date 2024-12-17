@@ -7,10 +7,12 @@ import { BsArrowRight } from "react-icons/bs";
 
 const DoctorCard = ({doctor}) => {
 
-    const {name, specialization, avgRating, totalRating, photo, totalPatients, hospital} = doctor
+    console.log(doctor)
+
+    const {_id, name, specialization, photo, avgRating, totalRating, totalPatients, hospital} = doctor
 
   return (
-    <Link to='/doctor/1'>
+    <Link to={`/doctor/${_id}`}>
         <div className='p-3 lg:p-5'>
 
             <div><img src={photo} alt={`${name}-photo`} className='w-full'/></div>
@@ -23,7 +25,7 @@ const DoctorCard = ({doctor}) => {
                                 lg:leading-7 font-semibold rounded'>
                     {specialization}
                 </span>
-
+                { totalRating &&
                 <div className='flex items-center gap-[6px]'>
                     <span className='flex items-center gap-[6px] text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold 
                                     text-headingColor'>
@@ -34,16 +36,21 @@ const DoctorCard = ({doctor}) => {
                         ({totalRating})
                     </span>
                 </div>
+                }
             </div>
 
             <div className='mt-[18px] lg:mt-5 flex items-center justify-between'>
                 <div>
+                    {totalPatients &&
                     <h3 className='text-[16px] leading-7 lg:text-[18px] lg:leading-[30px] font-semibold text-headingColor'>
                         +{totalPatients} patients
                     </h3>
+                    }
+                    {hospital &&
                     <p className='text-[14px] leading-6 font-[400] text-textColor'>
                         At {hospital}
                     </p>
+                    }
                 </div>
 
                 <div className='w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] flex

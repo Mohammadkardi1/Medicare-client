@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm, useFieldArray } from 'react-hook-form'
 import { useSelector, useDispatch } from 'react-redux'
 import LoadingModel from '../Loading/LoadingModel'
-import { nameValidation, phoneValidation, bioValidation, ticketPriceValidation } from './../../utils/validation';
+import { nameValidation, phoneValidation, bioValidation, ticketPriceValidation, totalPatientsValidation } from './../../utils/validation';
 import { AiOutlineDelete } from "react-icons/ai";
 import FormInput from './FormInput';
 import FormTextArea from './FormTextArea';
@@ -21,7 +21,6 @@ const DashboardForm = () => {
     const { doctorLoading } = useSelector((state) => state.doctor)
 
 
-    console.log(userInfo)
 
 
 
@@ -75,18 +74,24 @@ const DashboardForm = () => {
         <FormInput fieldName="name" labelText="Name" placeholder="Full Name" labelStyle="form__label" 
             inputStyle="form__input" register={register} validationRules={nameValidation} errors={errors}/>
 
-        <FormInput fieldName="phone" labelText="Phone Number" placeholder="Phone Number" labelStyle="form__label" 
-            inputStyle="form__input" register={register} validationRules={phoneValidation} errors={errors}/>
 
         <FormInput fieldName="bio" labelText="Bio" placeholder="Bio" labelStyle="form__label" 
             inputStyle="form__input" register={register} validationRules={bioValidation} errors={errors}/>
-
 
 
         <FormTextArea fieldName="about" rows={4} labelText="About" placeholder="About" labelStyle="form__label" 
             inputStyle="form__input" register={register} errors={errors} />
 
 
+        <FormInput fieldName="hospital" labelText="Hospital" placeholder="Hospital" labelStyle="form__label" 
+            inputStyle="form__input" register={register}/>
+
+        <FormInput fieldName="phone" labelText="Phone Number" placeholder="Phone Number" labelStyle="form__label" 
+            inputStyle="form__input" register={register} validationRules={phoneValidation} errors={errors}/>   
+
+        <FormInput fieldName="totalPatients" labelText="Total Patients" labelStyle="form__label" 
+            placeholder="Approximate Number of Patients Treated" inputStyle="form__input"
+            register={register} validationRules={totalPatientsValidation} errors={errors}/>   
 
 
         <div className=' grid grid-cols-3'>
