@@ -20,7 +20,7 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     state.isVerified = true
                     break
                 case "login": 
-                    state.userInfo = action?.payload.data
+                    state.loggedInUser = action?.payload.data
                     localStorage.setItem('profile', JSON.stringify({...action?.payload}))
                     break
                 default:
@@ -43,7 +43,7 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
 }
 
 const initialState = {
-    userInfo: {},
+    loggedInUser: {},
     authLoading: false,
     isVerified: false,
     authError: '', 
@@ -59,17 +59,17 @@ const authSlice = createSlice({
         },
         logout: (state) => {
             localStorage.clear()
-            state.userInfo = null
+            state.loggedInUser = null
         },
         loginByToken: (state) => {
-            state.userInfo = JSON.parse(localStorage.getItem('profile')).data
+            state.loggedInUser = JSON.parse(localStorage.getItem('profile')).data
         },
         setLoading: (state, authLoading) => {
             state.authLoading = authLoading
         },
         syncLocalStorage: (state) => {
             const storedProfile = localStorage.getItem('profile')
-            state.userInfo = JSON.parse(storedProfile)?.data
+            state.loggedInUser = JSON.parse(storedProfile)?.data
         },
 
     },

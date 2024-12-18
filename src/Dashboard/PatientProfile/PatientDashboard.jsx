@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { useDispatch } from 'react-redux';
 import { authThunks } from '../../redux/slices/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Bookings from './Bookings';
 import Settings from './Settings';
@@ -14,13 +14,19 @@ const PatientDashboard = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { pathname } = useLocation()
+
 
     const [tab, setTab] = useState('bookings')
 
-    const {userInfo, authLoading, authError} = useSelector(state => state.auth)
+    const {loggedInUser, authLoading, authError} = useSelector(state => state.auth)
     const { patientLoading } = useSelector(state => state.patient)
 
-    
+
+
+    useEffect(() => {
+      window.scrollTo(0, 0); 
+    }, [pathname])
 
     const handleLogout = () => {
         dispatch(authThunks.logout())
@@ -29,7 +35,7 @@ const PatientDashboard = () => {
 
 
     const DeletePatientAccount = async () => {
-        const res = await dispatch(deletePatient(userInfo._id))
+        const res = await dispatch(deletePatient(loggedInUser._id))
     
         if (!res.error) {
           dispatch(authThunks.syncLocalStorage())
@@ -56,14 +62,14 @@ const PatientDashboard = () => {
                 <div className='pb=[50px] px-[30px] rounded-md'>
                     <div className='flex items-center justify-center'>
                         <figure className='w-[200px] border-full border-2 border-solid border-gray-400'>
-                            <img src={userInfo?.photo} className='w-full'/>
+                            <img src={loggedInUser?.photo} className='w-full'/>
                         </figure>
                     </div>
 
 
                     <div className='text-center mt-4'>
-                        <h3 className='text-[18px] leading-[30px] text-headingColor font-bold'>{userInfo?.name}</h3>
-                        <p className='text-textColor text-[15px] leading-6 font-medium'>{userInfo?.email}</p>
+                        <h3 className='text-[18px] leading-[30px] text-headingColor font-bold'>{loggedInUser?.name}</h3>
+                        <p className='text-textColor text-[15px] leading-6 font-medium'>{loggedInUser?.email}</p>
                         {/* <p className='text-textColor text-[15px] leading-6 font-medium'>
                             Blood Type:
                             <span className='ml-2 text-headingColor text-[22px] leading-8'>

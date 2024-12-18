@@ -40,7 +40,7 @@ export const authAPI = {
 export const doctorAPI = {
   fetchDoctors: () => API.get(`${DOCTOR_PATH}/fetchDoctors`),
   fetchDoctor: (doctorID) => API.get(`${DOCTOR_PATH}/fetchDoctor/${doctorID}`),
-  updateDoctor: (userInfo) => API.patch(`${DOCTOR_PATH}/updateDoctor/${userInfo._id}`, userInfo),
+  updateDoctor: (loggedInUser) => API.patch(`${DOCTOR_PATH}/updateDoctor/${loggedInUser._id}`, loggedInUser),
   deleteDoctor: (doctorID) => API.delete(`${DOCTOR_PATH}/deleteDoctor/${doctorID}`)
 
 }
@@ -53,7 +53,7 @@ export const patientAPI = {
 
   // verifyEmail: (id, token) => API.get(`${AUTH_PATH}/${id}/verify/${token}`),
   // resendVerification: (email) => API.get(`${AUTH_PATH}/resendVerification`, { params: { email } }),
-  // googleLogin: (userInfo) => API.post(`${AUTH_PATH}/googleLogin`, userInfo),
+  // googleLogin: (loggedInUser) => API.post(`${AUTH_PATH}/googleLogin`, loggedInUser),
 
 
 
@@ -106,8 +106,8 @@ export const placeAPI = {
 
 // Optional
 // Function for user registration 
-// export const registerUser = (userInfo) => {
-//     return API.post('/api/auth/register', userInfo)
+// export const registerUser = (loggedInUser) => {
+//     return API.post('/api/auth/register', loggedInUser)
 //       .then(response => response.data)
 //       .catch(error => {
 //         console.error('Registration error:', error);

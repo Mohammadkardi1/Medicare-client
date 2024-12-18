@@ -35,11 +35,12 @@ const DoctorDashboard = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const dispatch = useDispatch()
+  const { pathname } = useLocation()
 
   
   const [tab, setTab] = useState('overview')
 
-  const {userInfo, authLoading, authError} = useSelector(state => state.auth)
+  const {loggedInUser, authLoading, authError} = useSelector(state => state.auth)
   const { doctorLoading } = useSelector(state => state.doctor)
 
 
@@ -53,8 +54,11 @@ const DoctorDashboard = () => {
   }
 
 
+  
+
   useEffect(() => {
     setTab(activeTabFromURL)
+    window.scrollTo(0, 0)
   }, [activeTabFromURL])
 
 
@@ -64,7 +68,7 @@ const DoctorDashboard = () => {
   }
 
   const DeleteDoctorAccount = async () => {
-    const res = await dispatch(deleteDoctor(userInfo._id))
+    const res = await dispatch(deleteDoctor(loggedInUser._id))
 
     if (!res.error) {
       dispatch(authThunks.syncLocalStorage())
@@ -122,7 +126,7 @@ const DoctorDashboard = () => {
 
           {/* Right Sidebar */}
           <div className='lg:col-span-2'>
-              {userInfo?.isApproved === 'pending' && (
+              {loggedInUser?.isApproved === 'pending' && (
                 <div className='flex p-4 text-yellow-800 bg-yellow-50 rounded-lg'>
 
                   <svg aria-hidden="true"
@@ -147,7 +151,7 @@ const DoctorDashboard = () => {
 
 
               <div>
-                {tab === 'overview' && <DoctorOverview doctorInfo={userInfo} doctorViewMode={true}/>}
+                {tab === 'overview' && <DoctorOverview doctorProfileData={loggedInUser} doctorViewMode={true}/>}
                 {tab === 'appointments' && <Appointments/>}
 
 

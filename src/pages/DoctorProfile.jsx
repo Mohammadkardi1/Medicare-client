@@ -30,7 +30,7 @@ const DoctorProfile = () => {
   return (
     <>
       {!doctorLoading && !doctorError && 
-      <DoctorOverview doctorInfo={doctor}/>
+      <DoctorOverview doctorProfileData={doctor}/>
       }
     </>
   )

@@ -17,7 +17,7 @@ const DashboardForm = () => {
 
     const dispatch = useDispatch()
 
-    const { userInfo } = useSelector((state) => state.auth)
+    const { loggedInUser } = useSelector((state) => state.auth)
     const { doctorLoading } = useSelector((state) => state.doctor)
 
 
@@ -26,7 +26,7 @@ const DashboardForm = () => {
 
     const {register, control, handleSubmit, formState: {errors}, reset, watch} = useForm(
     {
-        defaultValues: userInfo
+        defaultValues: loggedInUser
         }
     )
 

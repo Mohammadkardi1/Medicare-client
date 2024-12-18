@@ -33,7 +33,7 @@ const Header = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const {userInfo} = useSelector(state => state.auth)
+  const {loggedInUser} = useSelector(state => state.auth)
 
 
   
@@ -113,21 +113,21 @@ const Header = () => {
 
 
               <div>
-                <Link to={userInfo?.role ? `/${userInfo?.role}/profile` : "/home"}>
+                <Link to={loggedInUser?.role ? `/${loggedInUser?.role}/profile` : "/home"}>
                   <div className="aspect-square w-full overflow-hidden rounded-full">
                     <img className="object-cover w-[45px] "
-                          src={userInfo?.photo ? userInfo?.photo : avatar}/>
+                          src={loggedInUser?.photo ? loggedInUser?.photo : avatar}/>
                   </div>
 
                 
                   {/* <figure className='rounded-full cursor-pointer'>
-                    <img src={userInfo?.photo ? userInfo?.photo : avatar} className='w-[45px] h-[45px] rounded-full' alt=''/>
+                    <img src={loggedInUser?.photo ? loggedInUser?.photo : avatar} className='w-[45px] h-[45px] rounded-full' alt=''/>
                   </figure> */}
                 </Link>
               </div>
 
 
-              {userInfo?.name ?
+              {loggedInUser?.name ?
                 <button onClick={logout}
                   className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
                   Logout

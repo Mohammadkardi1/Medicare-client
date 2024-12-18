@@ -18,9 +18,9 @@ export const fetchDoctor = createAsyncThunk('doctor/fetchDoctor', async(doctorID
     }
 })
 
-export const updateDoctor = createAsyncThunk('doctor/updateDoctor', async(userInfo, {rejectWithValue}) => {
+export const updateDoctor = createAsyncThunk('doctor/updateDoctor', async(loggedInUser, {rejectWithValue}) => {
     try {
-        return await doctorAPI.updateDoctor(userInfo).then((response) => response.data)
+        return await doctorAPI.updateDoctor(loggedInUser).then((response) => response.data)
     } catch (error) {
         return rejectWithValue(error.response.data.message)
     }
