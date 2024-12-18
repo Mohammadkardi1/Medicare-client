@@ -3,48 +3,60 @@ import avatar from '../../assets/images/avatar-icon.png'
 import { formateDate } from '../../utils/formateDate';
 import { AiFillStar } from "react-icons/ai";
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { submitReview } from '../../redux/thunks/doctorThunks';
+import { useSelector } from 'react-redux';
+import { showToastSuccess } from './../../utils/toastUtils';
+import { useParams } from 'react-router-dom';
+import LoadingModel from './../Loading/LoadingModel';
 
 
 
 
-
-const reviews = [
-  {
-    patient: "Ali Ahmad",
-    reviewText: "Very nice doctor",
-    rating: 4,
-    patientPhoto: avatar,
-    timestamps: '02-12-2023'
-  },
-  {
-    patient: "Ibrahiem Omar",
-    reviewText: "Thank you for alls",
-    rating: 2,
-    patientPhoto: avatar,
-    timestamps: '11-09-2013'
-  }
-]
+const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
 
+  const dispatch = useDispatch()
+  const {doctorID} = useParams()
 
 
-const Reveiw = ({doctorProfileData}) => {
-
-
-  const [rating, setRating] = useState(0)
-  const [hover, setHover] = useState(0)
-
-
-  const {register, handleSubmit, formState: {errors}, reset, watch} = useForm()
-
+  const { doctorLoading } = useSelector(state => state.doctor)
+  const {reviews} = doctorProfileData
 
   
+  const [hover, setHover] = useState(1)
 
-  const handleSubmitReview = async e => {
-      e.preventDefault()
 
-      // Later I will have to use API
+  const {register, handleSubmit, formState: {errors}, reset, setValue, watch} = useForm({
+    defaultValues: { rating: 1, reviewText: "" },
+
+  })
+
+
+  const rating = watch("rating", 1)
+  
+
+  const handleSubmitReview = async (reviewData) => {
+
+    try {
+      const res = await dispatch(submitReview({doctorID, reviewData}))
+
+      if (!res.error) {
+        // dispatch(authThunks.syncLocalStorage())
+        showToastSuccess("Your review has been submitted successfully!", { position: "top-right", autoClose: 3000 })
+
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
+
   }
+
+
+  if (doctorLoading) {
+    return <LoadingModel styles={"h-[40vh]"}/>
+  }
+
 
 
   return (
@@ -56,13 +68,13 @@ const Reveiw = ({doctorProfileData}) => {
         </h1>
 
         <div className='space-y-4'>
-          {reviews.map((item, index) => (
+          {reviews?.map((item, index) => (
           <div key={index} className='grid grid-cols-[60px_auto] grid-rows-2 gap-2'>
 
             <div className="col-start-1 row-start-1 ">
               <div className="flex items-center justify-center aspect-square w-full overflow-hidden rounded-full">
                 <img className="object-cover w-[45px]"
-                      src={item?.patientPhoto ? item?.patientPhoto : avatar}/>
+                      src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
               </div>
 
                     
@@ -71,7 +83,7 @@ const Reveiw = ({doctorProfileData}) => {
 
             <div className="col-start-2 row-start-1">
               <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>
-                {item?.patient}
+                {item?.reviewer?.photo?.name}
               </h1>
 
               <div className='flex gap-1'>
@@ -81,7 +93,7 @@ const Reveiw = ({doctorProfileData}) => {
               </div>                
 
               <p className='text-[12px] leading-6 text-textColor'>
-                {formateDate(item?.timestamps)}
+                {formateDate(item?.updatedAt)}
               </p>
             </div>
 
@@ -98,7 +110,7 @@ const Reveiw = ({doctorProfileData}) => {
 
       </div>
 
-
+      {!doctorViewMode && 
       <form onSubmit={handleSubmit(handleSubmitReview)}>
         <div>
             <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4'>
@@ -110,15 +122,15 @@ const Reveiw = ({doctorProfileData}) => {
                     index += 1
                     return (
                         <button key={index} type="button"
-                            className={`${index <= ((rating & hover) || hover) ? 'text-yellowColor': 'text-gray-400'} 
+                            className={`${index <= (hover || rating) ? 'text-yellowColor': 'text-gray-400'} 
                                 bg-transparent border-none outline-none text-[22px] cursor-pointer`}
-                            onClick={() => setRating(index)}
+                            onClick={() => setValue("rating", index)}
                             onMouseEnter={() => setHover(index)}
-                            onMouseLeave={() => setHover(rating)}
-                            onDoubleClick={() => {
-                                setHover(0)
-                                setRating(0)
-                            }}
+                            onMouseLeave={() => setHover(watch("rating"))}
+                            // onDoubleClick={() => {
+                            //     setHover(1)
+                            //     setValue("rating", 1)
+                            // }}
                             >
                             <span>
                                 <AiFillStar />
@@ -132,21 +144,29 @@ const Reveiw = ({doctorProfileData}) => {
                 <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4 mt-0'>
                     Share your review or suggestions
                 </h1>
-
-                <textarea rows={5} placeholder="Write a review" 
-                    className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
-                    {...register("reviewText", {required: "Review text cannot be empty."})}>
-                </textarea>
+                <div>
+                  <textarea rows={5} placeholder="Write a review" 
+                      className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
+                      {...register("reviewText", {required: "Review text cannot be empty"})}>
+                  </textarea>
+                  <p className={`plain-text text-red-600 ${errors.reviewText?.message ? "visible" : "invisible"}`}>
+                    {errors.reviewText?.message}.
+                  </p>
+                </div>
             </div>
-            
-            
-            <button type='submit' onClick={handleSubmitReview} className='btn'>
-                Submit Review
-            </button>
+
+
+            <div className='w-full flex items-center justify-start'>
+              <button className='btn w-[200px] mt-5'>
+                {doctorLoading ? <LoadingModel color='#FFFFFF'/> : "Submit Review"}
+                  
+              </button>
+            </div>
             
 
         </div>
       </form>
+      }
     </div>
   )
 }

@@ -35,13 +35,14 @@ export const authAPI = {
 
 }
 
-
+// http://localhost:5000/api/doctor/673c85f603b6b7d04de3cc4e/review
 // Doctor-related API calls
 export const doctorAPI = {
   fetchDoctors: () => API.get(`${DOCTOR_PATH}/fetchDoctors`),
   fetchDoctor: (doctorID) => API.get(`${DOCTOR_PATH}/fetchDoctor/${doctorID}`),
   updateDoctor: (loggedInUser) => API.patch(`${DOCTOR_PATH}/updateDoctor/${loggedInUser._id}`, loggedInUser),
-  deleteDoctor: (doctorID) => API.delete(`${DOCTOR_PATH}/deleteDoctor/${doctorID}`)
+  deleteDoctor: (doctorID) => API.delete(`${DOCTOR_PATH}/deleteDoctor/${doctorID}`),
+  submitReview: (doctorID, reviewData) => API.post(`${DOCTOR_PATH}/${doctorID}/review`, reviewData), 
 
 }
 
@@ -50,6 +51,11 @@ export const patientAPI = {
   deletePatient: (patientID) => API.delete(`${PATIENT_PATH}/deletePatient/${patientID}`),
   
 }
+
+
+
+
+
 
   // verifyEmail: (id, token) => API.get(`${AUTH_PATH}/${id}/verify/${token}`),
   // resendVerification: (email) => API.get(`${AUTH_PATH}/resendVerification`, { params: { email } }),

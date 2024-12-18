@@ -7,7 +7,7 @@ export const registerUser = createAsyncThunk('auth/registerUser', async (userInf
   try {
     return await authAPI.registerUser(userInfo).then((response) => response.data) 
   } catch (error) {
-    return rejectWithValue(error.response.data.message) 
+    return rejectWithValue(error.response.data.message || "Something went wrong") 
   }
 }
 )
@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk('auth/loginUser', async(userInfo, { re
   try {
     return await authAPI.loginUser(userInfo).then((response) => response.data)
   } catch (error) {
-    return rejectWithValue(error.response.data.message)
+    return rejectWithValue(error.response.data.message || "Something went wrong")
   }
 })
 
@@ -25,7 +25,7 @@ export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(userInfo, 
   try {
     return await authAPI.verifyEmail(userInfo).then((response) => response.data)
   } catch (error) {
-    return rejectWithValue(error.response.data.message)
+    return rejectWithValue(error.response.data.message || "Something went wrong")
   }
 })
 

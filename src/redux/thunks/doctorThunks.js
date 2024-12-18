@@ -6,7 +6,7 @@ export const fetchDoctors = createAsyncThunk('doctor/fetchDoctors', async(_, {re
     try {
         return await doctorAPI.fetchDoctors().then((response) => response.data)
     } catch (error) {
-        return rejectWithValue(error.response.data.message)
+        return rejectWithValue(error.response.data.message || "Something went wrong")
     }
 })
 
@@ -14,7 +14,7 @@ export const fetchDoctor = createAsyncThunk('doctor/fetchDoctor', async(doctorID
     try {
         return await doctorAPI.fetchDoctor(doctorID).then((response) => response.data)
     } catch (error) {
-        return rejectWithValue(error.response.data.message)
+        return rejectWithValue(error.response.data.message || "Something went wrong")
     }
 })
 
@@ -22,7 +22,7 @@ export const updateDoctor = createAsyncThunk('doctor/updateDoctor', async(logged
     try {
         return await doctorAPI.updateDoctor(loggedInUser).then((response) => response.data)
     } catch (error) {
-        return rejectWithValue(error.response.data.message)
+        return rejectWithValue(error.response.data.message || "Something went wrong")
     }
 })
 
@@ -30,9 +30,20 @@ export const deleteDoctor = createAsyncThunk('doctor/deleteDoctor', async(doctor
     try {
         return await doctorAPI.deleteDoctor(doctorID).then((response) => response.data)
     } catch (error) {
-        return rejectWithValue(error.response.data.message)
+        return rejectWithValue(error.response.data.message || "Something went wrong")
     }
 })
+
+
+
+export const submitReview = createAsyncThunk('doctor/submitReview', async ({ doctorID, reviewData }, { rejectWithValue }) => {
+    try {
+      return await doctorAPI.submitReview(doctorID, reviewData).then((response) => response.data) 
+    } catch (error) {
+      return rejectWithValue(error.response.data.message || "Something went wrong") 
+    }
+  }
+  )
 
 
 

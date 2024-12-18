@@ -6,6 +6,6 @@ export const deletePatient = createAsyncThunk('patient/deletePatient', async(pat
     try {
         return await patientAPI.deletePatient(patientID).then((response) => response.data)
     } catch (error) {
-        return rejectWithValue(error.response.data.message)
+        return rejectWithValue(error.response.data.message || "Something went wrong")
     }
 })

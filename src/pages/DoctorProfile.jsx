@@ -19,19 +19,19 @@ const DoctorProfile = () => {
   }, [])
   
 
-  if (doctorLoading && !doctorError) {
-      return <LoadingModel styles={"h-[40vh]"}/>
-  }
+  // if (doctorLoading && !doctorError) {
+  //     return <LoadingModel styles={"h-[40vh]"}/>
+  // }
 
-  if (doctorError && !doctorLoading) {
-      return <ErrorModel errorMsg={doctorError} styles={"h-[40vh]"}/>
-  }  
+  // if (doctorError && !doctorLoading) {
+  //     return <ErrorModel errorMsg={doctorError} styles={"h-[40vh]"}/>
+  // }  
 
   return (
     <>
-      {!doctorLoading && !doctorError && 
+      {/* {!doctorLoading && !doctorError &&  */}
       <DoctorOverview doctorProfileData={doctor}/>
-      }
+      {/* } */}
     </>
   )
 }

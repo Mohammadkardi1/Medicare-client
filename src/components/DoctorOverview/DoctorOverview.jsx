@@ -99,7 +99,7 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
               <div className='mt-[50px]'>
                 {tab === 'about' ? 
                   <About doctorProfileData={doctorProfileData}/> : 
-                  <Reveiw doctorProfileData={doctorProfileData}/>}
+                  <Reveiw doctorProfileData={doctorProfileData} doctorViewMode={doctorViewMode}/>}
               </div>
             </div>
             

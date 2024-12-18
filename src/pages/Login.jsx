@@ -67,7 +67,7 @@ const Login = () => {
             />
             <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
               {errors.email?.message}.
-            </p>
+            </p> 
           </div>
 
           {/* Password input field */}

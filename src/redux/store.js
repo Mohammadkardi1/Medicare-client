@@ -7,7 +7,7 @@ const store = configureStore({
     reducer: {
         auth: authSlice,
         doctor: doctorSlice,
-        patient: patientSlice
+        patient: patientSlice,
     }
 })
 
