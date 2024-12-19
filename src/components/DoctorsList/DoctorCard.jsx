@@ -26,7 +26,6 @@ const DoctorCard = ({doctor}) => {
                     {specialization}
                 </span>
                 }
-                {totalRating &&
                 <div className='flex items-center gap-[6px]'>
                     <span className='flex items-center gap-[6px] text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold 
                                     text-headingColor'>
@@ -34,10 +33,9 @@ const DoctorCard = ({doctor}) => {
                         {avgRating}
                     </span>
                     <span className='text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-textColor'>
-                        ({totalRating})
+                        ({totalRating ? totalRating : "0"})
                     </span>
                 </div>
-                }
             </div>
 
             <div className='mt-[18px] lg:mt-5 flex items-center justify-between'>

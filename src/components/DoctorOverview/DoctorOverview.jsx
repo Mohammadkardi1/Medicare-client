@@ -70,18 +70,17 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
 
 
 
-                  {doctorProfileData?.totalRating && 
                   <div className='flex items-center gap-[6px]'>
                     <span className='flex items-center gap-[6px] text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[600] 
                                   text-headingColor'>
-                      <img src={starIcon} alt=''/> {numberWithOneDecimal(doctorProfileData?.averageRating?.$numberDecimal)}
+                      <img src={starIcon} alt=''/> 
+                        {doctorProfileData?.totalRating ? numberWithOneDecimal(doctorProfileData?.averageRating?.$numberDecimal) : ""}
                     </span>
                     <span className='text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[400] 
                                   text-textColor'>
-                      ({doctorProfileData?.totalRating})
+                      ({doctorProfileData?.totalRating ? doctorProfileData?.totalRating : "0"})
                     </span>
                   </div>
-                  }
 
 
 
