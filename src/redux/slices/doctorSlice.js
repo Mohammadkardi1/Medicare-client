@@ -1,5 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors, submitReview } from "../thunks/doctorThunks"
+import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors, submitReview, 
+    searchDoctors } from "../thunks/doctorThunks"
+
 
 
 const updateLocalStorageDataField = (updatedData) => {
@@ -52,6 +54,9 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     state.doctor = action?.payload?.data
                     updateLocalStorageDataField({...action?.payload?.data})
                     break
+                case "searchDoctors": 
+                    state.doctors = action?.payload?.data
+                    break
                 default:
                     break
             }
@@ -90,6 +95,7 @@ const doctorSlice = createSlice({
         addAsyncThunkCases(builder, updateDoctor, "updateDoctor")
         addAsyncThunkCases(builder, deleteDoctor, "deleteDoctor")
         addAsyncThunkCases(builder, submitReview, "submitReview")
+        addAsyncThunkCases(builder, searchDoctors, "searchDoctors")
 
     }
 })

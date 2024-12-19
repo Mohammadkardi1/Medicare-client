@@ -47,3 +47,12 @@ export const submitReview = createAsyncThunk('doctor/submitReview', async ({ doc
 
 
 
+  export const searchDoctors = createAsyncThunk('doctor/searchDoctors', async( doctorName , {rejectWithValue}) => {
+    try {
+        return await doctorAPI.searchDoctors(doctorName).then((response) => response.data)
+    } catch (error) {
+        return rejectWithValue(error.response.data.message || "Something went wrong")
+    }
+})
+
+
