@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import LoadingModel from '../../components/Loading/LoadingModel';
-import ErrorModel from '../../components/ErrorModel/ErrorModel';
+import ErrorModel from '../../components/Model/ErrorModel';
 import { useSelector, useDispatch } from 'react-redux';
 import { BiMenu } from 'react-icons/bi'
 import { useNavigate, useLocation } from 'react-router-dom';

@@ -10,6 +10,7 @@ import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 import { useParams } from 'react-router-dom';
 import LoadingModel from './../Loading/LoadingModel';
 import { authThunks } from './../../redux/slices/authSlice';
+import { PopUpModel } from '../Model/PopUpModel';
 
 
 
@@ -23,6 +24,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
   const { reviewLoading } = useSelector(state => state.doctor)
   const { loggedInUser } = useSelector(state => state.auth)
+  const [isModelOpen, setIsModelOpen] = useState(false)
 
   
   
@@ -39,6 +41,11 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
   
 
   const handleSubmitReview = async (reviewData) => {
+
+    if (!JSON.parse(localStorage.getItem('profile'))?.data?._id ) {
+      setIsModelOpen(true)
+      return
+    }
 
     try {
       const res = await dispatch(submitReview({doctorID, reviewData}))
@@ -59,26 +66,21 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
 
 
-
   return (
+    <>
     <div>
       <div className='mb-[50px]'>
 
         <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
           All reviews {doctorProfileData?.totalRating ? `(${doctorProfileData?.totalRating})` : "" }
         </h1>
-
+        {/* rounded-md p-2 bg-gray-100 */}
         <div className='space-y-4'>
           {doctorProfileData?.reviews?.map((item, index) => (
-          <div key={index} className='grid grid-cols-[60px_auto] grid-rows-2 gap-2'>
+          <div key={index} className='grid grid-cols-[60px_auto] grid-rows-[auto auto auto] gap-2 border-b-2 p-2'>
 
             <div className="col-start-1 row-start-1 ">
 
-{/* 
-              <div className="flex items-center justify-center aspect-square w-full overflow-hidden rounded-full">
-                <img className="object-cover w-[45px]"
-                      src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
-              </div> */}
 
               <div className="aspect-square  overflow-hidden rounded-full">
                 <img className="object-cover w-full "
@@ -94,19 +96,20 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
                 {item?.reviewer?.name}
               </h1>
 
-              <div className='flex gap-1'>
+              <div className='flex items-center gap-1'>
                 {[...Array(item?.rating).keys()].map((_, index) => (
                   <AiFillStar key={index} className="text-yellowColor"/>
                 ))}
+                <span className=' text-headingColor text-[12px]'>{`(${item?.rating})`}</span>
               </div>                
 
-              <p className='text-[12px] leading-6 text-textColor'>
+              <p className='text-[12px] leading-6 text-headingColor'>
                 {formateDate(item?.updatedAt)}
               </p>
             </div>
 
             <div className="col-start-2 row-start-2">
-              <p className='text__para mt-0 font-medium text-[16px] '>
+              <p className='text__para mt-0 font-medium text-[16px] rounded-md p-2 bg-gray-100'>
                 {item?.reviewText}
               </p>
             </div>
@@ -135,10 +138,6 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
                             onClick={() => setValue("rating", index)}
                             onMouseEnter={() => setHover(index)}
                             onMouseLeave={() => setHover(watch("rating"))}
-                            // onDoubleClick={() => {
-                            //     setHover(1)
-                            //     setValue("rating", 1)
-                            // }}
                             >
                             <span>
                                 <AiFillStar />
@@ -154,8 +153,8 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
                 </h1>
                 <div>
                   <textarea rows={5} placeholder="Write a review" 
-                      className='border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
-                      {...register("reviewText", {required: "Review text cannot be empty"})}>
+                      className='bg-gray-100 border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
+                      {...register("reviewText", {required: "Review text cannot be empty "})}>
                   </textarea>
                   <p className={`plain-text text-red-600 ${errors.reviewText?.message ? "visible" : "invisible"}`}>
                     {errors.reviewText?.message}.
@@ -176,6 +175,13 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
       </form>
       }
     </div>
+
+    <PopUpModel
+      isModelOpen={isModelOpen} 
+      setIsModelOpen={setIsModelOpen} 
+      message="To submit a review, please log in first."
+      />
+    </>
   )
 }
 

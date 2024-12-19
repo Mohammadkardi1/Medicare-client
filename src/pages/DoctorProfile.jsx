@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchDoctor } from '../redux/thunks/doctorThunks';
 import LoadingModel from './../components/Loading/LoadingModel';
-import ErrorModel from './../components/ErrorModel/ErrorModel';
+import ErrorModel from '../components/Model/ErrorModel';
 
 const DoctorProfile = () => {
 

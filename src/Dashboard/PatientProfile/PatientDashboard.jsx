@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Bookings from './Bookings';
 import Settings from './Settings';
 import LoadingModel from '../../components/Loading/LoadingModel';
-import ErrorModel from '../../components/ErrorModel/ErrorModel';
+import ErrorModel from '../../components/Model/ErrorModel';
 import { deletePatient } from './../../redux/thunks/patientThunks';
 import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 

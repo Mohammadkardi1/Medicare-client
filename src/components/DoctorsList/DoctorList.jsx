@@ -4,7 +4,7 @@ import DoctorCard from './DoctorCard'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDoctors } from './../../redux/thunks/doctorThunks';
 import LoadingModel from './../Loading/LoadingModel';
-import ErrorModel from './../ErrorModel/ErrorModel';
+import ErrorModel from '../Model/ErrorModel';
 
 
 const DoctorList = () => {
