@@ -12,10 +12,7 @@ const FindDoctor = () => {
   const { pathname } = useLocation()
   const dispatch = useDispatch()
 
-
   const searchInputRef  = useRef(null)
-
-
 
 
   const handleInputChange = async () => {
@@ -28,7 +25,6 @@ const FindDoctor = () => {
     }
   }
 
-
   const handleDoctorSearch  = async () => {
     try {
       await dispatch(searchDoctors(searchInputRef.current.value))
@@ -37,14 +33,11 @@ const FindDoctor = () => {
     }
   }
 
-
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
       handleDoctorSearch()
     }
   }
-
-
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -72,15 +65,10 @@ const FindDoctor = () => {
         </div>
       </div>
     </section>
-
-
-    
     <div className='container'>
       <section><DoctorList/></section>
       <section><PatientTestimonials/></section>
     </div>
-
-
     </>
   )
 }

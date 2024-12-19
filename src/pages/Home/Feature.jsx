@@ -38,12 +38,12 @@ const Feature = () => {
                             
                     
                 {/* ========== Right Feature Section ========== */}
-                <div className='relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0'>
+                <div className='relative z-0 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0'>
 
                     <img src={featureImg} alt='feature-image' className='w-3/4'/>
 
                     <div className='absolute w-[150px] lg:w-[248px] bg-white bottom-[50px] left-0 md:bottom-[100px] md:left-5 
-                                    z-20 p-2 pb-5 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px]'>
+                                    z-0 p-2 pb-5 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px]'>
                         <div className='flex items-center justify-between'>
                             <div className='flex items-center gap-[6px] lg:gap-3'>
                                 <p className='text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[600]'>
