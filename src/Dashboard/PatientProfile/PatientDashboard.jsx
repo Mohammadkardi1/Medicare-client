@@ -8,7 +8,7 @@ import Settings from './Settings';
 import LoadingModel from '../../components/Loading/LoadingModel';
 import ErrorModel from '../../components/ErrorModel/ErrorModel';
 import { deletePatient } from './../../redux/thunks/patientThunks';
-import { showToastSuccess } from './../../utils/toastUtils';
+import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 
 const PatientDashboard = () => {
 
@@ -41,6 +41,8 @@ const PatientDashboard = () => {
           dispatch(authThunks.syncLocalStorage())
           showToastSuccess("Your account has been deleted successfully!", { position: "top-right", autoClose: 3000 })
           navigate('/home')
+        } else {
+            showToastFailure("System error! Your account wasn't deleted. Please try again.", { position: "top-right", autoClose: 3000 })
         }
       }
 

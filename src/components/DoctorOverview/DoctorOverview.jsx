@@ -4,19 +4,36 @@ import starIcon from '../../assets/images/Star.png'
 import About from './About'
 import Reveiw from './Reveiw'
 import SidePanel from './SidePanel'
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import numberWithOneDecimal from './../../utils/numberWithOneDecimal';
 
 const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
+
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const { pathname } = useLocation()
 
 
-  const [tab, setTab] = useState('about')
+  const [tab, setTab] = useState('About')
 
+   
+  const queryParams = new URLSearchParams(location.search)
+  const activeTabFromURL = queryParams.get('tab') || "About"
+
+
+  const handleTabChange = (tab) => {
+    setTab(tab)
+    navigate(`?tab=${tab}`)
+  }
 
   useEffect(() => {
-    window.scrollTo(0, 0); 
-  }, [pathname])
+    window.scrollTo(0, 0);
+  }, [])
+
+  useEffect(() => {
+    setTab(activeTabFromURL)
+  }, [activeTabFromURL])
  
 
   return (
@@ -57,7 +74,7 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
                   <div className='flex items-center gap-[6px]'>
                     <span className='flex items-center gap-[6px] text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[600] 
                                   text-headingColor'>
-                      <img src={starIcon} alt=''/> {doctorProfileData?.averageRating?.$numberDecimal}
+                      <img src={starIcon} alt=''/> {numberWithOneDecimal(doctorProfileData?.averageRating?.$numberDecimal)}
                     </span>
                     <span className='text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[400] 
                                   text-textColor'>
@@ -81,14 +98,14 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
 
 
               <div className='mt-[50px] border-b border-solid border-[#0066ff34]'>
-                <button onClick={() => setTab('about')}
-                        className={`${tab === 'about' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px] 
+                <button onClick={() => handleTabChange("About")}
+                        className={`${tab === 'About' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px] 
                                     leading-7 text-headingColor font-semibold`}>
                   About
                 </button>
 
-                <button onClick={() => setTab('Reveiw')}
-                        className={`${tab === 'Reveiw' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px]
+                <button onClick={() => handleTabChange("Reviews")}
+                        className={`${tab === 'Reviews' && 'border-b border-solid border-primaryColor'} py-2 px-5 mr-5 text-[16px]
                                       leading-7 text-headingColor font-semibold`}>
                   Reviews
                 </button>
@@ -97,7 +114,7 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
 
 
               <div className='mt-[50px]'>
-                {tab === 'about' ? 
+                {tab === 'About' ? 
                   <About doctorProfileData={doctorProfileData}/> : 
                   <Reveiw doctorProfileData={doctorProfileData} doctorViewMode={doctorViewMode}/>}
               </div>

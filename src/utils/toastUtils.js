@@ -16,7 +16,7 @@ export const showToastSuccess = (message, options = {}) => {
 
 
 
-export const showToastFailuer = (message, options = {}) => {
+export const showToastFailure = (message, options = {}) => {
     const {
         position = "top-right",
         autoClose = 3000,
@@ -27,5 +27,5 @@ export const showToastFailuer = (message, options = {}) => {
         theme = "dark",
     } = options
 
-    toast.success(message, {position, autoClose, hideProgressBar, closeOnClick, pauseOnHover, draggable, theme})
+    toast.error(message, {position, autoClose, hideProgressBar, closeOnClick, pauseOnHover, draggable, theme})
 }

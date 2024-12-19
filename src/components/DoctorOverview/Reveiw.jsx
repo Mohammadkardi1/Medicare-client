@@ -6,9 +6,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { submitReview } from '../../redux/thunks/doctorThunks';
 import { useSelector } from 'react-redux';
-import { showToastSuccess } from './../../utils/toastUtils';
+import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 import { useParams } from 'react-router-dom';
 import LoadingModel from './../Loading/LoadingModel';
+import { authThunks } from './../../redux/slices/authSlice';
 
 
 
@@ -20,9 +21,10 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
   const {doctorID} = useParams()
 
 
-  const { doctorLoading } = useSelector(state => state.doctor)
-  const {reviews} = doctorProfileData
+  const { reviewLoading } = useSelector(state => state.doctor)
+  const { loggedInUser } = useSelector(state => state.auth)
 
+  
   
   const [hover, setHover] = useState(1)
 
@@ -40,11 +42,14 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
     try {
       const res = await dispatch(submitReview({doctorID, reviewData}))
-
       if (!res.error) {
-        // dispatch(authThunks.syncLocalStorage())
+        if (doctorID === loggedInUser._id) {
+          dispatch(authThunks.syncLocalStorage())
+        }
+        reset()
         showToastSuccess("Your review has been submitted successfully!", { position: "top-right", autoClose: 3000 })
-
+      } else {
+        showToastFailure("System error! Your review wasn't submitted. Please try again.", { position: "top-right", autoClose: 3000 })
       }
     } catch (error) {
       console.log(error.message)
@@ -52,10 +57,6 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
   }
 
-
-  if (doctorLoading) {
-    return <LoadingModel styles={"h-[40vh]"}/>
-  }
 
 
 
@@ -68,12 +69,19 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
         </h1>
 
         <div className='space-y-4'>
-          {reviews?.map((item, index) => (
+          {doctorProfileData?.reviews?.map((item, index) => (
           <div key={index} className='grid grid-cols-[60px_auto] grid-rows-2 gap-2'>
 
             <div className="col-start-1 row-start-1 ">
+
+{/* 
               <div className="flex items-center justify-center aspect-square w-full overflow-hidden rounded-full">
                 <img className="object-cover w-[45px]"
+                      src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
+              </div> */}
+
+              <div className="aspect-square  overflow-hidden rounded-full">
+                <img className="object-cover w-full "
                       src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
               </div>
 
@@ -83,7 +91,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
             <div className="col-start-2 row-start-1">
               <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>
-                {item?.reviewer?.photo?.name}
+                {item?.reviewer?.name}
               </h1>
 
               <div className='flex gap-1'>
@@ -158,7 +166,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
             <div className='w-full flex items-center justify-start'>
               <button className='btn w-[200px] mt-5'>
-                {doctorLoading ? <LoadingModel color='#FFFFFF'/> : "Submit Review"}
+                {reviewLoading ? <LoadingModel color='#FFFFFF'/> : "Submit Review"}
                   
               </button>
             </div>

@@ -20,12 +20,20 @@ const updateLocalStorageDataField = (updatedData) => {
 const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
     builder
         .addCase(asyncThunk.pending, (state) => {
-            state.doctorLoading = true
-            state.doctorError = null
-
+            if (stateKey !== 'submitReview') {
+                state.doctorLoading = true
+                state.doctorError = null
+            } else {
+                state.reviewLoading = true
+                state.reviewError = null
+            }
         })
-        .addCase(asyncThunk.fulfilled, (state, action) => { 
-            state.doctorLoading = false
+        .addCase(asyncThunk.fulfilled, (state, action) => {
+            if (stateKey !== 'submitReview') {
+                state.doctorLoading = false
+            } else {
+                state.reviewLoading = false
+            }
             state.doctorError = null
             switch (stateKey) {
                 case "fetchDoctor": 
@@ -42,23 +50,29 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     break
                 case "submitReview": 
                     state.doctor = action?.payload?.data
-                    console.log("state doctor", state.doctor)
-                break
+                    updateLocalStorageDataField({...action?.payload?.data})
+                    break
                 default:
                     break
             }
 
         })
         .addCase(asyncThunk.rejected, (state, action) => {
-            state.doctorLoading = false
-            state.doctorError = action?.payload || 'Something went wrong'         
-
+            if (stateKey !== 'submitReview') {
+                state.doctorLoading = false
+                state.doctorError = action?.payload || 'Something went wrong'   
+            } else {
+                state.reviewLoading = false
+                state.reviewError = action?.payload || 'Something went wrong'   
+            }
         })
 }
 
 const initialState = {
     doctorLoading: false,
+    reviewLoading: false,
     doctorError: '',
+    reviewError: '',
     doctors: [],
     doctor: {}
 }

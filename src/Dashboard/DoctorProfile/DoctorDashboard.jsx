@@ -8,7 +8,7 @@ import { authThunks } from '../../redux/slices/authSlice';
 import Appointments from './Appointments';
 import DoctorOverview from '../../components/DoctorOverview/DoctorOverview';
 import DashboardForm from '../../components/Form/DashboardForm';
-import { showToastSuccess } from './../../utils/toastUtils';
+import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 import { deleteDoctor } from './../../redux/thunks/doctorThunks';
 
 
@@ -16,15 +16,15 @@ import { deleteDoctor } from './../../redux/thunks/doctorThunks';
 
 const sidebarItems = [
   {
-      tab: "overview",
+      panel: "overview",
       label: "Overview"
   },
   {
-      tab: "appointments",
+      panel: "appointments",
       label: "Appointments"
   },
   {
-      tab: "settings",
+      panel: "settings",
       label: "Settings"
   },
 ]
@@ -38,28 +38,29 @@ const DoctorDashboard = () => {
   const { pathname } = useLocation()
 
   
-  const [tab, setTab] = useState('overview')
+  const [panel, setPanel] = useState('overview')
 
   const {loggedInUser, authLoading, authError} = useSelector(state => state.auth)
   const { doctorLoading } = useSelector(state => state.doctor)
 
 
   const queryParams = new URLSearchParams(location.search)
-  const activeTabFromURL = queryParams.get('tab') || sidebarItems[0].tab
+  const activePanelFromURL = queryParams.get('panel') || sidebarItems[0].panel
 
 
-  const handleTabChange = (tab) => {
-    setTab(tab)
-    navigate(`?tab=${tab}`)
+  const handlePanelChange = (panel) => {
+    setPanel(panel)
+    navigate(`?panel=${panel}`)
   }
 
-
   
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   useEffect(() => {
-    setTab(activeTabFromURL)
-    window.scrollTo(0, 0)
-  }, [activeTabFromURL])
+    setPanel(activePanelFromURL)
+  }, [activePanelFromURL])
 
 
   const handleLogout = () => {
@@ -74,6 +75,8 @@ const DoctorDashboard = () => {
       dispatch(authThunks.syncLocalStorage())
       showToastSuccess("Your account has been deleted successfully!", { position: "top-right", autoClose: 3000 })
       navigate('/home')
+    } else {
+      showToastFailure("System error! Your account wasn't deleted. Please try again.", { position: "top-right", autoClose: 3000 })
     }
   }
 
@@ -103,8 +106,8 @@ const DoctorDashboard = () => {
             </span>
             <div className='hidden lg:flex flex-col p-[30px] bg-white shadow-panelShadow items-center h-max rounded-md'>
               {sidebarItems.map((item, key) => (
-                  <button key={key} onClick={() => handleTabChange(item.tab)}
-                      className={`${tab === item.tab ? " bg-indigo-100 text-primaryColor" : " bg-transparent text-headingColor" } 
+                  <button key={key} onClick={() => handlePanelChange(item.panel)}
+                      className={`${panel === item.panel ? " bg-indigo-100 text-primaryColor" : " bg-transparent text-headingColor" } 
                                       w-full btn mt-0 rounded-md`}>
                       {item.label}
                   </button>
@@ -151,12 +154,12 @@ const DoctorDashboard = () => {
 
 
               <div>
-                {tab === 'overview' && <DoctorOverview doctorProfileData={loggedInUser} doctorViewMode={true}/>}
-                {tab === 'appointments' && <Appointments/>}
+                {panel === 'overview' && <DoctorOverview doctorProfileData={loggedInUser} doctorViewMode={true}/>}
+                {panel === 'appointments' && <Appointments/>}
 
 
 
-                {tab === 'settings' && (
+                {panel === 'settings' && (
                   <div>
                     <h2 className='text-headingColor font-bold text-[24px] leading-9 mb-10'>
                       Profile Information

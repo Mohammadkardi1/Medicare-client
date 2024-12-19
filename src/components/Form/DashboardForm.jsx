@@ -9,7 +9,7 @@ import FormTextArea from './FormTextArea';
 import FormSelect from './FormSelect';
 import { genderOptions, specializationOptions, dayOfWeekOptions } from '../../constants/options';
 import { fetchDoctor, updateDoctor } from './../../redux/thunks/doctorThunks';
-import { showToastSuccess } from './../../utils/toastUtils';
+import { showToastFailure, showToastSuccess } from './../../utils/toastUtils';
 import { authThunks } from './../../redux/slices/authSlice';
 
 
@@ -60,6 +60,8 @@ const DashboardForm = () => {
             dispatch(authThunks.syncLocalStorage())
             showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
             // navigate(redirectPath, {replace :true})
+          } else {
+            showToastFailure("System error! Your Profile wasn't updated. Please try again.", { position: "top-right", autoClose: 3000 })
           }
         } catch (error) {
           console.log(error.message)
