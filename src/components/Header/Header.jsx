@@ -21,6 +21,10 @@ const navLinks = [
     label: 'Services',
     path: '/services'
   },
+  // {
+  //   label: 'Your profile',
+  //   path: ``
+  // },
   {
     label: 'Contact',
     path: '/contact'
@@ -35,6 +39,8 @@ const Header = () => {
   const navigate = useNavigate()
 
   const {loggedInUser} = useSelector(state => state.auth)
+
+  console.log("loggedInUser", loggedInUser?.role)
 
 
   
@@ -108,6 +114,16 @@ const Header = () => {
                   </NavLink>
                 </li>
               ))}
+              {loggedInUser?.role && 
+                <li onClick={toggleMenu}>
+                  <NavLink to={`${loggedInUser?.role === "doctor" ? '/doctor/profile' : '/patient/profile' }`}
+                          className={navClass => navClass.isActive 
+                            ? 'text-primaryColor text-[16px] leading-7 font-[600]' 
+                            : 'text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor'}>
+                    Your profile
+                  </NavLink>
+                </li>
+              }
             </ul>
           </div>
 

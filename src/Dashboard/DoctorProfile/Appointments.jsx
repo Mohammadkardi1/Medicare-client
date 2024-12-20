@@ -40,7 +40,7 @@ const Appointments = () => {
             <th scope='row' className='flex items-center px-6 py-4 text-gray-900 whitespace-nowrap'>
               <img src={Avatar} className='w-10 h-10 rounded-full'/>
               <div className='pl-3'>
-                <div className='text-base font-semibold'>Ali Ahmad</div>
+                <div className='text-base font-semibold'>Mohammad Kardi</div>
                 <div className='text-normal text-gray-500'>mohammadKardi@gmail.com</div>
 
               </div>
