@@ -1,6 +1,6 @@
 import React from 'react'
-import patientAvatar1 from '../../assets/images/doctor-img01.png'
-import patientAvatar2 from '../../assets/images/doctor-img02.png'
+import patientAvatar1 from '../../assets/images/doctor-img05.jpg'
+import patientAvatar2 from '../../assets/images/doctor-img06.jpg'
 import patientAvatar3 from '../../assets/images/doctor-img03.png'
 import patientAvatar4 from '../../assets/images/hero-img01.png'
 
@@ -11,26 +11,26 @@ import TestimonialSlider from '../../components/Testimonial/TestimonialSlider'
 const patientTestimonialsData = [
   {
     name: 'John Doe',
-    review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
-    rating: 1,
+    review: 'Dr. Lee was quick and efficient without compromising on quality of care. The entire process, from consultation to prescription, was smooth and well-managed.',
+    rating: 3,
     image: patientAvatar1
   },
   {
     name: 'Jane Smith',
-    review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
-    rating: 4,
+    review: 'I was disappointed with my experience. The doctor seemed rushed and didn’t take the time to fully understand my concerns. I left the appointment feeling unheard and unsure about the next steps in my treatment.',
+    rating: 1,
     image: patientAvatar2
   },
   {
     name: 'Mark Wilson',
-    review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
-    rating: 3,
+    review: "I appreciated Dr. Johnson's kind and empathetic approach. He made me feel comfortable and reassured throughout the visit.",
+    rating: 5,
     image: patientAvatar3
   },
   {
     name: 'John Doe',
-    review: 'I have medical services from then. There is a solution at the site of refusal to extend medical services.',
-    rating: 2,
+    review: 'Dr. Smith demonstrated exceptional professionalism during the consultation. He listened attentively and addressed all my concerns thoroughly.',
+    rating: 4,
     image: patientAvatar4
   }
 
@@ -59,7 +59,6 @@ const PatientTestimonials = () => {
             // autoplay: { delay: 3000 } // Enables autoplay with a 3-second delay
           }}
         />
-
 
       </div>
     </section>

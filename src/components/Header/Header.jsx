@@ -6,6 +6,7 @@ import { BiMenu } from "react-icons/bi";
 import { useSelector } from 'react-redux';
 import { authThunks } from '../../redux/slices/authSlice';
 import { useDispatch } from 'react-redux';
+import { MdOutlineClose } from "react-icons/md";
 
 const navLinks = [
   {
@@ -41,19 +42,6 @@ const Header = () => {
   const pathSegment = location.pathname.split('/')[1]
 
 
-  const logout = async () => {
-    try {
-        await dispatch(authThunks.logout())
-        navigate('/home')
-
-
-    } catch (error) {
-        console.log(error)
-    }
-  }
-
-
-
   // The handleStickyHeader function is used to add or remove a "sticky" class (sticky__header) to an HTML element when 
   // the user scrolls past a certain point on the page.
   const handleStickyHeader = () => {
@@ -66,13 +54,26 @@ const Header = () => {
     })
   }
 
+
+
+
   useEffect(() => {
     handleStickyHeader()
+
     return () => window.removeEventListener('scroll', handleStickyHeader)
   })
 
   const toggleMenu = () => {
     menuRef.current.classList.toggle('show__menu')
+  }
+
+  const logout = async () => {
+    try {
+        await dispatch(authThunks.logout())
+        navigate('/home')
+    } catch (error) {
+        console.log(error)
+    }
   }
 
   return (
@@ -89,12 +90,17 @@ const Header = () => {
 
 
           {/* ========= menu ========= */}
-          <div className='navigation' ref={menuRef} onClick={toggleMenu}>
+          <div className='navigation' ref={menuRef}>
+
+            <div className='md:hidden flex justify-end' onClick={toggleMenu}>
+              <MdOutlineClose size={30}
+                  className='cursor-pointer text-black p-1 z-[300] my-4 mx-2 '/>
+            </div>
+
             <ul className='menu flex items-center gap-[2.7rem]'>
               {navLinks.map((link, index) => (
-                <li key={index}>
-                  <NavLink 
-                          to={link.path}
+                <li key={index} onClick={toggleMenu}>
+                  <NavLink to={link.path}
                           className={navClass => navClass.isActive 
                             ? 'text-primaryColor text-[16px] leading-7 font-[600]' 
                             : 'text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor'}>

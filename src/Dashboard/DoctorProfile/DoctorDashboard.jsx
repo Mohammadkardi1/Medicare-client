@@ -91,7 +91,7 @@ const DoctorDashboard = () => {
 
 
   return (
-    <section className='mt-[75px] max-width-[1170px] px-5 mx-auto'>
+    <section className='mt-[75px] max-width-[1170px] px-5'>
     {!authLoading && !authError && (
         <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
 

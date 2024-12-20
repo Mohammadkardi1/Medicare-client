@@ -14,7 +14,7 @@ const updateLocalStorageDataField = (updatedData) => {
         }
         localStorage.setItem('profile', JSON.stringify(updatedProfile));
     } else {
-        console.error('No profile data found in localStorage.');
+        console.log('No profile data found in localStorage.')
     }
 }
 
