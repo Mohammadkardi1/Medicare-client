@@ -7,14 +7,16 @@ import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors, submitReview,
 const updateLocalStorageDataField = (updatedData) => {
     const storedProfile = JSON.parse(localStorage.getItem('profile'))
 
-    if (storedProfile) {
-        const updatedProfile = {
-            ...storedProfile,
-            data: updatedData, 
+    if (storedProfile?.data?.role === 'doctor') { // Only doctor view mode
+        if (storedProfile) {
+            const updatedProfile = {
+                ...storedProfile,
+                data: updatedData, 
+            }
+            localStorage.setItem('profile', JSON.stringify(updatedProfile));
+        } else {
+            console.log('No profile data found in localStorage.')
         }
-        localStorage.setItem('profile', JSON.stringify(updatedProfile));
-    } else {
-        console.log('No profile data found in localStorage.')
     }
 }
 
@@ -54,7 +56,7 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     state.doctor = action?.payload?.data
                     updateLocalStorageDataField({...action?.payload?.data})
                     break
-                case "searchDoctors": 
+                case "searchDoctors":
                     state.doctors = action?.payload?.data
                     break
                 default:

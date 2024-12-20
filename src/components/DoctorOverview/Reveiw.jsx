@@ -109,7 +109,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
             </div>
 
             <div className="col-start-2 row-start-2">
-              <p className='text__para mt-0 font-medium text-[16px] rounded-md p-2 bg-gray-100'>
+              <p className='text__para mt-0 font-medium text-[16px] rounded-md py-2 px-4 bg-gray-100'>
                 {item?.reviewText}
               </p>
             </div>
