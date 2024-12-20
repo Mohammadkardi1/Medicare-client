@@ -4,7 +4,7 @@ import About from './About'
 import Reveiw from './Reveiw'
 import SidePanel from './SidePanel'
 import { useLocation, useNavigate } from 'react-router-dom';
-import numberWithOneDecimal from './../../utils/numberWithOneDecimal';
+import { calculateAverageRating } from './../../utils/calculateAverageRating';
 
 const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
 
@@ -73,11 +73,11 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
                     <span className='flex items-center gap-[6px] text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[600] 
                                   text-headingColor'>
                       <img src={starIcon} alt=''/> 
-                        {doctorProfileData?.totalRating ? numberWithOneDecimal(doctorProfileData?.averageRating?.$numberDecimal) : ""}
+                        {calculateAverageRating(doctorProfileData?.reviews)}
                     </span>
                     <span className='text-[14px] leading-5 lg:text-[16px] lg:leading-7 font-[400] 
                                   text-textColor'>
-                      ({doctorProfileData?.totalRating ? doctorProfileData?.totalRating : "0"})
+                      ({doctorProfileData?.reviews ? doctorProfileData?.reviews?.length : "0"})
                     </span>
                   </div>
 

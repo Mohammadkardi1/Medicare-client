@@ -8,7 +8,7 @@ import { BsArrowRight } from "react-icons/bs";
 const DoctorCard = ({doctor}) => {
 
 
-    const {_id, name, specialization, photo, avgRating, totalRating, totalPatients, hospital} = doctor
+const {_id, name, specialization, photo, avgRating, reviews, totalPatients, hospital} = doctor
 
   return (
     <Link to={`/doctor/${_id}`}>
@@ -39,7 +39,7 @@ const DoctorCard = ({doctor}) => {
                         {avgRating}
                     </span>
                     <span className='text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-semibold text-textColor'>
-                        ({totalRating ? totalRating : "0"})
+                        ({reviews ? reviews?.length : "0"})
                     </span>
                 </div>
             </div>

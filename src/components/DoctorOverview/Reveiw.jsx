@@ -72,7 +72,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
       <div className='mb-[50px]'>
 
         <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
-          All reviews {doctorProfileData?.totalRating ? `(${doctorProfileData?.totalRating})` : "" }
+          All reviews {doctorProfileData?.reviews ? `(${doctorProfileData?.reviews?.length})` : "0" }
         </h1>
         {/* rounded-md p-2 bg-gray-100 */}
         <div className='space-y-4'>
