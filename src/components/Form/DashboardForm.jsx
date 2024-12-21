@@ -59,7 +59,6 @@ const DashboardForm = () => {
           if (!res.error) {
             dispatch(authThunks.syncLocalStorage())
             showToastSuccess("Your Profile has been updated successfully!", { position: "top-right", autoClose: 3000 })
-            // navigate(redirectPath, {replace :true})
           } else {
             showToastFailure("System error! Your Profile wasn't updated. Please try again.", { position: "top-right", autoClose: 3000 })
           }
@@ -276,14 +275,6 @@ const DashboardForm = () => {
                 {doctorLoading ? <LoadingModel color='#FFFFFF'/> : "Update"}
             </button>
         </div>
-
-
-        {/* <div>
-            <p className={`plain-text text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
-                {authError}.
-            </p>
-        </div> */}
-
     </form>
   )
 }

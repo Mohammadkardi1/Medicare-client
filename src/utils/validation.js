@@ -59,7 +59,6 @@ export const validateImageType = (value) => {
 }
 
 export const phoneValidation = {
-  // required: "Enter your phone number",
   pattern: {
     value: /^(\+|0)[1-9]\d{0,14}$/, 
     message: "Enter a valid phone number",
@@ -82,7 +81,6 @@ export const bioValidation = {
 }
 
 export const ticketPriceValidation = {
-  // required: "Enter the ticket price",
   min: {
     value: 0.01, 
     message: "Ticket price must be at least $0.01",

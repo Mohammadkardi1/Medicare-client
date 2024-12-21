@@ -72,12 +72,6 @@ const PatientDashboard = () => {
                     <div className='text-center mt-4'>
                         <h3 className='text-[18px] leading-[30px] text-headingColor font-bold'>{loggedInUser?.name}</h3>
                         <p className='text-textColor text-[15px] leading-6 font-medium'>{loggedInUser?.email}</p>
-                        {/* <p className='text-textColor text-[15px] leading-6 font-medium'>
-                            Blood Type:
-                            <span className='ml-2 text-headingColor text-[22px] leading-8'>
-                                o-
-                            </span>
-                        </p> */}
                     </div>
 
                     <div className='w-full mt-[50px] md:mt-[100px]'>

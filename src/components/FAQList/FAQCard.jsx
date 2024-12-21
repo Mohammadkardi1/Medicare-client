@@ -1,20 +1,15 @@
 import React, { useState } from 'react'
 import { CiSquarePlus } from "react-icons/ci";
 import { FaSquareMinus } from "react-icons/fa6";
-// import { AiOutlineMinus, AiOutlinePlus  } from "react-icons/ai";
 
 
 const FAQCard = ({faq}) => {
 
   const [ isVisible, setIsVisible ] = useState(false)
 
-
-
   const handleVisibility = () => {
     setIsVisible(!isVisible)
   }
-
-
 
 
   return (

@@ -20,15 +20,3 @@ const FormTextArea = ({fieldName, rows, labelText, type = "text", placeholder, l
 
 export default FormTextArea
 
-
-        // {/* About textarea field */}
-        // <div>
-        //     <label className='form__label'>About</label>
-        //     <textarea rows={4} type="text" placeholder="About"
-        //             className={`form__input ${errors?.about ? "bg-SemiTransparentBlue rounded-sm" : ""}  `}
-        //             {...register("about",)}
-        //         />
-        //     <p className={`plain-text text-red-600 ${errors.about?.message ? "visible" : "invisible"}`}>
-        //         {errors.about?.message}.
-        //     </p>
-        // </div>

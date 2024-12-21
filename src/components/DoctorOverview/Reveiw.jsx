@@ -74,7 +74,6 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
         <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
           All reviews {doctorProfileData?.reviews ? `(${doctorProfileData?.reviews?.length})` : "0" }
         </h1>
-        {/* rounded-md p-2 bg-gray-100 */}
         <div className='space-y-4'>
           {doctorProfileData?.reviews?.map((item, index) => (
           <div key={index} className='grid grid-cols-[60px_auto] grid-rows-[auto auto auto] gap-2 border-b-2 p-2'>

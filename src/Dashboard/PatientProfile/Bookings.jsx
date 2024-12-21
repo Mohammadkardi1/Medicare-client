@@ -1,12 +1,9 @@
 import React from 'react'
 import ErrorModel from '../../components/Model/ErrorModel';
 import LoadingModel from '../../components/Loading/LoadingModel';
-import DoctorList from '../../components/DoctorsList/DoctorList';
-import DoctorCard from '../../components/DoctorsList/DoctorCard';
+
 
 const Bookings = () => {
-
-  // Here you have to get the appointments of the patient via HTTP request
 
   
   const authLoading = false

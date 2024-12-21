@@ -1,6 +1,5 @@
 import React from 'react'
 import logoImg from '../../assets/images/logo.png'
-// import { AiFillLinkedin  } from "react-icons/ri";
 import { AiFillYoutube, AiFillGithub, AiFillFacebook, AiFillLinkedin } from "react-icons/ai";
 import {Link} from 'react-router-dom'
 

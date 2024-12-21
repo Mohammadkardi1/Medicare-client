@@ -21,10 +21,6 @@ const navLinks = [
     label: 'Services',
     path: '/services'
   },
-  // {
-  //   label: 'Your profile',
-  //   path: ``
-  // },
   {
     label: 'Contact',
     path: '/contact'
@@ -40,13 +36,8 @@ const Header = () => {
 
   const {loggedInUser} = useSelector(state => state.auth)
 
-  console.log("loggedInUser", loggedInUser?.role)
-
-
-  
 
   const pathSegment = location.pathname.split('/')[1]
-
 
   // The handleStickyHeader function is used to add or remove a "sticky" class (sticky__header) to an HTML element when 
   // the user scrolls past a certain point on the page.
@@ -59,9 +50,6 @@ const Header = () => {
       }
     })
   }
-
-
-
 
   useEffect(() => {
     handleStickyHeader()
@@ -140,11 +128,6 @@ const Header = () => {
                     <img className="object-cover w-[45px] "
                           src={loggedInUser?.photo ? loggedInUser?.photo : avatar}/>
                   </div>
-
-                
-                  {/* <figure className='rounded-full cursor-pointer'>
-                    <img src={loggedInUser?.photo ? loggedInUser?.photo : avatar} className='w-[45px] h-[45px] rounded-full' alt=''/>
-                  </figure> */}
                 </Link>
               </div>
 
