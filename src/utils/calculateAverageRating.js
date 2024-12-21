@@ -9,5 +9,5 @@ export const calculateAverageRating = (reviews) =>  {
   
   const averageRating = totalRating / reviews?.length;
   
-  return averageRating;
+  return averageRating.toString().slice(0, 3)
   }
