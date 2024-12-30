@@ -30,34 +30,33 @@ const Hero = () => {
           {/* ========== Left Hero Section ========== */}
           <div>
             <div className='lg:w-[570px]'>
-              <h1 className='heading'>We help patients live a healthy, longer life.</h1>
-              <p className='text__para'>
+              <h1 className='custom-header'>We help patients live a healthy, longer life.</h1>
+              <p className='custom-paragraph text-textColor mt-[18px]'>
                 Eiusmod in ea culpa consectetur. Ut excepteur duis exercitation fugiat. Ad ut velit laborum aliquip eu officia magna. 
                 Laboris cupidatat quis proident sit duis eu fugiat incididunt deserunt reprehenderit esse magna commodo.  
                 Magna culpa laborum magna esse mollit nisi et officia fugiat mollit quis nisi sint.
               </p>
-              <button className='btn'>Request an Appointment</button>
+              <button className='custom-button mt-[38px]'>Request an Appointment</button>
             </div>
 
             <div className='mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]'>
               {achievementsList.map((item,index) => (
                 <div key={index}>
-                  <h1 className='heading'>{item.count}</h1>
+                  <h1 className='custom-header'>{item.count}</h1>
                   <span className={`w-[100px] h-2 ${item.borderColor} rounded-full block mt-[-14px]`}></span>
-                  <p className='text__para'>{item.label}</p>
+                  <p className='custom-paragraph text-textColor mt-[8px]'>{item.label}</p>
                 </div>
               ))}
             </div>
           </div>
-
           {/* ========== Right Hero Section ========== */}
           <div className='flex gap-[30px] justify-end'>
             <div>
-              <img src={heroImg01} alt='' className='w-full'/>
+              <img src={heroImg01} className='w-full'/>
             </div>
             <div className='mt-[30px]'>
-              <img src={heroImg02} alt='' className='w-full mb-[30px]'/>
-              <img src={heroImg03} alt='' className='w-full'/>
+              <img src={heroImg02} className='w-full mb-[30px]'/>
+              <img src={heroImg03} className='w-full'/>
             </div>
           </div>
         </div>

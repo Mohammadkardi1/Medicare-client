@@ -18,7 +18,7 @@ const FormInput = ({fieldName, labelText= "", type = "text", placeholder, labelS
                 {...register(fieldName, validationRules)}/>
         
         {!startValidationError && 
-            <p className={`plain-text text-red-600 ${errors?.[fieldName] ? "visible" : "invisible"}`}>
+            <p className={` text-red-600 ${errors?.[fieldName] ? "visible" : "invisible"}`}>
                 {errors?.[fieldName]?.message}
             </p>
         }

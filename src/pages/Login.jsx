@@ -65,7 +65,7 @@ const Login = () => {
                 required: "Enter your email"
               })}
             />
-            <p className={`plain-text text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
+            <p className={` text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
               {errors.email?.message}.
             </p> 
           </div>
@@ -84,7 +84,7 @@ const Login = () => {
                     {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25} />} 
                 </div>
             </div>
-            <p className={`plain-text text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
+            <p className={` text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
                 {errors.password?.message}.
             </p>
           </div>
@@ -98,7 +98,7 @@ const Login = () => {
 
 
           <div>
-            <p className={`plain-text text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
+            <p className={` text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
                 {authError}.
             </p>
           </div>

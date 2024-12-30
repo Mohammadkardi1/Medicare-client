@@ -41,7 +41,7 @@ const VerifyEmail = () => {
 	}
 
 	return (
-		<div className='w-full mt-12 flex flex-col items-center justify-center gap-6 plain-text text-textColor font-semibold'>
+		<div className='w-full mt-12 flex flex-col items-center justify-center gap-6 text-textColor font-semibold'>
 			{isVerified === true &&
 				<>
 					<img src={successImg} alt="success_img" className='w-[150px] lg:w-[250px]' />
@@ -56,7 +56,7 @@ const VerifyEmail = () => {
 				{isVerified === false &&
 					<>
 						<img src={failure} alt="failure_img" className='w-[150px] lg:w-[250px]' />
-						<h1 className="plain-text text-center">
+						<h1 className="text-center">
 							{authError}
 						</h1>
 					</>

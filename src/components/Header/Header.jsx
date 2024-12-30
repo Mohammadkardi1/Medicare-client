@@ -74,30 +74,25 @@ const Header = () => {
     <header className='header flex items-center' ref={headerRef}>
       <div className='container'>
         <div className='flex items-center justify-between'>
-
           {/* ========= logo ========= */}
-          <div>
+          <div className='w-[90px] sm:w-[135px]'>
             <Link to='/home'>
               <img src={logo} alt='logo-image'/>
             </Link>
           </div>
-
-
           {/* ========= menu ========= */}
           <div className='navigation' ref={menuRef}>
-
             <div className='md:hidden flex justify-end' onClick={toggleMenu}>
               <MdOutlineClose size={30}
                   className='cursor-pointer text-black p-1 z-[300] my-4 mx-2 '/>
             </div>
-
-            <ul className='menu flex items-center gap-[2.7rem]'>
+            <ul className='menu flex items-center gap-[2.7rem] custom-paragraph'>
               {navLinks.map((link, index) => (
-                <li key={index} onClick={toggleMenu}>
+                <li key={index} onClick={toggleMenu} className=''>
                   <NavLink to={link.path}
                           className={navClass => navClass.isActive 
-                            ? 'text-primaryColor text-[16px] leading-7 font-[600]' 
-                            : 'text-textColor text-[16px] leading-7 font-[500] hover:text-primaryColor'}>
+                            ? 'text-primaryColor' 
+                            : 'text-textColor hover:text-primaryColor'}>
                     {link.label}
                   </NavLink>
                 </li>
@@ -114,15 +109,9 @@ const Header = () => {
               }
             </ul>
           </div>
-
-
-
-
           {/* ========= nav right ========= */}
             <div className='flex items-center gap-4'>
-
-
-              <div>
+              <div className='hidden lg:block'>
                 <Link to={loggedInUser?.role ? `/${loggedInUser?.role}/profile` : "/home"}>
                   <div className="aspect-square w-full overflow-hidden rounded-full">
                     <img className="object-cover w-[45px] "
@@ -130,26 +119,17 @@ const Header = () => {
                   </div>
                 </Link>
               </div>
-
-
               {loggedInUser?.name ?
-                <button onClick={logout}
-                  className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
+                <button onClick={logout} className='custom-button'>
                   Logout
                 </button>
                 :
-                <Link to= {pathSegment === "login" ? '/register' : '/login' }>
-                  <button 
-                    className='bg-primaryColor py-2 px-6 text-white font-[600] h-[44px] flex items-center justify-center rounded-[50px]'>
+                <button className='custom-button'>
+                  <Link to= {pathSegment === "login" ? '/register' : '/login' }>
                     {pathSegment === "login" ? "Register" : "Login"}
-                  </button>
-                </Link>
+                  </Link>
+                </button>
               }
-
-
-
-
-
               <span className='md:hidden' onClick={toggleMenu}>
                 <BiMenu className='w-6 h-6 cursor-pointer'/>
               </span>
