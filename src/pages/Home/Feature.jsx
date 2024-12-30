@@ -19,21 +19,17 @@ const Feature = () => {
 
                 {/* ========== Left Feature Section ========== */}
                 <div className='xl:w-[670px]'>
-                    <h1 className='heading'>
-                        Get virtual treatment <br/> anytime.
-                    </h1>
+                    <h1 className='custom-header'>Get virtual treatment anytime.</h1>
 
-                    <ol className="list-decimal list-inside space-y-2">
+                    <ol className="list-decimal list-inside custom-paragraph text-textColor space-y-1 lg:space-y-2  mt-[10px] lg:mt-[18px]">
                         {appointment_options.map((item, index) => (
-                            <li key={index} className='text__para'>
+                            <li key={index}>
                                 {item}
                             </li>
                         ))}
                     </ol>
 
-                    <Link to='#'>
-                        <button className='btn'>Learn More</button>
-                    </Link>
+                    <button className='custom-button mt-[20px] lg:mt-[38px] '>Learn More</button>
                 </div>
                             
                     

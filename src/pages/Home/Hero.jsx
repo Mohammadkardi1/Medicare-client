@@ -36,7 +36,7 @@ const Hero = () => {
                 Laboris cupidatat quis proident sit duis eu fugiat incididunt deserunt reprehenderit esse magna commodo.  
                 Magna culpa laborum magna esse mollit nisi et officia fugiat mollit quis nisi sint.
               </p>
-              <button className='custom-button mt-[38px]'>Request an Appointment</button>
+              <button className='custom-button mt-[20px] lg:mt-[38px]'>Request an Appointment</button>
             </div>
 
             <div className='mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]'>

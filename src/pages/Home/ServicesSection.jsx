@@ -5,9 +5,9 @@ const ServicesSection = () => {
   return (
     <section>
       <div className='container'>
-        <div className='w-full max-w-[500px] mx-auto px-4'>
-            <h1 className='heading text-center mb-6'>Our Medical Services</h1>
-            <p className='text__para text-center'>World-Class care for everyone. Our health System offers unmatched, expert health care.</p>
+        <div className='max-w-[400px] lg:max-w-[600px] mx-auto'>
+            <h1 className='custom-header text-center'>Our Medical Services</h1>
+            <p className='custom-paragraph text-textColor mt-[10px] lg:mt-[18px] text-center'>World-Class care for everyone. Our health System offers unmatched, expert health care.</p>
         </div>
 
         <ServicesList/>

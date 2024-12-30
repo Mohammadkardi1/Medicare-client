@@ -5,7 +5,7 @@
 
 @layer base{
     section{
-        @apply mb-[75px]
+        @apply mb-[40px] lg:mb-[75px]
     }
 }
 
@@ -23,7 +23,7 @@
 
 
     .custom-header {
-        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 
+        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl
                font-bold 
                text-headingColor;
     }
@@ -57,7 +57,7 @@
 
 
 
-    /* custom-button mt-[38px] */
+    /* custom-button  mt-[20px]  mt-[38px] */
     .custom-button {
         @apply px-4 sm:px-6 py-1 sm:py-2 text-white bg-primaryColor rounded-[50px]
                 text-base sm:text-lg font-normal sm:font-medium hover:outline-none hover:ring-2 hover:ring-blue-400 
@@ -103,6 +103,7 @@
         @apply text-textColor font-semibold text-[15px] leading-7 pr-4 py-1 focus:outline-none cursor-pointer
     }
 }
+
 
 
 @media only screen and (max-width: 992px) {
