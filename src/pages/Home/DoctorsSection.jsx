@@ -11,7 +11,6 @@ const DoctorsSection = () => {
               World-Class care for everyone. Our health System offers unmatched, expert health care.
             </p>
         </div>
-
         <DoctorList/>
       </div>
     </section>
