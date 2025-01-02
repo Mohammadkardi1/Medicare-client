@@ -48,20 +48,17 @@ const Login = () => {
 
 
   return (
-    <section className='px-5 mt-6 lg:px-0'>
-      <div className='w-full max-w-[570px] mx-auto rounded-lg shadow-md md:p-10'>
-        <h3 className='text-headingColor text-[22px] leading-9 font-bold mb-10'>
-          Hallo! <span className='text-primaryColor'>Welcome</span> Back
-        </h3>
-        <form className=' space-y-4' onSubmit={handleSubmit(handleUserLogin)}>
+    <section className='px-5 mt-4 md:px-0 md:mt-6'>
+      <div className='w-full max-w-[570px] mx-auto p-4 md:p-10 space-y-4 md:space-y-8 rounded-lg shadow-md'>
+        <h3 className='custom-header-md'>Hallo! <span className='text-primaryColor'>Welcome</span> Back</h3>
+        <form className='space-y-2 md:space-y-4' onSubmit={handleSubmit(handleUserLogin)}>
           {/* Name input field */}
           <div>
             <input type="text" placeholder="Email"
               className="form__input__auth"
               {...register("email", {
                 required: "Enter your email"
-              })}
-            />
+              })}/>
             <p className={` text-red-600 ${errors.email?.message ? "visible" : "invisible"}`}>
               {errors.email?.message}.
             </p> 
@@ -70,11 +67,10 @@ const Login = () => {
           <div>
             <div className={`flex items-center justify-between w-full overflow-hidden `}>
                 <input type={showPassword ? 'text' : 'password'} placeholder="Password"
-                      className={`form__input__auth bg-transparent`}
-                      {...register("password", {
-                          required: "Enter your password",
-                      })}
-                  />
+                    className={`form__input__auth bg-transparent`}
+                    {...register("password", {
+                        required: "Enter your password",
+                    })}/>
                 <div className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full'
                     onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25} />} 
@@ -86,7 +82,7 @@ const Login = () => {
           </div>
           <div>
             <button type='submit' disabled={authLoading}
-              className={`${authLoading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
+              className={`${authLoading ? "opacity-[0.7]" : ""} w-full custom-button rounded-lg`}>
               {authLoading ? <LoadingModel color='#FFFFFF'/> : "Login"}
             </button>
           </div>
@@ -96,7 +92,7 @@ const Login = () => {
             </p>
           </div>
           <div>
-            <p className=' text-textColor text-center'>
+            <p className='custom-paragraph text-textColor text-center'>
               Don&apos;t have an account?
               <Link to='/register' className=' text-primaryColor font-semibold ml-1'>
                 Register

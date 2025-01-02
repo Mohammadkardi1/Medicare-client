@@ -97,11 +97,12 @@
         focus:outline-none focus:border focus:border-primaryColor
     }
     .form__input__auth {
-        @apply w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
-        focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1
+        @apply w-full py-2 px-1 md:py-3 md:px-2 text-sm md:text-base leading-7 font-normal md:font-medium
+        border-b border-solid border-SemiTransparentBlue focus:outline-none focus:border-b-primaryColor text-headingColor
+        placeholder:text-textColor 
     }
     .form__select__auth {
-        @apply text-textColor font-semibold text-[15px] leading-7 pr-4 py-1 focus:outline-none cursor-pointer
+        @apply pr-4 py-1 md:pr-2 text-sm md:text-base font-semibold leading-7 text-textColor focus:outline-none cursor-pointer 
     }
 
 

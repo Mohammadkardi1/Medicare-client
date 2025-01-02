@@ -64,9 +64,9 @@ const Register = () => {
   }
 
   return (
-    <section className='px-5 xl:px-0 mt-6'>
-      <div className='w-full max-w-[1170px] mx-auto rounded-lg shadow-md md:p-10'>
-        <div className='grid grid-cols-1 lg:grid-cols-2'>
+    <section className='px-5 mt-4 md:px-0 md:mt-6'>
+      <div className='w-full max-w-[1170px] mx-auto p-4 md:p-10 rounded-lg shadow-md '>
+        <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
           {/* ========= Img Box ========= */}
           <div className='hidden lg:block bg-primaryColor rounded-l-lg'>
             <figure className='rounded-l-lg'>
@@ -74,17 +74,17 @@ const Register = () => {
             </figure>
           </div>
           {/* ========= Registeration Form ========= */}
-          <div className='rounded-l-lg lg:pl-16 py-10'>
-            <h1 className='text-headingColor text-[22px] leading-9 font-bold mb-10'>
+          <div className='space-y-4 md:space-y-8 rounded-l-lg'>
+            <h1 className='custom-header-md'>
               Create an <span className=' text-primaryColor'>account</span>
             </h1>
             <form className='space-y-4' onSubmit={handleSubmit(handleUserRegistration)}>
               {/* Name input field */}
-              <FormInput fieldName="name" placeholder="Full Name" 
-                  inputStyle="form__input__auth" register={register} validationRules={nameValidation} errors={errors}/>
+              <FormInput fieldName="name" placeholder="Full Name" inputStyle="form__input__auth" 
+                        register={register} validationRules={nameValidation} errors={errors}/>
               {/* Email input field */}
-              <FormInput fieldName="email" placeholder="Email" 
-                  inputStyle="form__input__auth" register={register} validationRules={emailValidation} errors={errors}/>
+              <FormInput fieldName="email" placeholder="Email" inputStyle="form__input__auth" 
+                        register={register} validationRules={emailValidation} errors={errors}/>
               {/* Password input field */}
               <div>
                   <div className={`flex items-center justify-between w-full overflow-hidden  
@@ -93,8 +93,7 @@ const Register = () => {
                             className={`form__input__auth bg-transparent`}
                             {...register("password", {
                                 validate: passwordValidation
-                            })}
-                        />
+                            })}/>
                       <div className='p-2 lg:p-4 text-gray-500 cursor-pointer h-full'
                           onClick={() => setShowPassword(!showPassword)}>
                         {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25}/>}
@@ -104,34 +103,30 @@ const Register = () => {
                       {errors.password?.message}.
                   </p>
               </div>
-              <div className='flex items-center justify-between'>
+              <div className='flex flex-col md:flex-row items-start md:items-center md:justify-between'>
                 {/* Role selection dropdown */}  
-                <FormSelect fieldName="role" labelText="Your Role:" 
-                            labelStyle="text-headingColor font-bold text-[16px] leading-7"
+                <FormSelect fieldName="role" labelText="Your Role:" labelStyle="form__label"
                             options={roleOptions} validationRules={{ required: 'Select a role' }}
                             register={register} errors={errors} selectStyle="form__select__auth" />
                 {/* Gender selection dropdown */}
-                <FormSelect fieldName="gender" labelText="Gender:" 
-                            labelStyle="text-headingColor font-bold text-[16px] leading-7"
+                <FormSelect fieldName="gender" labelText="Gender:" labelStyle="form__label" 
                             options={genderOptions} validationRules={{ required: 'Select a gender' }}
                             register={register} errors={errors} selectStyle="form__select__auth" />
               </div>
               {/* Image Input Field */}
               <div>
                 <div className='flex items-center gap-3 '>
-                  <figure className='w-[60px] h-[60px] rounded-full border-2 border-solid  border-primaryColor flex items-center
-                            justify-center'>
-                    <img src={avatar} alt='' className='w-full rounded-full'/>
+                  <figure className='w-[60px] h-[60px] md:w-[50px] md:h-[50px] rounded-full border-2 border-solid  border-primaryColor 
+                      flex items-center justify-center'>
+                    <img src={avatar} className='w-full rounded-full'/>
                   </figure>
                   <div className='relative w-[130px] h-[50px]'>
-                    <input 
-                      type='file'
+                    <input type='file'
                       className='absolute top-0 left-0 w-full h-full opacity-0 z-10'
                       {...register("photo", {
                         required: "Select a Photo",
                         validate: validateImageType
-                      })}
-                      />
+                      })}/>
                     <label htmlFor='customFile' 
                             className='absolute top-0 left-0 w-full h-full flex items-center px-[0.75rem] py-[0.375rem] text-[15px] 
                               leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1'>
@@ -145,7 +140,7 @@ const Register = () => {
               </div>
               <div>
                 <button type='submit' disabled={authLoading}
-                  className={`${authLoading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3`}>
+                  className={`${authLoading ? "opacity-[0.7]" : ""} w-full custom-button rounded-lg`}>
                   {authLoading ? <LoadingModel color='#FFFFFF'/> : "Register"}
                 </button>
               </div>
@@ -155,9 +150,9 @@ const Register = () => {
                 </p>
               </div>
               <div>
-                <p className='mt-5 text-textColor text-center'>
+                <p className='custom-paragraph text-textColor text-center'>
                   Already have an account?
-                  <Link to='/login' className=' text-primaryColor font-medium ml-1'>
+                  <Link to='/login' className=' text-primaryColor font-semibold ml-1'>
                     Login
                   </Link>
                 </p>
