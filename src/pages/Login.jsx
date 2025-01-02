@@ -53,10 +53,7 @@ const Login = () => {
         <h3 className='text-headingColor text-[22px] leading-9 font-bold mb-10'>
           Hallo! <span className='text-primaryColor'>Welcome</span> Back
         </h3>
-
-
         <form className=' space-y-4' onSubmit={handleSubmit(handleUserLogin)}>
-
           {/* Name input field */}
           <div>
             <input type="text" placeholder="Email"
@@ -69,7 +66,6 @@ const Login = () => {
               {errors.email?.message}.
             </p> 
           </div>
-
           {/* Password input field */}
           <div>
             <div className={`flex items-center justify-between w-full overflow-hidden `}>
@@ -88,23 +84,17 @@ const Login = () => {
                 {errors.password?.message}.
             </p>
           </div>
-
           <div>
             <button type='submit' disabled={authLoading}
               className={`${authLoading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3 `}>
               {authLoading ? <LoadingModel color='#FFFFFF'/> : "Login"}
             </button>
           </div>
-
-
           <div>
             <p className={` text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
                 {authError}.
             </p>
           </div>
-
-
-
           <div>
             <p className=' text-textColor text-center'>
               Don&apos;t have an account?

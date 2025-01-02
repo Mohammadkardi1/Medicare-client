@@ -68,113 +68,83 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
 
   return (
     <>
-    <div>
-      <div className='mb-[50px]'>
-
-        <h1 className='text-[20px] leading-[30px] font-bold text-headingColor mb-[30px]'>
+    <div className='space-y-7 md:space-y-10'>
+      <div className='space-y-2 md:space-y-4'>
+        <h1 className='custom-header-sm'>
           All reviews {doctorProfileData?.reviews ? `(${doctorProfileData?.reviews?.length})` : "0" }
         </h1>
-        <div className='space-y-4'>
+        <div className='space-y-2 md:space-y-4'>
           {doctorProfileData?.reviews?.map((item, index) => (
-          <div key={index} className='grid grid-cols-[60px_auto] grid-rows-[auto auto auto] gap-2 border-b-2 p-2'>
-
+          <div key={index} className='grid grid-cols-[50px_auto] md:grid-cols-[60px_auto] grid-rows-[auto auto auto] gap-2 
+                        border-b-2 p-2'>
             <div className="col-start-1 row-start-1 ">
-
-
               <div className="aspect-square  overflow-hidden rounded-full">
-                <img className="object-cover w-full "
-                      src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
+                <img className="object-cover w-full " src={item?.reviewer?.photo ? item?.reviewer?.photo : avatar}/>
               </div>
-
-                    
-                                
             </div>
-
             <div className="col-start-2 row-start-1">
-              <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>
-                {item?.reviewer?.name}
-              </h1>
+              <h1 className='text-[16px] leading-6 text-primaryColor font-bold'>{item?.reviewer?.name}</h1>
 
               <div className='flex items-center gap-1'>
                 {[...Array(item?.rating).keys()].map((_, index) => (
                   <AiFillStar key={index} className="text-yellowColor"/>
                 ))}
-                <span className=' text-headingColor text-[12px]'>{`(${item?.rating})`}</span>
+                <span className='text-[12px] text-headingColor'>{`(${item?.rating})`}</span>
               </div>                
-
-              <p className='text-[12px] leading-6 text-headingColor'>
-                {formateDate(item?.updatedAt)}
-              </p>
+              <p className='text-[12px] leading-6 text-headingColor'>{formateDate(item?.updatedAt)}</p>
             </div>
-
-            <div className="col-start-2 row-start-2">
-              <p className='text__para mt-0 font-medium text-[16px] rounded-md py-2 px-4 bg-gray-100'>
+            <div className="col-span-2  md:col-start-2 md:row-start-2">
+              <p className='custom-paragraph rounded-md py-1 px-2 md:py-2 md:px-4 text-textColor bg-gray-100'>
                 {item?.reviewText}
               </p>
             </div>
           </div>
           ))}
         </div>
-
-
-
       </div>
 
       {!doctorViewMode && 
       <form onSubmit={handleSubmit(handleSubmitReview)}>
-        <div>
-            <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4'>
-                How would you rate the overall experience?
-            </h1>
-
-            <div>
+        <div className='space-y-6 md:space-y-8'>
+            <div className='space-y-1 md:space-y-3'>
+              <h1 className='custom-header-sm'>How would you rate the overall experience?</h1>
                 {[...Array(5).keys()].map((_, index) => {
                     index += 1
                     return (
                         <button key={index} type="button"
                             className={`${index <= (hover || rating) ? 'text-yellowColor': 'text-gray-400'} 
-                                bg-transparent border-none outline-none text-[22px] cursor-pointer`}
+                                bg-transparent border-none outline-none text-[18px] md:text-[22px] cursor-pointer`}
                             onClick={() => setValue("rating", index)}
                             onMouseEnter={() => setHover(index)}
-                            onMouseLeave={() => setHover(watch("rating"))}
-                            >
-                            <span>
-                                <AiFillStar />
-                            </span>
+                            onMouseLeave={() => setHover(watch("rating"))}>
+                            <span><AiFillStar/></span>
                         </button>
                     )
                 })}
             </div>
-
-            <div className='mt-[30px]'>
-                <h1 className='text-headingColor text-[16px] leading-6 font-semibold mb-4 mt-0'>
+            <div className='space-y-1 md:space-y-2'>
+                <h1 className='text-headingColor text-[16px] leading-6 font-semibold'>
                     Share your review or suggestions
                 </h1>
                 <div>
                   <textarea rows={5} placeholder="Write a review" 
-                      className='bg-gray-100 border border-solid border-[#0066ff34] focus:otline outline-primaryColor w-full px-4 py-3 rounded-md'
+                      className='w-full px-2 py-1 md:px-2 md-py-3 text-sm md:text-base rounded-md bg-gray-100 border border-solid border-[#0066ff34] focus:otline outline-primaryColor'
                       {...register("reviewText", {required: "Review text cannot be empty "})}>
                   </textarea>
-                  <p className={` text-red-600 ${errors.reviewText?.message ? "visible" : "invisible"}`}>
+                  <p className={` text-red-600 ${errors.reviewText?.message ? "block" : "hidden"}`}>
                     {errors.reviewText?.message}.
                   </p>
                 </div>
             </div>
-
-
             <div className='w-full flex items-center justify-start'>
-              <button className='btn w-[200px] mt-5'>
+              <button className='custom-button w-[200px]'>
                 {reviewLoading ? <LoadingModel color='#FFFFFF'/> : "Submit Review"}
-                  
               </button>
             </div>
-            
-
         </div>
       </form>
       }
     </div>
-
     <PopUpModel
       isModelOpen={isModelOpen} 
       setIsModelOpen={setIsModelOpen} 

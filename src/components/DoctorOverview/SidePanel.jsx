@@ -7,14 +7,11 @@ import { useSelector } from 'react-redux';
 
 const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
 
-
     const { doctorID } = useParams()
     const { loggedInUser } = useSelector(state => state.auth)
 
-
   return (
     <div className=' shadow-panelShadow p-3 lg:p-5 rounded-md w-[400px]'>
-
         {doctorProfileData?.ticketPrice && 
         <div className='flex items-center justify-between'>
             <p className='text__para mt-0 font-semibold'>Ticket Price</p>
@@ -23,7 +20,6 @@ const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
             </span>
         </div>
         }
-
         {doctorProfileData?.timeSlots?.length !== 0 && 
         <div className='mt-[30px]'>
             <p className='text__para mt-0 font-semibold text-headingColor'>
@@ -44,9 +40,7 @@ const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
         </div>
         }
         {!doctorViewMode && doctorID !== loggedInUser?._id &&
-            <button className='btn px-2 w-full rounded-md'>
-                Book Appointment
-            </button>
+            <button className='btn px-2 w-full rounded-md'>Book Appointment</button>
         }
     </div>
   )

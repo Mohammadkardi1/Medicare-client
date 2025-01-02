@@ -35,13 +35,10 @@ const genderOptions = [
 const Register = () => {
 
   const location = useLocation()
-  
   const [showPassword, setShowPassword] = useState(false)
   const { authError, authLoading } = useSelector((state) => state.auth)
 
   const redirectPath = location.state?.path || '/home'
-
-
   const dispatch = useDispatch()
 
   const {register, handleSubmit, formState: {errors}, reset, watch} = useForm({
@@ -51,28 +48,16 @@ const Register = () => {
     },
   })
 
-
   useEffect(() => {
     dispatch(authThunks.clearAuthError())
   }, [])
 
-
-
-
-
   const handleUserRegistration = async (userInfo) => {
-
     dispatch(authThunks.setLoading(true))
-  
     const photo = await uploadImageToCloudinary(userInfo?.photo[0])
-
     userInfo = {...userInfo , photo: photo.secure_url}
-
     try {
       const res = await dispatch(registerUser(userInfo))
-
-
-
     } catch (error) {
       console.log(error.message)
     }
@@ -80,40 +65,26 @@ const Register = () => {
 
   return (
     <section className='px-5 xl:px-0 mt-6'>
-      <div className='max-w-[1170px] mx-auto'>
+      <div className='w-full max-w-[1170px] mx-auto rounded-lg shadow-md md:p-10'>
         <div className='grid grid-cols-1 lg:grid-cols-2'>
-
-
           {/* ========= Img Box ========= */}
           <div className='hidden lg:block bg-primaryColor rounded-l-lg'>
             <figure className='rounded-l-lg'>
               <img src={signupImg} alt='' className='w-full rounded-l-lg'/>
             </figure>
           </div>
-
           {/* ========= Registeration Form ========= */}
           <div className='rounded-l-lg lg:pl-16 py-10'>
-
-
             <h1 className='text-headingColor text-[22px] leading-9 font-bold mb-10'>
               Create an <span className=' text-primaryColor'>account</span>
             </h1>
-
             <form className='space-y-4' onSubmit={handleSubmit(handleUserRegistration)}>
-
-
-
               {/* Name input field */}
               <FormInput fieldName="name" placeholder="Full Name" 
                   inputStyle="form__input__auth" register={register} validationRules={nameValidation} errors={errors}/>
-
-
               {/* Email input field */}
               <FormInput fieldName="email" placeholder="Email" 
                   inputStyle="form__input__auth" register={register} validationRules={emailValidation} errors={errors}/>
-
-
-
               {/* Password input field */}
               <div>
                   <div className={`flex items-center justify-between w-full overflow-hidden  
@@ -133,29 +104,18 @@ const Register = () => {
                       {errors.password?.message}.
                   </p>
               </div>
-
-
-
               <div className='flex items-center justify-between'>
-
                 {/* Role selection dropdown */}  
                 <FormSelect fieldName="role" labelText="Your Role:" 
                             labelStyle="text-headingColor font-bold text-[16px] leading-7"
                             options={roleOptions} validationRules={{ required: 'Select a role' }}
                             register={register} errors={errors} selectStyle="form__select__auth" />
-
-
                 {/* Gender selection dropdown */}
                 <FormSelect fieldName="gender" labelText="Gender:" 
                             labelStyle="text-headingColor font-bold text-[16px] leading-7"
                             options={genderOptions} validationRules={{ required: 'Select a gender' }}
                             register={register} errors={errors} selectStyle="form__select__auth" />
-
-
-
               </div>
-
-
               {/* Image Input Field */}
               <div>
                 <div className='flex items-center gap-3 '>
@@ -163,7 +123,6 @@ const Register = () => {
                             justify-center'>
                     <img src={avatar} alt='' className='w-full rounded-full'/>
                   </figure>
-
                   <div className='relative w-[130px] h-[50px]'>
                     <input 
                       type='file'
@@ -178,32 +137,23 @@ const Register = () => {
                               leading-6 overflow-hidden bg-[#0066ff46] text-headingColor font-semibold rounded-lg truncate z-1'>
                       Upload Photo
                     </label>
-
                   </div>
                 </div>
                 <p className={` text-red-600 ${errors.photo?.message ? "visible" : "invisible"}`}>
                     {errors.photo?.message}.
                 </p>
               </div>
-
-
-
               <div>
                 <button type='submit' disabled={authLoading}
                   className={`${authLoading ? "opacity-[0.7]" : ""} w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg px-4 py-3`}>
                   {authLoading ? <LoadingModel color='#FFFFFF'/> : "Register"}
-
                 </button>
               </div>
-
               <div>
                 <p className={` text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
                     {authError}.
                 </p>
               </div>
-
-
-
               <div>
                 <p className='mt-5 text-textColor text-center'>
                   Already have an account?
@@ -212,7 +162,6 @@ const Register = () => {
                   </Link>
                 </p>
               </div>
-
             </form>
           </div>
         </div>

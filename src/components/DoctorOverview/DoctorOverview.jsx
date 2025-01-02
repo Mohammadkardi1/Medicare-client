@@ -41,7 +41,7 @@ const DoctorOverview = ({doctorProfileData,  doctorViewMode=false}) => {
         <div className='max-w-[1170px] mx-auto'>
 
 
-          <div className='grid grid-cols-1 gap-[20px]'>
+          <div className='grid grid-cols-1 gap-[40px]'>
             <div>
 
 
