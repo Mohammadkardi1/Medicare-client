@@ -23,7 +23,7 @@ const FormSelect = ({fieldName, labelText, options = [], register, validationRul
             ))}
       </select>
       {!startValidationError &&
-      <p className={` text-red-600 ${errors?.[fieldName]?.message ? "visible" : "invisible"}`}>
+      <p className={`text-sm md:text-base text-red-600 ${errors?.[fieldName]?.message ? "visible" : "invisible"}`}>
         {errors?.[fieldName]?.message}.
       </p>
       }

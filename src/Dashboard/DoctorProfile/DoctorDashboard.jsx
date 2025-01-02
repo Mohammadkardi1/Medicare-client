@@ -98,13 +98,11 @@ const DoctorDashboard = () => {
                   </button>
               ))}
               <div className='w-full mt-[50px] md:mt-[100px]'>
-                  <button 
-                      onClick={handleLogout} 
-                      className='w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white'>
+                  <button onClick={handleLogout} className='w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white'>
                       Logout
                   </button>
-                  
-                  <button onClick={DeleteDoctorAccount} className='w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white'>
+                  <button onClick={DeleteDoctorAccount} 
+                      className='w-full bg-red-600 mt-4 p-3 text-[16px] leading-7 rounded-md text-white'>
                    {doctorLoading ? <LoadingModel/> : "Delete Account"}
                   </button>
               </div>
@@ -128,9 +126,7 @@ const DoctorDashboard = () => {
                 {panel === 'appointments' && <Appointments/>} 
                 {panel === 'settings' && (
                   <div className='space-y-2 md:space-y-4'>
-                    <h2 className='custom-header-md'>
-                      Profile Information
-                    </h2>
+                    <h2 className='custom-header-md'>Profile Information</h2>
                     <DashboardForm/>
                   </div>
                 )}

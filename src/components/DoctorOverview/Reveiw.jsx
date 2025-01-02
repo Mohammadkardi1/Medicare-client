@@ -131,7 +131,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
                       className='w-full px-2 py-1 md:px-2 md-py-3 text-sm md:text-base rounded-md bg-gray-100 border border-solid border-[#0066ff34] focus:otline outline-primaryColor'
                       {...register("reviewText", {required: "Review text cannot be empty "})}>
                   </textarea>
-                  <p className={` text-red-600 ${errors.reviewText?.message ? "block" : "hidden"}`}>
+                  <p className={`text-sm md:text-base text-red-600 ${errors.reviewText?.message ? "block" : "hidden"}`}>
                     {errors.reviewText?.message}.
                   </p>
                 </div>

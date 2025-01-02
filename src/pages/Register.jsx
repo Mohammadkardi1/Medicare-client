@@ -93,7 +93,7 @@ const Register = () => {
                         {showPassword ? <IoMdEyeOff size={25}/> : <MdRemoveRedEye size={25}/>}
                       </div>
                   </div>
-                  <p className={` text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
+                  <p className={`text-sm md:text-base text-red-600 ${errors.password?.message ? "visible" : "invisible"}`}>
                       {errors.password?.message}.
                   </p>
               </div>
@@ -128,7 +128,7 @@ const Register = () => {
                     </label>
                   </div>
                 </div>
-                <p className={` text-red-600 ${errors.photo?.message ? "visible" : "invisible"}`}>
+                <p className={`text-sm md:text-base text-red-600 ${errors.photo?.message ? "visible" : "invisible"}`}>
                     {errors.photo?.message}.
                 </p>
               </div>
@@ -139,7 +139,7 @@ const Register = () => {
                 </button>
               </div>
               <div>
-                <p className={` text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
+                <p className={`text-sm md:text-base text-red-600 text-center ${authError ? "visible" : "invisible"}`}>
                     {authError}.
                 </p>
               </div>
