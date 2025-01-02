@@ -20,21 +20,13 @@ const Routers = () => {
     <Routes>
       <Route path='/' element={<Home/>} />
       <Route path='/home' element={<Home/>} />
-
       <Route path='/login' element={<AuthenticationProtect><Login/></AuthenticationProtect>} />
       <Route path='/register' element={<AuthenticationProtect><Register/></AuthenticationProtect>} />
-
-      
       <Route path='/FindDoctor' element={<FindDoctor/>} />
       <Route path='/doctor/:doctorID' element={<DoctorProfile/>} />
-
       <Route path='/services' element={<Services/>} />
       <Route path='/contact' element={<Contact/>} />
-
-
-
       <Route path='/api/auth/:role/:id/verify/:token' element={<VerifyEmail/>}/>
-
       <Route path='/patient/profile' element={
                 <AuthorizationProtect allowedRoles={['patient']}>
                   <PatientDashboard/>
@@ -45,7 +37,6 @@ const Routers = () => {
                   <DoctorDashboard/>
                 </AuthorizationProtect>
                 }/>
-
       <Route path='*' element={<NotFoundPage/>}/>
     </Routes>
   )

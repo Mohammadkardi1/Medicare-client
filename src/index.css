@@ -24,8 +24,14 @@
     .custom-header {
         @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-headingColor;
     }
+    .custom-header-md {
+        @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-headingColor;
+    }
+    .custom-header-sm {
+        @apply text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-headingColor;
+    }
     /* heading: Should be deleted */
-    .heading{ 
+    .heading { 
         @apply text-[44px] leading-[54px] font-[700] text-headingColor
     }
     .custom-cart-header {
@@ -45,7 +51,7 @@
     }
 
     /* text__para should be deleted */
-    .text__para{
+    .text__para {
         @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
     }
 
@@ -69,34 +75,32 @@
 
 
 
-    .form__label{
+    .form__label {
         @apply block text-base md:text-lg leading-7 mb-1 md:mb-2 font-bold text-headingColor;
     }
-
-    .form__input{
+    .form__input {
         @apply w-full px-1 py-2 md:px-2 md:py-3  text-sm md:text-base leading-7 font-normal md:font-medium text-headingColor
         border border-textColor border-solid rounded-md focus:outline-none focus:border-primaryColor placeholder:text-textColor
     }
-    .form__textarea{
+    .form__textarea {
         @apply w-full px-1 py-2 md:px-2 md:py-3  text-sm md:text-base leading-7 font-normal md:font-medium
         border border-solid border-textColor rounded-md placeholder:text-textColor focus:outline-none focus:border-primaryColor
     }
 
 
 
-
-    .form__label__branch{
+    .form__label__branch {
         @apply block text-[14px] leading-7 font-semibold text-headingColor mb-1
     }
-    .form__select{
+    .form__select {
         @apply py-2 px-4 text-textColor outline outline-1 rounded-sm font-semibold text-[15px] leading-7 cursor-pointer 
         focus:outline-none focus:border focus:border-primaryColor
     }
-    .form__input__auth{
+    .form__input__auth {
         @apply w-full pr-3 py-3 border-b border-solid border-SemiTransparentBlue focus:outline-none 
         focus:border-b-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor px-1
     }
-    .form__select__auth{
+    .form__select__auth {
         @apply text-textColor font-semibold text-[15px] leading-7 pr-4 py-1 focus:outline-none cursor-pointer
     }
 
@@ -105,10 +109,10 @@
 
 
 
-    .header{
+    .header {
         @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover bg-white w-full h-[80px] leading-[100px]
     }
-    .hero__section{
+    .hero__section {
         @apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover
     }
 }

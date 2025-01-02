@@ -5,28 +5,24 @@ import { formateDate } from '../../utils/formateDate';
 
 const About = ({doctorProfileData}) => {
   return (
-    <div>
+    <div className='space-y-6 md:space-y-10'>
       {doctorProfileData?.about && 
-      <div>
-        <h3 className='text-[20px] leading-[30px] text-headingColor font-semibold flex items-center gap-2'>
+      <div className='space-y-1 md:space-y-2'>
+        <h3 className='custom-header-md flex items-center gap-2'>
             About of
-            <span className=' text-irisBlueColor font-bold text-[24px] leading-9'>
-                Dr. {doctorProfileData?.name}
-            </span>
+            <span className=' text-irisBlueColor'>Dr. {doctorProfileData?.name}</span>
         </h3>
-        <p className='text__para'>
+        <p className='custom-paragraph text-textColor'>
           {doctorProfileData?.about}
         </p>
       </div>
       }
 
       {doctorProfileData?.hospital &&
-      <div className='mt-12'>
-        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
-            Hospital
-        </h1>
-        <ul className='pt-4 md:p-5'>
-            <li className='text-[16px] leading-6 font-medium text-textColor'>
+      <div className='space-y-1 md:space-y-2'>
+        <h1 className='custom-header-sm'>Hospital</h1>
+        <ul className='px-3 md:px-5'>
+            <li className='custom-paragraph text-textColor'>
               {doctorProfileData?.hospital}
             </li>
         </ul>
@@ -34,12 +30,10 @@ const About = ({doctorProfileData}) => {
       }
 
       {doctorProfileData?.phone &&
-      <div className='mt-12'>
-        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
-            Phone Number
-        </h1>
-        <ul className='pt-4 md:p-5'>
-            <li className='text-[16px] leading-6 font-medium text-textColor'>
+      <div className=' space-y-1 md:space-y-2'>
+        <h1 className='custom-header-sm'>Phone Number</h1>
+        <ul className='px-3 md:px-5'>
+            <li className='custom-paragraph text-textColor'>
               {doctorProfileData?.phone}
             </li>
         </ul>
@@ -47,24 +41,18 @@ const About = ({doctorProfileData}) => {
       }
 
       {doctorProfileData?.qualifications?.length !== 0 && 
-      <div className='mt-12'>
-        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
-            Education
-        </h1>
-        <ul className='pt-4 md:p-5'>
+      <div className='space-y-1 md:space-y-2'>
+        <h1 className='custom-header-sm'>Education</h1>
+        <ul className='px-3 md:px-5 space-y-3 md:space-y-4'>
           {doctorProfileData?.qualifications?.map((item, index) => (
-            <li key={index} className='flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]'>
+            <li key={index}>
                 <div>
-                    <span className=' text-irisBlueColor text-[15px] leading-6 font-semibold'>
+                    <span className='custom-paragraph font-semibold text-irisBlueColor'>
                         {formateDate(item.startingDate)} - {formateDate(item.endingDate)}
                     </span>
-                    <p className='text-[16px] leading-6 font-medium text-textColor'>
-                      {item.degree}
-                    </p>
+                    <p className='custom-paragraph text-textColor'>{item.degree}</p>
+                    <p className='custom-paragraph text-textColor'>{item.institution}</p>
                 </div>
-                <p className='text-[14px] leading-5 font-medium text-textColor'>
-                  {item.institution}
-                </p>
             </li>
           ))}
         </ul>
@@ -75,24 +63,21 @@ const About = ({doctorProfileData}) => {
 
 
       {doctorProfileData?.experiences?.length !== 0 && 
-      <div className='mt-12'>
-        <h1 className='text-[20px] leading-[30px] text-headingColor font-semibold'>
-            Experience
-        </h1>
+      <div className='space-y-1 md:space-y-2'>
+        <h1 className='custom-header-sm'>Experience</h1>
 
 
-        <ul className='grid sm:grid-cols-2 gap-[30px] pt-4 md:p-5'>
+        <ul className='grid md:grid-cols-2  px-3 md:px-5 gap-[10px] md:gap-[30px]'>
           {doctorProfileData?.experiences?.map((item, index) => (
             <li key={index} className=' p-4 rounded bg-[#fff9ea]'>
-              <span className=' text-yellowColor text-[15px] leading-6 font-semibold'>
+
+
+
+              <span className='custom-paragraph font-semibold text-yellowColor'>
                   {formateDate(item.startingDate)} - {formateDate(item.endingDate)}
               </span>
-              <p className='text-[16px] leading-6 font-medium text-textColor'>
-                {item.position}
-              </p>
-              <p className='text-[14px] leading-5 font-medium text-textColor'>
-                {item.company}
-              </p>
+              <p className='custom-paragraph text-textColor'>{item.position}</p>
+              <p className='custom-paragraph text-textColor'>{item.company}</p>
             </li>
           ))}
         </ul>
