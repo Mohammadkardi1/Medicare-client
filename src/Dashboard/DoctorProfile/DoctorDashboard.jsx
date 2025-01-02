@@ -36,24 +36,18 @@ const DoctorDashboard = () => {
   const location = useLocation()
   const dispatch = useDispatch()
   const { pathname } = useLocation()
-
-  
   const [panel, setPanel] = useState('overview')
-
   const {loggedInUser, authLoading, authError} = useSelector(state => state.auth)
   const { doctorLoading } = useSelector(state => state.doctor)
 
-
   const queryParams = new URLSearchParams(location.search)
   const activePanelFromURL = queryParams.get('panel') || sidebarItems[0].panel
-
 
   const handlePanelChange = (panel) => {
     setPanel(panel)
     navigate(`?panel=${panel}`)
   }
 
-  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [])
@@ -70,7 +64,6 @@ const DoctorDashboard = () => {
 
   const DeleteDoctorAccount = async () => {
     const res = await dispatch(deleteDoctor(loggedInUser._id))
-
     if (!res.error) {
       dispatch(authThunks.syncLocalStorage())
       showToastSuccess("Your account has been deleted successfully!", { position: "top-right", autoClose: 3000 })
@@ -80,25 +73,17 @@ const DoctorDashboard = () => {
     }
   }
 
-
   if (authLoading && !authError) {
       return <LoadingModel styles={"h-[40vh]"}/>
   }
- 
   if (authError && !authLoading) {
       return <ErrorModel errorMsg={authError} styles={"h-[40vh]"}/>
   }
-
 
   return (
     <section className='mt-[75px] max-width-[1170px] px-5'>
     {!authLoading && !authError && (
         <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
-
-
-        
-
-
           {/* Left Sidebar */}
           <div>
             <span className='lg:hidden'>
@@ -125,54 +110,34 @@ const DoctorDashboard = () => {
               </div>
             </div> 
           </div>
-
-
           {/* Right Sidebar */}
           <div className='lg:col-span-2'>
               {loggedInUser?.isApproved === 'pending' && (
                 <div className='flex p-4 text-yellow-800 bg-yellow-50 rounded-lg'>
-
-                  <svg aria-hidden="true"
-                        className="flex-shrink-0 w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                  <path fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 
-                        1 0 100-2v-3a1 1 0 00-1-1H9z"
-                        clipRule="evenodd">
-                  </path>
+                  <svg aria-hidden="true" className="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fillRule="evenodd"d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd">
+                    </path>
                   </svg>
-
-                <div className='ml-3 text-sm font-medium'>
-                  To get approval please complete your profile. We&apos;ll review manually and approve within 3 days.
-                </div>
+                  <div className='ml-3 text-sm font-medium'>
+                    To get approval please complete your profile. We&apos;ll review manually and approve within 3 days.
+                  </div>
                 </div>
               )}
-
-
-
               <div>
                 {panel === 'overview' && <DoctorOverview doctorProfileData={loggedInUser} doctorViewMode={true}/>}
-                {panel === 'appointments' && <Appointments/>}
-
-
-
+                {panel === 'appointments' && <Appointments/>} 
                 {panel === 'settings' && (
-                  <div>
-                    <h2 className='text-headingColor font-bold text-[24px] leading-9 mb-10'>
+                  <div className='space-y-2 md:space-y-4'>
+                    <h2 className='custom-header-md'>
                       Profile Information
                     </h2>
                     <DashboardForm/>
                   </div>
                 )}
               </div>
-
           </div>
-
         </div>
     )}
-
     </section>
   )
 }

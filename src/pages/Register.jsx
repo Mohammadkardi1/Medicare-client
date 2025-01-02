@@ -15,15 +15,11 @@ import FormInput from './../components/Form/FormInput';
 import FormSelect from './../components/Form/FormSelect';
 
 
-// alexia.ar19990@gmail.com
-
-
 
 const roleOptions = [
   { value: 'patient', label: 'patient' },
   { value: 'doctor', label: 'doctor' },
 ]
-
 
 const genderOptions = [
   { value: 'Male', label: 'Male' },
@@ -31,13 +27,11 @@ const genderOptions = [
   { value: 'Other', label: 'Other' },
 ]
 
-
 const Register = () => {
 
   const location = useLocation()
   const [showPassword, setShowPassword] = useState(false)
   const { authError, authLoading } = useSelector((state) => state.auth)
-
   const redirectPath = location.state?.path || '/home'
   const dispatch = useDispatch()
 

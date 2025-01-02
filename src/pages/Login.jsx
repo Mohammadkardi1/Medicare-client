@@ -14,18 +14,11 @@ const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-
   const redirectPath = location.state?.path || '/home'
 
-
-
   const { authError, authLoading } = useSelector((state) => state.auth)
-
-  
   const [showPassword, setShowPassword] = useState(false)
-
   const {register, handleSubmit, formState: {errors}, reset, watch} = useForm()
-
 
   useEffect(() => {
     dispatch(authThunks.clearAuthError())
@@ -33,8 +26,6 @@ const Login = () => {
   
 
   const handleUserLogin = async (userInfo) => {
-
-
     try {
       const res = await dispatch(loginUser(userInfo))
       if (!res.error) {
@@ -45,7 +36,6 @@ const Login = () => {
       console.log(error.message)
     }
   }
-
 
   return (
     <section className='px-5 mt-4 md:px-0 md:mt-6'>
