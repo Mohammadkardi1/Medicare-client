@@ -34,7 +34,7 @@ const HowItWorks = () => {
                 <h1 className='custom-header text-center'>Providing the best medical services</h1>
                 <p className='custom-paragraph text-textColor mt-[10px] lg:mt-[18px] text-center'>World-class care for everyone. Our health System offers unmatched, expert health care.</p>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[20px] lg:mt-[45px]'>
                 {servicesList.map((item, index) => (
                     <div key={index} className='py-[20px] lg:py-[30px] px-5'>
                         <div className='flex items-center justify-center'>

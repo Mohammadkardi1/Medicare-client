@@ -89,7 +89,7 @@ const Footer = () => {
         <div className=' grid grid-cols-5 gap-8'>
 
           {/* ========== Copyright and Social Profiles ========== */}
-          <div className='col-span-2 space-y-6'>
+          <div className='col-span-5 md:col-span-2 space-y-6'>
             <img src={logoImg} alt='logo-image'/>
 
             <p className='text-[14px] leading-[25px] font-[500] text-textColor'>
@@ -110,7 +110,7 @@ const Footer = () => {
           
 
           {/* ========== QuickLinks List ========== */}
-          <div>
+          <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>Quick Links</h1>
             <ul>
               {QuickLinks.map((item, index) => (
@@ -122,7 +122,7 @@ const Footer = () => {
           </div>
 
           {/* ========== IWantTo List ========== */}
-          <div>
+          <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>I want to</h1>
             <ul>
               {IWantToItems.map((item, index) => (
@@ -134,7 +134,7 @@ const Footer = () => {
           </div>
 
           {/* ========== Support List ========== */}
-          <div>
+          <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>Support</h1>
             <ul>
               {SupportItems.map((item, index) => (

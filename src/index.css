@@ -21,36 +21,33 @@
     }
 
 
-
     .custom-header {
-        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl
-               font-bold 
-               text-headingColor;
+        @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-headingColor;
     }
-    .heading{
+    /* heading: Should be deleted */
+    .heading{ 
         @apply text-[44px] leading-[54px] font-[700] text-headingColor
     }
-
     .custom-cart-header {
-        @apply text-xl md:text-2xl 
-        font-bold 
-        text-headingColor;
+        @apply text-xl md:text-2xl font-bold text-headingColor;
     }
-
+    .custom-Testimonial-header {
+        @apply text-base md:text-lg font-bold text-headingColor;
+    }
 
 
     /* custom-paragraph text-textColor mt-[18px]*/
     .custom-paragraph {
-        @apply text-base sm:text-lg 
-        leading-relaxed sm:leading-normal
-        font-normal sm:font-medium;
+        @apply text-base md:text-lg leading-relaxed md:leading-normal font-normal md:font-medium;
     }
+    .custom-testimonial-paragraph {
+        @apply text-sm md:text-base leading-relaxed md:leading-normal font-normal md:font-medium;
+    }
+
+    /* text__para should be deleted */
     .text__para{
         @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
     }
-
-
-
 
 
 
@@ -63,6 +60,7 @@
                 text-base sm:text-lg font-normal sm:font-medium hover:outline-none hover:ring-2 hover:ring-blue-400 
                 hover:ring-offset-2 transition-all duration-100 ease-in-out;
     }
+    /* btn should be deleted */
     .btn {
         @apply bg-primaryColor text-white py-[15px] px-[35px] rounded-[50px]  font-[600] mt-[38px]
     }
@@ -70,24 +68,23 @@
 
 
 
-    .header{
-        @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover bg-white w-full h-[80px] leading-[100px]
+
+    .form__label{
+        @apply block text-base md:text-lg leading-7 mb-1 md:mb-2 font-bold text-headingColor;
     }
-    .hero__section{
-        @apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover
-    }
-
-
-
-
 
     .form__input{
-        @apply w-full px-2 py-3 text-headingColor text-[16px] leading-7 font-medium  border border-textColor border-solid
-        rounded-md focus:outline-none focus:border-primaryColor placeholder:text-textColor
+        @apply w-full px-1 py-2 md:px-2 md:py-3  text-sm md:text-base leading-7 font-normal md:font-medium text-headingColor
+        border border-textColor border-solid rounded-md focus:outline-none focus:border-primaryColor placeholder:text-textColor
     }
-    .form__label{
-        @apply block text-[18px] leading-7 font-bold text-headingColor mb-2
+    .form__textarea{
+        @apply w-full px-1 py-2 md:px-2 md:py-3  text-sm md:text-base leading-7 font-normal md:font-medium
+        border border-solid border-textColor rounded-md placeholder:text-textColor focus:outline-none focus:border-primaryColor
     }
+
+
+
+
     .form__label__branch{
         @apply block text-[14px] leading-7 font-semibold text-headingColor mb-1
     }
@@ -101,6 +98,18 @@
     }
     .form__select__auth{
         @apply text-textColor font-semibold text-[15px] leading-7 pr-4 py-1 focus:outline-none cursor-pointer
+    }
+
+
+
+
+
+
+    .header{
+        @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover bg-white w-full h-[80px] leading-[100px]
+    }
+    .hero__section{
+        @apply bg-[url('./assets/images/hero-bg.png')] bg-no-repeat bg-center bg-cover
     }
 }
 

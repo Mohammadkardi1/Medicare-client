@@ -41,11 +41,10 @@ const PatientTestimonials = () => {
   return (
     <section>
       <div className='container'>
-
       
-        <div className='w-full max-w-[500px] mx-auto px-4 mb-8'>
-            <h1 className='heading text-center'>What Our Patients Say</h1>
-            <p className='text__para text-center'>
+        <div className='max-w-[400px] lg:max-w-[600px] mx-auto'>
+            <h1 className='custom-header text-center'>What Our Patients Say</h1>
+            <p className='custom-paragraph text-textColor mt-[10px] lg:mt-[18px] text-center'>
               World-Class care for everyone. Our health System offers unmatched, expert health care.
             </p>
         </div>
