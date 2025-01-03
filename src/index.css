@@ -10,13 +10,10 @@
 }
 
 
-
 @layer components{
     .container{
         @apply max-w-full w-[1440px] px-5 mx-auto
     }
-
-
     .custom-header {
         @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-headingColor;
     }
@@ -26,18 +23,12 @@
     .custom-header-sm {
         @apply text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-headingColor;
     }
-    /* heading: Should be deleted */
-    .heading { 
-        @apply text-[44px] leading-[54px] font-[700] text-headingColor
-    }
     .custom-cart-header {
         @apply text-xl md:text-2xl font-bold text-headingColor;
     }
     .custom-testimonial-header {
         @apply text-base md:text-lg font-bold text-headingColor;
     }
-
-
     /* custom-paragraph text-textColor mt-[18px]*/
     .custom-paragraph {
         @apply text-base md:text-lg leading-relaxed md:leading-normal font-normal md:font-medium;
@@ -45,17 +36,6 @@
     .custom-testimonial-paragraph {
         @apply text-sm md:text-base leading-relaxed md:leading-normal font-normal md:font-medium;
     }
-
-    /* text__para should be deleted */
-    .text__para {
-        @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
-    }
-
-
-
-
-
-
     /* custom-button  mt-[20px]  mt-[38px] */
     .custom-button {
         @apply px-4 md:px-6 py-1 md:py-2 text-white bg-primaryColor rounded-[50px]
@@ -66,11 +46,6 @@
     .btn {
         @apply bg-primaryColor text-white py-[15px] px-[35px] rounded-[50px]  font-[600] mt-[38px]
     }
-
-
-
-
-
     .form__label {
         @apply block text-base md:text-lg leading-7 mb-1 md:mb-2 font-semibold text-headingColor;
     }
@@ -82,9 +57,6 @@
         @apply w-full px-1 py-2 md:px-2 md:py-3  text-sm md:text-base leading-7 font-normal md:font-medium
         border border-solid border-textColor rounded-md placeholder:text-textColor focus:outline-none focus:border-primaryColor
     }
-
-
-
     .form__label__branch {
         @apply block text-sm md:text-base leading-7 font-semibold text-headingColor mb-1
     }
@@ -100,11 +72,14 @@
     .form__select__auth {
         @apply pr-4 py-1 md:pr-2 text-sm md:text-base font-semibold leading-7 text-textColor focus:outline-none cursor-pointer 
     }
-
-
-
-
-
+    /* heading: Should be deleted */
+    .heading { 
+        @apply text-[44px] leading-[54px] font-[700] text-headingColor
+    }
+    /* text__para should be deleted */
+    .text__para {
+        @apply text-[18px] leading-[30px] font-[400] text-textColor mt-[18px]
+    }
 
     .header {
         @apply bg-[url('./assets/images/mask.png')] bg-no-repeat bg-center bg-cover bg-white w-full h-[80px] leading-[100px]
