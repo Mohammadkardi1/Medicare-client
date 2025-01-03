@@ -34,20 +34,15 @@ export const deleteDoctor = createAsyncThunk('doctor/deleteDoctor', async(doctor
     }
 })
 
-
-
 export const submitReview = createAsyncThunk('doctor/submitReview', async ({ doctorID, reviewData }, { rejectWithValue }) => {
     try {
       return await doctorAPI.submitReview(doctorID, reviewData).then((response) => response.data) 
     } catch (error) {
       return rejectWithValue(error.response.data.message || "Something went wrong") 
     }
-  }
-  )
+})
 
-
-
-  export const searchDoctors = createAsyncThunk('doctor/searchDoctors', async( doctorName , {rejectWithValue}) => {
+export const searchDoctors = createAsyncThunk('doctor/searchDoctors', async( doctorName , {rejectWithValue}) => {
     try {
         return await doctorAPI.searchDoctors(doctorName).then((response) => response.data)
     } catch (error) {

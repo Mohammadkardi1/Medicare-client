@@ -6,7 +6,6 @@ import { fetchDoctor, updateDoctor, deleteDoctor, fetchDoctors, submitReview,
 
 const updateLocalStorageDataField = (updatedData) => {
     const storedProfile = JSON.parse(localStorage.getItem('profile'))
-
     if (storedProfile?.data?.role === 'doctor') { // Only doctor view mode
         if (storedProfile) {
             const updatedProfile = {
@@ -62,7 +61,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                 default:
                     break
             }
-
         })
         .addCase(asyncThunk.rejected, (state, action) => {
             if (stateKey !== 'submitReview') {
@@ -98,11 +96,8 @@ const doctorSlice = createSlice({
         addAsyncThunkCases(builder, deleteDoctor, "deleteDoctor")
         addAsyncThunkCases(builder, submitReview, "submitReview")
         addAsyncThunkCases(builder, searchDoctors, "searchDoctors")
-
     }
 })
-
-
 
 export const doctorThunks = doctorSlice.actions
 export default doctorSlice.reducer

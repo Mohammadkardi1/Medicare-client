@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 
 
 const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
-
     const { doctorID } = useParams()
     const { loggedInUser } = useSelector(state => state.auth)
 
@@ -18,8 +17,7 @@ const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
             <span className='text-[16px] leading-7 lg:text-[22px] lg:leading-8 text-headingColor font-bold'>
                 {doctorProfileData?.ticketPrice} €
             </span>
-        </div>
-        }
+        </div>}
         {doctorProfileData?.timeSlots?.length !== 0 && 
         <div className='mt-[30px]'>
             <p className='text__para mt-0 font-semibold text-headingColor'>
@@ -37,13 +35,11 @@ const SidePanel = ({doctorProfileData, doctorViewMode= false}) => {
                     </li>
                 ))}
             </ul>
-        </div>
-        }
+        </div>}
         {!doctorViewMode && doctorID !== loggedInUser?._id &&
             <button className='btn px-2 w-full rounded-md'>Book Appointment</button>
         }
     </div>
   )
 }
-
 export default SidePanel

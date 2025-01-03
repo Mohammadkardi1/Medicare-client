@@ -12,24 +12,21 @@ const About = ({doctorProfileData}) => {
             About of<span className='text-irisBlueColor'>Dr. {doctorProfileData?.name}</span>
         </h3>
         <p className='custom-paragraph text-textColor'>{doctorProfileData?.about}</p>
-      </div>
-      }
+      </div>}
       {doctorProfileData?.hospital &&
       <div className='space-y-1 md:space-y-2'>
         <h1 className='custom-header-sm'>Hospital</h1>
         <ul className='px-3 md:px-5'>
             <li className='custom-paragraph text-textColor'>{doctorProfileData?.hospital}</li>
         </ul>
-      </div>
-      }
+      </div>}
       {doctorProfileData?.phone &&
       <div className=' space-y-1 md:space-y-2'>
         <h1 className='custom-header-sm'>Phone Number</h1>
         <ul className='px-3 md:px-5'>
             <li className='custom-paragraph text-textColor'>{doctorProfileData?.phone}</li>
         </ul>
-      </div>
-      }
+      </div>}
       {doctorProfileData?.qualifications?.length !== 0 && 
       <div className='space-y-1 md:space-y-2'>
         <h1 className='custom-header-sm'>Education</h1>
@@ -46,8 +43,7 @@ const About = ({doctorProfileData}) => {
             </li>
           ))}
         </ul>
-      </div>
-      }
+      </div>}
       {doctorProfileData?.experiences?.length !== 0 && 
       <div className='space-y-1 md:space-y-2'>
         <h1 className='custom-header-sm'>Experience</h1>
@@ -62,8 +58,7 @@ const About = ({doctorProfileData}) => {
             </li>
           ))}
         </ul>
-      </div>
-      }
+      </div>}
     </div>
   )
 }

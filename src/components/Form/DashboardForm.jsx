@@ -45,8 +45,6 @@ const DashboardForm = () => {
         }
       }
 
-
-
   return (
     <form className='space-y-4 md:space-y-6' onSubmit={handleSubmit(handleFormSubmit)}>
         <FormInput fieldName="name" labelText="Name" placeholder="Full Name" labelStyle="form__label" 
@@ -98,21 +96,21 @@ const DashboardForm = () => {
                         <div>
                             <div  className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
                                 <FormInput fieldName={`qualifications.${index}.degree`} labelText="Degree"
-                                            placeholder="Degree" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} errors={errors}
-                                            startValidationError = {true} validationRules={{ required: 'required' }}/>
+                                    placeholder="Degree" labelStyle="form__label__branch" 
+                                    inputStyle="form__input" register={register} errors={errors}
+                                    startValidationError = {true} validationRules={{ required: 'required' }}/>
                                 <FormInput fieldName={`qualifications.${index}.institution`} labelText="Institution"
-                                            placeholder="Institution" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} startValidationError = {true}
-                                            errors={errors}  validationRules={{ required: 'required' }}/>
+                                    placeholder="Institution" labelStyle="form__label__branch" 
+                                    inputStyle="form__input" register={register} startValidationError = {true}
+                                    errors={errors}  validationRules={{ required: 'required' }}/>
                                 <FormInput fieldName={`qualifications.${index}.startingDate`} type='date' labelText="Starting Date"
-                                            placeholder="Starting Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} errors={errors}
-                                            validationRules={{ required: 'required' }} startValidationError = {true}/>
+                                    placeholder="Starting Date" labelStyle="form__label__branch" 
+                                    inputStyle="form__input" register={register} errors={errors}
+                                    validationRules={{ required: 'required' }} startValidationError = {true}/>
                                 <FormInput fieldName={`qualifications.${index}.endingDate`} type='date' labelText="Ending Date"
-                                            placeholder="Ending Date" labelStyle="form__label__branch" 
-                                            inputStyle="form__input" register={register} errors={errors}  
-                                            validationRules={{required: 'required'}} startValidationError = {true}/>
+                                    placeholder="Ending Date" labelStyle="form__label__branch" 
+                                    inputStyle="form__input" register={register} errors={errors}  
+                                    validationRules={{required: 'required'}} startValidationError = {true}/>
                             </div>
                             <button type="button" onClick={() => removeQualification(index)}  className='mt-2 bg-red-600 p-2 rounded-full text-white text-[18px]'>
                                 <AiOutlineDelete />

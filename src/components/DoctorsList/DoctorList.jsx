@@ -8,25 +8,19 @@ import ErrorModel from '../Model/ErrorModel';
 
 
 const DoctorList = () => {
-
   const dispatch = useDispatch()
-
   const { doctors, doctorLoading, doctorError } = useSelector(state => state.doctor)
-
 
   useEffect(() => {
     dispatch(fetchDoctors())
   }, [])
 
- 
   if (doctorLoading && !doctorError) {
       return <LoadingModel styles={"h-[40vh]"}/>
   }
-
   if (doctorError && !doctorLoading) {
       return <ErrorModel errorMsg={doctorError} styles={"h-[40vh]"}/>
-  }  
-
+  }
   return (
     <>
     {!doctorLoading && !doctorError && 

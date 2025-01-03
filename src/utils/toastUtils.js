@@ -14,8 +14,6 @@ export const showToastSuccess = (message, options = {}) => {
     toast.success(message, {position, autoClose, hideProgressBar, closeOnClick, pauseOnHover, draggable, theme,})
 }
 
-
-
 export const showToastFailure = (message, options = {}) => {
     const {
         position = "top-right",

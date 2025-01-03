@@ -16,37 +16,24 @@ import { PopUpModel } from '../Model/PopUpModel';
 
 
 const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
-
-
   const dispatch = useDispatch()
   const {doctorID} = useParams()
-
-
   const { reviewLoading } = useSelector(state => state.doctor)
   const { loggedInUser } = useSelector(state => state.auth)
   const [isModelOpen, setIsModelOpen] = useState(false)
-
-  
-  
   const [hover, setHover] = useState(1)
-
 
   const {register, handleSubmit, formState: {errors}, reset, setValue, watch} = useForm({
     defaultValues: { rating: 1, reviewText: "" },
 
   })
-
-
   const rating = watch("rating", 1)
-  
 
   const handleSubmitReview = async (reviewData) => {
-
     if (!JSON.parse(localStorage.getItem('profile'))?.data?._id ) {
       setIsModelOpen(true)
       return
     }
-
     try {
       const res = await dispatch(submitReview({doctorID, reviewData}))
       if (!res.error) {
@@ -60,11 +47,7 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
       }
     } catch (error) {
       console.log(error.message)
-    }
-
-  }
-
-
+    }}
 
   return (
     <>
@@ -102,7 +85,6 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
           ))}
         </div>
       </div>
-
       {!doctorViewMode && 
       <form onSubmit={handleSubmit(handleSubmitReview)}>
         <div className='space-y-6 md:space-y-8'>
@@ -145,11 +127,10 @@ const Reveiw = ({doctorProfileData, doctorViewMode= false}) => {
       </form>
       }
     </div>
-    <PopUpModel
-      isModelOpen={isModelOpen} 
+    <PopUpModel 
+      isModelOpen={isModelOpen}
       setIsModelOpen={setIsModelOpen} 
-      message="To submit a review, please log in first."
-      />
+      message="To submit a review, please log in first."/>
     </>
   )
 }

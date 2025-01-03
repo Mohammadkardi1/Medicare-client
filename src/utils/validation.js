@@ -4,12 +4,11 @@ export const nameValidation =  {
         value: 4,
         message: "Your name must be at least 4 characters long"
     },
-        pattern: {
-            value: /^[a-zA-Z0-9\s]+$/,
-            message: "Your name must be alphanumeric"
-        }
+    pattern: {
+        value: /^[a-zA-Z0-9\s]+$/,
+        message: "Your name must be alphanumeric"
+    }
 }
-
   
 export const emailValidation = {
     required:"Enter your email",
@@ -18,8 +17,7 @@ export const emailValidation = {
         message: "Enter a Valid Email"
     }
 }
-  
-  
+
 export const passwordValidation = (value) => {
     if (!value) {
       return "Enter your password"
@@ -41,20 +39,16 @@ export const passwordValidation = (value) => {
     }
     return null
 }
-  
+
 export const validateImageType = (value) => {
-      
     if (!value[0]) {
         return true
     }
-  
     const file = value[0]
     const types = ['image/jpg', 'image/png', "image/jpeg"]
-  
     if ( !types.includes(file.type)  ) {
       return 'Please select a valid photo JPG, PNG or JPEG';
     }
-  
     return true
 }
 
@@ -94,7 +88,6 @@ export const ticketPriceValidation = {
     message: "Enter a valid price (e.g., 10 or 10.99)",
   },
 }
-
 
 export const totalPatientsValidation={
   min: {

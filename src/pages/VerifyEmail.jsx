@@ -41,22 +41,24 @@ const VerifyEmail = () => {
 	}
 
 	return (
-		<div className='w-full mt-12 flex flex-col items-center justify-center gap-6 text-textColor font-semibold'>
+		<div className='h-[40vh] flex flex-col justify-center items-center
+		
+		
+		gap-2 md:gap-4 mt-4 md:mt-10 text-textColor font-semibold'>
 			{isVerified === true &&
 				<>
 					<img src={successImg} alt="success_img" className='w-[150px] lg:w-[250px]' />
-					<h1>
+					<h1 className="font-light text-[0.9rem] md:text-[1.1rem] text-neutral-500">
 						Email verified successfully! Please Log in.
 						<Link to='/login' className=' text-primaryColor ml-2 underline'>
 							Login
 						</Link>
 					</h1>
-				</>
-				}
+				</>}
 				{isVerified === false &&
 					<>
 						<img src={failure} alt="failure_img" className='w-[150px] lg:w-[250px]' />
-						<h1 className="text-center">
+						<h1 className=" font-semibold text-[0.9rem] md:text-[1.1rem] text-neutral-500 mt-2">
 							{authError}
 						</h1>
 					</>

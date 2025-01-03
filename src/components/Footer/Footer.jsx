@@ -79,26 +79,19 @@ const navLinksClasses= 'text-[15px] leading-[30px] font-[500] text-textColor mt-
 
 
 const Footer = () => {
-
   const year = new Date().getFullYear()
-
 
   return (
     <footer className='mb-4 mt-auto '>
       <div className='container'>
         <div className=' grid grid-cols-5 gap-8'>
-
           {/* ========== Copyright and Social Profiles ========== */}
           <div className='col-span-5 md:col-span-2 space-y-6'>
             <img src={logoImg} alt='logo-image'/>
-
             <p className='text-[14px] leading-[25px] font-[500] text-textColor'>
               Copyright &copy; {year} Developed by Mohammad Kardi. All rights reserved.
             </p>
-
             <div className='flex gap-2'>
-
-
               {socialProfiles.map((item, index) => (
                   <Link key={index} 
                         className={`border-[1px] rounded-full p-2 border-headingColor group hover:bg-primaryColor hover:border-none`}>
@@ -107,8 +100,6 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          
-
           {/* ========== QuickLinks List ========== */}
           <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>Quick Links</h1>
@@ -120,7 +111,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
           {/* ========== IWantTo List ========== */}
           <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>I want to</h1>
@@ -132,7 +122,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
           {/* ========== Support List ========== */}
           <div className='col-span-5 md:col-span-1'>
             <h1 className={navHeaderClasses}>Support</h1>
@@ -144,9 +133,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-
-          
         </div>
       </div>
     </footer>

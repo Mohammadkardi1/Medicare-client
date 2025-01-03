@@ -10,7 +10,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
             state.authError = null
 
         })
-
         .addCase(asyncThunk.fulfilled, (state, action) => { 
             state.authLoading = false
             state.authError = null
@@ -27,7 +26,6 @@ const addAsyncThunkCases = (builder, asyncThunk, stateKey, options = {}) => {
                     break;
             }
         })
-
         .addCase(asyncThunk.rejected, (state, action) => {
             state.authLoading = false
             state.authError = action?.payload || 'Something went wrong'         
@@ -48,7 +46,6 @@ const initialState = {
     isVerified: false,
     authError: '', 
 }
-
 
 const authSlice = createSlice({
     name: "auth",
@@ -77,7 +74,6 @@ const authSlice = createSlice({
         addAsyncThunkCases(builder, registerUser, "registration")
         addAsyncThunkCases(builder, loginUser, "login")
         addAsyncThunkCases(builder, verifyEmail, "verifyEmail")
-
     }
 })
 

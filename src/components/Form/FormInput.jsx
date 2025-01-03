@@ -3,12 +3,10 @@ import React from 'react';
 const FormInput = ({fieldName, labelText= "", type = "text", placeholder, labelStyle, inputStyle, register, 
                     validationRules={}, errors ={}, startValidationError= false}) => {
 
-
   return (
     <div>
         {labelText && <label className={labelStyle}>
             {labelText}
-
             {startValidationError && errors?.[fieldName.split('.')[0]] && 
                 <span className='font-bold text-[16px] text-red-600'>*</span>
             }
