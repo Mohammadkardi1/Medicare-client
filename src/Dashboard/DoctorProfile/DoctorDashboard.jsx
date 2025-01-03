@@ -85,8 +85,8 @@ const DoctorDashboard = () => {
     {!authLoading && !authError && (
         <div className='grid lg:grid-cols-3 gap-[30px] lg:gap-[50px]'>
           {/* Left Sidebar */}
-          <div>
-            <span className='lg:hidden'>
+          <div className='hidden'>
+            <span>
                 <BiMenu className='w-6 h-6 cursor-pointer'/>
             </span>
             <div className='hidden lg:flex flex-col p-[30px] bg-white shadow-panelShadow items-center h-max rounded-md'>

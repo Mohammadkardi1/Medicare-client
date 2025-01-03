@@ -53,9 +53,20 @@ const Header = () => {
 
   useEffect(() => {
     handleStickyHeader()
-
     return () => window.removeEventListener('scroll', handleStickyHeader)
   })
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        menuRef.current?.classList.remove('show__menu');
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
+  }, [])
 
   const toggleMenu = () => {
     menuRef.current.classList.toggle('show__menu')
@@ -82,7 +93,7 @@ const Header = () => {
           </div>
           {/* ========= menu ========= */}
           <div className='navigation' ref={menuRef}>
-            <div className='md:hidden flex justify-end' onClick={toggleMenu}>
+            <div className='lg:hidden flex justify-end' onClick={toggleMenu}>
               <MdOutlineClose size={30}
                   className='cursor-pointer text-black p-1 z-[300] my-4 mx-2 '/>
             </div>
@@ -130,7 +141,7 @@ const Header = () => {
                   </Link>
                 </button>
               }
-              <span className='md:hidden' onClick={toggleMenu}>
+              <span className='lg:hidden' onClick={toggleMenu}>
                 <BiMenu className='w-6 h-6 cursor-pointer'/>
               </span>
             </div>
